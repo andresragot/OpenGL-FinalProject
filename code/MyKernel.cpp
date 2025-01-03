@@ -7,7 +7,9 @@
 
 #include "MyKernel.hpp"
 
+
 namespace project_source {
+
     void Kernel::add(Task *new_task)
     {
         if (auto render_task = dynamic_cast<Critical_Task *> (new_task))
@@ -39,7 +41,7 @@ namespace project_source {
             threads.emplace_back(&Task::execute, task);
         }
         
-        std::thread critical (&Kernel::execute_critial, this);
+        std::thread critical (&Kernel::execute_critical, this);
         
         is_running = true;
         
@@ -51,7 +53,7 @@ namespace project_source {
         critical.join();
     }
 
-    void Kernel::execute_critial()
+    void Kernel::execute_critical()
     {
         exit = false;
         do

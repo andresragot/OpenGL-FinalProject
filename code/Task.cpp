@@ -5,7 +5,6 @@
 //  Created by Andrés Ragot on 31/12/24.
 //
 
-#include <iostream>
 #include <thread>
 #include "Task.hpp"
 
@@ -15,8 +14,8 @@ namespace project_source
         Declaration de variables estáticas.
      */
     
-    atomic<bool> Task::         is_stop (false);
-    atomic<bool> Task::finish_execution (false);
+    atomic<bool> Task::          is_stop (false);
+    atomic<bool> Task:: finish_execution (false);
     
     condition_variable Task::cv;
     
