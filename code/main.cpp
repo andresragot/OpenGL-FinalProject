@@ -10,65 +10,23 @@
 #include "Task.hpp"
 #include "MyKernel.hpp"
 
-void input_function()
-{
-    std::cout << "InputTask" << std::endl;
-    
-    std::this_thread::sleep_for(std::chrono::seconds(1));// Simulación de trabajo
-}
-
-void render_function()
-{
-    std::cout << "RenderTask" << std::endl;
-    
-    std::this_thread::sleep_for(std::chrono::seconds(2));// Simulación de trabajo
-    
-    std::cout << "Finish RenderTask" << std::endl;
-}
-
-void update_function()
-{
-    std::cout << "UpdateTask" << std::endl;
-    
-    std::this_thread::sleep_for(std::chrono::seconds(2)); // Simulación de trabajo
-}
-
 using namespace project_source;
 
-const std::string RED = "\033";
+// Colores para debuggear.
+const char*    RED = "\033[1;31m";
+const char* YELLOW = "\033[1;33m";
+const char*  RESET = "\033[0m";
+const char*  GREEN = "\033[1;32m";
 
 int main (int , char * [])
 {
-    Light_Task input(input_function);
-    Critical_Task render(render_function);
-    Once_Task update (update_function);
-
-    Kernel my_kernel;
-    
-    my_kernel.add(&input);
-    my_kernel.add(&render);
-    my_kernel.add(&update);
-    
-    // std::thread input_t (&Light_Task::execute, &input);
-    // std::thread render_t (&Critical_Task::execute, &render);
-    // std::thread update_t (&Light_Task::execute, &update);
-    
-    std::thread kernel_thread (&Kernel::run, &my_kernel);
-    
-    std::this_thread::sleep_for(std::chrono::seconds(5));
-    
-    std::cout << RED << "Stopping Kernel" << std::endl;
-
-    Once_Task close ([&my_kernel]() {my_kernel.stop();});
-    
-    kernel_thread.join();
-    
-    // my_kernel.stop();
-    // input.stop_execution();
-    
-    //input_t.join();
-    //render_t.join();
-    //update_t.join();
+    /// TODO: Desarrollar el resto de Componentes:
+    ///  * Mesh
+    ///  * Camera
+    ///  * Sound
+    ///  * Transform
+    ///
+    /// TODO: Luego hacer todos los controllers.
     
     return 0;
 }
