@@ -12,7 +12,7 @@
 #include <vector>
 
 
-namespace project_source
+namespace Ragot
 {
     using std::vector;
 

@@ -13,7 +13,7 @@
 #include <atomic>
 #include <functional>
 
-namespace project_source {
+namespace Ragot {
 
 using std::condition_variable;
 using std::mutex;

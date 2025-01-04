@@ -8,7 +8,7 @@
 #include <thread>
 #include "Task.hpp"
 
-namespace project_source
+namespace Ragot
 {
     /*
         Declaration de variables estáticas.

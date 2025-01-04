@@ -8,7 +8,7 @@
 #include "MyKernel.hpp"
 
 
-namespace project_source {
+namespace Ragot {
 
     void Kernel::add(Task *new_task)
     {
