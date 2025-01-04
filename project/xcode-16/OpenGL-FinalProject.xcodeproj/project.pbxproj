@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E8DA2532D29365D0034BBB1 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA2522D29365D0034BBB1 /* Mesh.cpp */; };
+		8E8DA2562D2947470034BBB1 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA2552D2947470034BBB1 /* Window.cpp */; };
+		8E8DA2582D2965BB0034BBB1 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E8DA2572D2965BB0034BBB1 /* Metal.framework */; };
+		8E8DA25B2D298DA10034BBB1 /* MySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA25A2D298DA10034BBB1 /* MySystem.cpp */; };
+		8E8DA25E2D2990010034BBB1 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA25D2D2990010034BBB1 /* Entity.cpp */; };
+		8E8DA2642D2992110034BBB1 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA2632D2992110034BBB1 /* Component.cpp */; };
 		8EF1C22B2D240CF90046432D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF1C22A2D240CF90046432D /* AudioToolbox.framework */; };
 		8EF1C22D2D240D130046432D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF1C22C2D240D130046432D /* Cocoa.framework */; };
 		8EF1C22F2D240D240046432D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF1C22E2D240D240046432D /* CoreAudio.framework */; };
@@ -48,6 +54,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8E8DA2512D29365D0034BBB1 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Mesh.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Mesh.hpp"; sourceTree = "<absolute>"; };
+		8E8DA2522D29365D0034BBB1 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Mesh.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Mesh.cpp"; sourceTree = "<absolute>"; };
+		8E8DA2542D2947470034BBB1 /* Window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Window.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Window.hpp"; sourceTree = "<absolute>"; };
+		8E8DA2552D2947470034BBB1 /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Window.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Window.cpp"; sourceTree = "<absolute>"; };
+		8E8DA2572D2965BB0034BBB1 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		8E8DA2592D298DA10034BBB1 /* MySystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = MySystem.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/MySystem.hpp"; sourceTree = "<absolute>"; };
+		8E8DA25A2D298DA10034BBB1 /* MySystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MySystem.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/MySystem.cpp"; sourceTree = "<absolute>"; };
+		8E8DA25C2D2990010034BBB1 /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Entity.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Entity.hpp"; sourceTree = "<absolute>"; };
+		8E8DA25D2D2990010034BBB1 /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Entity.cpp"; sourceTree = "<absolute>"; };
+		8E8DA2622D2992110034BBB1 /* Component.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Component.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Component.hpp"; sourceTree = "<absolute>"; };
+		8E8DA2632D2992110034BBB1 /* Component.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Component.cpp"; sourceTree = "<absolute>"; };
 		8EF1C21F2D2404FF0046432D /* OpenGL-FinalProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OpenGL-FinalProject"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF1C22A2D240CF90046432D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8EF1C22C2D240D130046432D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -84,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E8DA2582D2965BB0034BBB1 /* Metal.framework in Frameworks */,
 				8EF1C2522D240DD80046432D /* libassimp.a in Frameworks */,
 				8EF1C2532D240DD80046432D /* libzlibstatic.a in Frameworks */,
 				8EF1C2542D240DD80046432D /* libassimpd.a in Frameworks */,
@@ -115,11 +133,21 @@
 		8EF1C2162D2404FF0046432D = {
 			isa = PBXGroup;
 			children = (
+				8E8DA2622D2992110034BBB1 /* Component.hpp */,
+				8E8DA2632D2992110034BBB1 /* Component.cpp */,
+				8E8DA25C2D2990010034BBB1 /* Entity.hpp */,
+				8E8DA25D2D2990010034BBB1 /* Entity.cpp */,
+				8E8DA2592D298DA10034BBB1 /* MySystem.hpp */,
+				8E8DA25A2D298DA10034BBB1 /* MySystem.cpp */,
+				8E8DA2542D2947470034BBB1 /* Window.hpp */,
+				8E8DA2552D2947470034BBB1 /* Window.cpp */,
 				8EF1C25D2D2417FF0046432D /* Task.hpp */,
 				8EF1C25E2D2417FF0046432D /* Task.cpp */,
 				8EF1C25A2D2416F50046432D /* MyKernel.hpp */,
 				8EF1C25B2D2416F50046432D /* MyKernel.cpp */,
 				8EF1C2582D2410BA0046432D /* main.cpp */,
+				8E8DA2512D29365D0034BBB1 /* Mesh.hpp */,
+				8E8DA2522D29365D0034BBB1 /* Mesh.cpp */,
 				8EF1C2562D240EF20046432D /* glad.c */,
 				8EF1C2292D240CF90046432D /* Frameworks */,
 				8EF1C2202D2404FF0046432D /* Products */,
@@ -137,6 +165,7 @@
 		8EF1C2292D240CF90046432D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E8DA2572D2965BB0034BBB1 /* Metal.framework */,
 				8EF1C24E2D240DD80046432D /* libassimp.a */,
 				8EF1C2502D240DD80046432D /* libassimpd.a */,
 				8EF1C24F2D240DD80046432D /* libzlibstatic.a */,
@@ -223,10 +252,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E8DA25E2D2990010034BBB1 /* Entity.cpp in Sources */,
+				8E8DA2642D2992110034BBB1 /* Component.cpp in Sources */,
 				8EF1C25F2D2417FF0046432D /* Task.cpp in Sources */,
+				8E8DA2562D2947470034BBB1 /* Window.cpp in Sources */,
 				8EF1C2592D2410BA0046432D /* main.cpp in Sources */,
 				8EF1C25C2D2416F50046432D /* MyKernel.cpp in Sources */,
+				8E8DA25B2D298DA10034BBB1 /* MySystem.cpp in Sources */,
 				8EF1C2572D240EF20046432D /* glad.c in Sources */,
+				8E8DA2532D29365D0034BBB1 /* Mesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +391,7 @@
 					"${PROJECT_DIR}/../../libraries/soil2/include",
 					"${PROJECT_DIR}/../../libraries/glad/include",
 					"${PROJECT_DIR}/../../libraries/glm/include",
+					"${PROJECT_DIR}/../../libraries/assimp/include",
 					"${PROJECT_DIR}/../../shared/code",
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -377,6 +412,7 @@
 					"${PROJECT_DIR}/../../libraries/soil2/include",
 					"${PROJECT_DIR}/../../libraries/glad/include",
 					"${PROJECT_DIR}/../../libraries/glm/include",
+					"${PROJECT_DIR}/../../libraries/assimp/include",
 					"${PROJECT_DIR}/../../shared/code",
 				);
 				LIBRARY_SEARCH_PATHS = (
