@@ -10,8 +10,10 @@
 	<string>RelativeToDerivedData</string>
 	<key>CustomBuildProductsPath</key>
 	<string>Build/Products</string>
+	<key>DerivedDataCustomLocation</key>
+	<string>DerivedData</string>
 	<key>DerivedDataLocationStyle</key>
-	<string>Default</string>
+	<string>WorkspaceRelativePath</string>
 	<key>SharedBuildFolderName</key>
 	<string>Build</string>
 	<key>ShowSharedSchemesAutomaticallyEnabled</key>
