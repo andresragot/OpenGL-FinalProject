@@ -13,6 +13,8 @@
 		8E8DA25B2D298DA10034BBB1 /* MySystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA25A2D298DA10034BBB1 /* MySystem.cpp */; };
 		8E8DA25E2D2990010034BBB1 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA25D2D2990010034BBB1 /* Entity.cpp */; };
 		8E8DA2642D2992110034BBB1 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA2632D2992110034BBB1 /* Component.cpp */; };
+		8E8DA26A2D2AF3AE0034BBB1 /* Texture_Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA2692D2AF3AE0034BBB1 /* Texture_Cube.cpp */; };
+		8E8DA26F2D2AFE670034BBB1 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E8DA26D2D2AFE0A0034BBB1 /* OpenGL.framework */; };
 		8EF1C22B2D240CF90046432D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF1C22A2D240CF90046432D /* AudioToolbox.framework */; };
 		8EF1C22D2D240D130046432D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF1C22C2D240D130046432D /* Cocoa.framework */; };
 		8EF1C22F2D240D240046432D /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF1C22E2D240D240046432D /* CoreAudio.framework */; };
@@ -65,6 +67,12 @@
 		8E8DA25D2D2990010034BBB1 /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Entity.cpp"; sourceTree = "<absolute>"; };
 		8E8DA2622D2992110034BBB1 /* Component.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Component.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Component.hpp"; sourceTree = "<absolute>"; };
 		8E8DA2632D2992110034BBB1 /* Component.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Component.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Component.cpp"; sourceTree = "<absolute>"; };
+		8E8DA2652D2AF17F0034BBB1 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Camera.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Camera.hpp"; sourceTree = "<absolute>"; };
+		8E8DA2682D2AF3AE0034BBB1 /* Texture_Cube.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Texture_Cube.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Texture_Cube.hpp"; sourceTree = "<absolute>"; };
+		8E8DA2692D2AF3AE0034BBB1 /* Texture_Cube.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Texture_Cube.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Texture_Cube.cpp"; sourceTree = "<absolute>"; };
+		8E8DA26B2D2AF43A0034BBB1 /* Color.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Color.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Color.hpp"; sourceTree = "<absolute>"; };
+		8E8DA26C2D2AF43A0034BBB1 /* Color_Buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Color_Buffer.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Color_Buffer.hpp"; sourceTree = "<absolute>"; };
+		8E8DA26D2D2AFE0A0034BBB1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		8EF1C21F2D2404FF0046432D /* OpenGL-FinalProject */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OpenGL-FinalProject"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF1C22A2D240CF90046432D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8EF1C22C2D240D130046432D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -101,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E8DA26F2D2AFE670034BBB1 /* OpenGL.framework in Frameworks */,
 				8E8DA2582D2965BB0034BBB1 /* Metal.framework in Frameworks */,
 				8EF1C2522D240DD80046432D /* libassimp.a in Frameworks */,
 				8EF1C2532D240DD80046432D /* libzlibstatic.a in Frameworks */,
@@ -133,6 +142,9 @@
 		8EF1C2162D2404FF0046432D = {
 			isa = PBXGroup;
 			children = (
+				8E8DA2682D2AF3AE0034BBB1 /* Texture_Cube.hpp */,
+				8E8DA2692D2AF3AE0034BBB1 /* Texture_Cube.cpp */,
+				8E8DA2652D2AF17F0034BBB1 /* Camera.hpp */,
 				8E8DA2622D2992110034BBB1 /* Component.hpp */,
 				8E8DA2632D2992110034BBB1 /* Component.cpp */,
 				8E8DA25C2D2990010034BBB1 /* Entity.hpp */,
@@ -150,6 +162,8 @@
 				8E8DA2522D29365D0034BBB1 /* Mesh.cpp */,
 				8EF1C2562D240EF20046432D /* glad.c */,
 				8EF1C2292D240CF90046432D /* Frameworks */,
+				8E8DA26B2D2AF43A0034BBB1 /* Color.hpp */,
+				8E8DA26C2D2AF43A0034BBB1 /* Color_Buffer.hpp */,
 				8EF1C2202D2404FF0046432D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -165,6 +179,7 @@
 		8EF1C2292D240CF90046432D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E8DA26D2D2AFE0A0034BBB1 /* OpenGL.framework */,
 				8E8DA2572D2965BB0034BBB1 /* Metal.framework */,
 				8EF1C24E2D240DD80046432D /* libassimp.a */,
 				8EF1C2502D240DD80046432D /* libassimpd.a */,
@@ -255,6 +270,7 @@
 				8E8DA25E2D2990010034BBB1 /* Entity.cpp in Sources */,
 				8E8DA2642D2992110034BBB1 /* Component.cpp in Sources */,
 				8EF1C25F2D2417FF0046432D /* Task.cpp in Sources */,
+				8E8DA26A2D2AF3AE0034BBB1 /* Texture_Cube.cpp in Sources */,
 				8E8DA2562D2947470034BBB1 /* Window.cpp in Sources */,
 				8EF1C2592D2410BA0046432D /* main.cpp in Sources */,
 				8EF1C25C2D2416F50046432D /* MyKernel.cpp in Sources */,
