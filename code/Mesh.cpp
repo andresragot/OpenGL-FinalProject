@@ -20,7 +20,7 @@ namespace Ragot
     
     using std::string;
     
-    Mesh::Mesh(const string & mesh_file_path) : Mesh()
+    Mesh::Mesh(const string & mesh_file_path)
     {
         load_mesh(mesh_file_path);
     }

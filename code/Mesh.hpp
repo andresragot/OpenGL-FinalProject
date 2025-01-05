@@ -5,6 +5,8 @@
 //  Created by Andrés Ragot on 4/1/25.
 //
 
+#pragma once
+
 #include <glad/glad.h>
 #include <glm.hpp>
 #include <vector>
@@ -38,7 +40,6 @@ namespace Ragot
         
         GLsizei number_of_indices;
         
-        void render();
         
         void load_mesh(const std::string & mesh_file_path);
         
@@ -48,7 +49,7 @@ namespace Ragot
         void build_mesh();
         
     public:
-        Mesh() : render_task([this] {render(); }) {}
+        Mesh() = default;
         Mesh (const std::string & mesh_file_path);
        ~Mesh()
         {
@@ -57,6 +58,6 @@ namespace Ragot
         }
        
     public:
-        Ragot::Critical_Task render_task;
+        void render();
     };
 }
