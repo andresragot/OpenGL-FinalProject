@@ -5,7 +5,7 @@
 //  Created by Andrés Ragot on 31/12/24.
 //
 
-#include <iostream>
+/*#include <iostream>
 #include <thread>
 #include "Task.hpp"
 #include "MyKernel.hpp"
@@ -23,14 +23,13 @@ int main (int , char * [])
     /// TODO: Desarrollar el resto de Componentes:
     ///  * Mesh
     ///  * Camera
-    ///  * Sound
     ///  * Transform
     ///
     /// TODO: Luego hacer todos los controllers.
     /// 
     
     return 0;
-}
+}*/
 
 /*// constructing atomics
 #include <iostream>       // std::cout
@@ -58,3 +57,60 @@ int main ()
   return 0;
 }
 */
+
+#include <iostream>
+#include <SDL.h>
+#include <glad/glad.h>
+#include "Entity.hpp"
+#include "MySystem.hpp"
+#include "Component.hpp"
+#include "Window.hpp"
+#include "Camera.hpp"
+#include "Texture_Cube.hpp"
+
+using namespace Ragot;
+
+int main(int argc, char* argv[]) {
+    // Configuración de OpenGL
+    Window window("Skybox Test", Window::Position::CENTERED, Window::Position::CENTERED, 800, 600, { 3, 3 });
+
+    // Crear escena y entidad
+    Scene scene;
+    auto skybox_entity = std::make_shared<Entity>();
+
+    // Crear y adjuntar el componente Skybox
+    //auto skybox_component = std::make_shared<Skybox_Component>("../../../../../../fotos/sky-cube-map-");
+    //skybox_entity->components["Skybox"] = skybox_component;
+
+    // Agregar entidad a la escena
+    //scene.entities["SkyboxEntity"] = skybox_entity;
+
+    // Crear una cámara
+    Camera camera;
+    //skybox_component->set_camera(camera);
+
+    // Ciclo principal de renderizado
+    bool running = true;
+    SDL_Event event;
+
+    while (running) {
+        while (SDL_PollEvent(&event) != 0) {
+            if (event.type == SDL_QUIT) {
+                running = false;
+            }
+        }
+
+        // Limpiar pantalla
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        // Renderizar el skybox
+        //skybox_component->render();
+
+        // Intercambiar buffers
+        window.swap_buffers();
+    }
+
+    // Limpiar y salir
+    SDL_Quit();
+    return 0;
+}

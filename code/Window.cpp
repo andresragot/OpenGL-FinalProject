@@ -49,17 +49,36 @@ namespace Ragot
             title,
             left_x,
             top_y,
-            int(width),
+            int(width ),
             int(height),
             SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN
         );
         
         assert (window_handle != nullptr);
         
+        opengl_context = SDL_GL_CreateContext (window_handle);
+
+        assert(opengl_context != nullptr);
+        
         GLenum glad_is_initialized = gladLoadGL ();
         
         assert(glad_is_initialized);
         
         SDL_GL_SetSwapInterval(context_details.enable_vsync ? 1 : 0);
+    }
+    
+    Window::~Window()
+    {
+        if (opengl_context)
+        {
+            SDL_GL_DeleteContext (opengl_context);
+        }
+
+        if (window_handle)
+        {
+            SDL_DestroyWindow (window_handle);
+        }
+
+        SDL_QuitSubSystem (SDL_INIT_VIDEO);
     }
 }

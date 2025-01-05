@@ -83,5 +83,10 @@ namespace Ragot
             
             return *this;
         }
+        
+        void swap_buffers ()
+        {
+            SDL_GL_SwapWindow (window_handle);
+        }
     };
 }

@@ -25,6 +25,7 @@ namespace Ragot
 
     class Scene
     {
+    public:
         map <string, shared_ptr <Entity>> entities;
     };
     

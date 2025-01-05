@@ -12,6 +12,9 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>         // translate, rotate, scale, perspective
 #include <gtc/type_ptr.hpp>                 // value_ptr, quat
+#include "Task.hpp"
+#include "Camera.hpp"
+#include "Texture_Cube.hpp"
 
 using glm::vec3;
 using glm::mat4;
@@ -26,8 +29,13 @@ namespace Ragot
         
         void set_entity (std::shared_ptr<Entity> ent) { entity = ent; }
         
+        bool get_has_task() const { return has_task; }
+        
     private:
         std::weak_ptr<Entity> entity;
+        
+    protected:
+        bool has_task = false;
     };
     
     class Transform_Component : public Component
@@ -75,9 +83,9 @@ namespace Ragot
     class Mesh_Component : public Component
     {
     public:
-        Mesh_Component() = default;
+        Mesh_Component() : render_task ([this] { render(); }) { has_task = true; }
         
-        explicit Mesh_Component (std::shared_ptr <Mesh> mesh) : mesh (std::move(mesh)) {}
+        explicit Mesh_Component (std::shared_ptr <Mesh> mesh) : mesh (std::move(mesh)), render_task ([this] { render(); }) { has_task = true; }
         
         void set_mesh (std::shared_ptr <Mesh> new_mesh)
         {
@@ -99,5 +107,45 @@ namespace Ragot
         
     private:
         shared_ptr <Mesh> mesh;
+        Critical_Task render_task;
+    };
+    
+    class Camera_Component : public Component
+    {
+
+    };
+    
+    class Skybox_Component: public Component
+    {
+    private:
+        static const GLfloat coordinates[];
+        static const std::string vertex_shader_code;
+        static const std::string fragment_shader_code;
+        
+        GLuint vbo_id;
+        GLuint vao_id;
+        
+        GLuint shader_program_id;
+        
+        GLint  model_view_matrix_id;
+        GLint  projection_matrix_id;
+        
+        const Camera * camera = nullptr;
+        
+        Texture_Cube texture_cube;
+        
+    public:
+        Skybox_Component (const std::string & texture_path);
+       ~Skybox_Component ();
+       
+        void set_camera(const Camera & cam) { camera = &cam; }
+       
+        Critical_Task render_task;
+        void render ();
+        
+    private:
+        GLuint compile_shaders();
+        void show_compilation_error (GLuint  shader_id);
+        void     show_linkage_error (GLuint program_id);
     };
 }

@@ -17,7 +17,8 @@ namespace Ragot
         Scene * scene;
         
         Transform_Component transform;
-        
+    
+    public:
         map <string, shared_ptr < Component > > components;
     };
 

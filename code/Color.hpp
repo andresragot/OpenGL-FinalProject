@@ -6,7 +6,7 @@
 
 #include <cstdint>
 
-namespace udit
+namespace Ragot
 {
 
     using Monochrome8 = uint8_t;

@@ -6,7 +6,7 @@
 
 #include <vector>
 
-namespace udit
+namespace Ragot
 {
 
     template< typename COLOR >
