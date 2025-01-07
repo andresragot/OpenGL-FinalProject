@@ -12,6 +12,9 @@
 
 namespace Ragot
 {
+
+// void check_gl_error(const std::string &label) { GLenum error; while ((error = glGetError()) != GL_NO_ERROR) { std::cerr << "OpenGL error [" << label << "]: " << error << std::endl; } }
+
     using namespace std;
     using namespace glm;
     
@@ -92,12 +95,22 @@ namespace Ragot
     {
         assert(texture_cube.is_ok ());
         
+        //check_gl_error("texture cube is ok");
+        
         shader_program_id = compile_shaders();
+        
+        //check_gl_error("compile shaders");
+        
+        // glUseProgram (shader_program_id);
+        
+        //check_gl_error("gl use program");
         
         model_view_matrix_id = glGetUniformLocation (shader_program_id, "model_view_matrix");
         projection_matrix_id = glGetUniformLocation (shader_program_id, "projection_matrix");
         
-        glGenBuffers (1, &vao_id);
+        //check_gl_error("glget uniform location");
+        
+        glGenBuffers (1, &vbo_id);
         glGenVertexArrays (1, &vao_id);
         
         glBindVertexArray (vao_id);

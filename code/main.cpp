@@ -67,27 +67,58 @@ int main ()
 #include "Window.hpp"
 #include "Camera.hpp"
 #include "Texture_Cube.hpp"
+#include "Mesh.hpp"
 
 using namespace Ragot;
 
+// Add error logging
+void check_gl_error(const std::string &label) { GLenum error; while ((error = glGetError()) != GL_NO_ERROR) { std::cerr << "OpenGL error [" << label << "]: " << error << std::endl; } }
+
 int main(int argc, char* argv[]) {
     // Configuración de OpenGL
-    Window window("Skybox Test", Window::Position::CENTERED, Window::Position::CENTERED, 800, 600, { 3, 3 });
+    int width = 800;
+    int height = 600;
+    
+    Window window("Skybox Test", Window::Position::CENTERED, Window::Position::CENTERED, width, height, { 3, 3 });
+    
+    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
+    {
+        std::cerr << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
 
-    // Crear escena y entidad
-    Scene scene;
-    auto skybox_entity = std::make_shared<Entity>();
+    
+    if (!GLAD_GL_ARB_texture_cube_map)
+    {
+        std::cerr << "GL_TEXTURE_CUBE_MAP is not supported!" << std::endl;
+        return -1;
+    }
 
+
+    
+    check_gl_error("Window creation");
+    
     // Crear y adjuntar el componente Skybox
-    //auto skybox_component = std::make_shared<Skybox_Component>("../../../../../../fotos/sky-cube-map-");
-    //skybox_entity->components["Skybox"] = skybox_component;
-
-    // Agregar entidad a la escena
-    //scene.entities["SkyboxEntity"] = skybox_entity;
-
-    // Crear una cámara
+    //auto skybox_component = std::make_shared<Skybox_Component>("fotos/sky-cube-map-");
+    Skybox_Component skybox ("fotos/sky-cube-map-");
+    check_gl_error("Skybox creation");
     Camera camera;
-    //skybox_component->set_camera(camera);
+    check_gl_error("camera creation");
+    skybox.set_camera(camera);
+    check_gl_error("set_camera");
+    
+    glDisable (GL_DEPTH_TEST);
+    check_gl_error("gl disable");
+    glEnable  (GL_CULL_FACE);
+    check_gl_error("gl cull face");
+    
+    
+    glViewport (0, 0, width, height);
+    check_gl_error("glviewport");
+    glClearColor(0.1f, 0.2f, 0.1f, 1.0f);
+    check_gl_error("glclearcolor");
+    
+    //Mesh mesh ("stanford-bunny.obj");
 
     // Ciclo principal de renderizado
     bool running = true;
@@ -102,12 +133,16 @@ int main(int argc, char* argv[]) {
 
         // Limpiar pantalla
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        check_gl_error("glcolor");
 
         // Renderizar el skybox
-        //skybox_component->render();
+        skybox.render();
+        check_gl_error("skybox render");
 
         // Intercambiar buffers
         window.swap_buffers();
+        
+        check_gl_error("End Main");
     }
 
     // Limpiar y salir

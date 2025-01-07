@@ -37,8 +37,9 @@ namespace Ragot
         SDL_GL_SetAttribute
         (
             SDL_GL_CONTEXT_PROFILE_MASK,
-            context_details.core_profile ? SDL_GL_CONTEXT_PROFILE_CORE :
-            SDL_GL_CONTEXT_PROFILE_COMPATIBILITY
+            SDL_GL_CONTEXT_PROFILE_CORE
+            /*context_details.core_profile ? SDL_GL_CONTEXT_PROFILE_CORE :
+            SDL_GL_CONTEXT_PROFILE_COMPATIBILITY*/
         );
         
         if (context_details.depth_buffer_size  ) SDL_GL_SetAttribute (SDL_GL_DEPTH_SIZE,     context_details.depth_buffer_size);
