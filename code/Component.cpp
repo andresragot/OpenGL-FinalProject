@@ -95,20 +95,10 @@ namespace Ragot
     {
         assert(texture_cube.is_ok ());
         
-        //check_gl_error("texture cube is ok");
-        
         shader_program_id = compile_shaders();
-        
-        //check_gl_error("compile shaders");
-        
-        // glUseProgram (shader_program_id);
-        
-        //check_gl_error("gl use program");
         
         model_view_matrix_id = glGetUniformLocation (shader_program_id, "model_view_matrix");
         projection_matrix_id = glGetUniformLocation (shader_program_id, "projection_matrix");
-        
-        //check_gl_error("glget uniform location");
         
         glGenBuffers (1, &vbo_id);
         glGenVertexArrays (1, &vao_id);
@@ -148,7 +138,7 @@ namespace Ragot
         
         glBindVertexArray (vao_id);
         glDrawArrays (GL_TRIANGLES, 0, 36);
-        
+                
         glDepthMask (GL_TRUE);
         
         glBindVertexArray (0);
@@ -164,7 +154,7 @@ namespace Ragot
         
         const char *   vertex_shaders_code[] = {         vertex_shader_code.c_str () };
         const char * fragment_shaders_code[] = {       fragment_shader_code.c_str () };
-        const GLint    vertex_shaders_size[] = {  (GLint) vertex_shader_code.size () };
+        const GLint    vertex_shaders_size[] = { (GLint)  vertex_shader_code.size () };
         const GLint  fragment_shaders_size[] = { (GLint)fragment_shader_code.size () };
         
         glShaderSource  (  vertex_shader_id, 1,   vertex_shaders_code,   vertex_shaders_size);

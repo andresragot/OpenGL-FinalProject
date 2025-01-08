@@ -39,30 +39,18 @@ namespace Ragot
             }
         }
         
-        std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
         
-        glEnable        (GL_TEXTURE_CUBE_MAP);
-        
-        check_gl_error("gl enable");
         
         glGenTextures   (1, &texture_id);
-        check_gl_error("gl gen textures");
         
         glActiveTexture (GL_TEXTURE0);
-        check_gl_error("gl activate texture");
         glBindTexture   (GL_TEXTURE_CUBE_MAP, texture_id);
-        check_gl_error("gl bind texture");
         
         glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        check_gl_error("gl tex parameteri 1");
         glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        check_gl_error("gl tex parameteri 2");
         glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE);
-        check_gl_error("gl tex parameteri 3");
         glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE);
-        check_gl_error("gl tex parameteri 4");
         glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R,     GL_CLAMP_TO_EDGE);
-        check_gl_error("gl tex parameteri 5");
         
         static const GLenum texture_target[] =
         {
@@ -71,7 +59,7 @@ namespace Ragot
             GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
             GL_TEXTURE_CUBE_MAP_POSITIVE_X,
             GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
-            GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+            GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
         };
         
         for (size_t texture_index = 0; texture_index < 6; ++texture_index)
@@ -91,11 +79,6 @@ namespace Ragot
                 GL_UNSIGNED_BYTE,
                 texture.colors ()
             );
-            
-            ostringstream labelStream;
-            labelStream << "gl tex image 2d" << " " << texture_index;
-            
-            check_gl_error(labelStream.str());
         }
         
         texture_is_loaded = true;
