@@ -10,7 +10,8 @@
 #include <SDL.h>
 #include <string>
 #include <utility>
-#include "Task.hpp"
+
+#include <iostream>
 
 namespace Ragot
 {
@@ -37,6 +38,9 @@ namespace Ragot
 
         SDL_Window  * window_handle;
         SDL_GLContext opengl_context;
+        
+        unsigned  width;
+        unsigned height;
         
     public:
         Window
@@ -88,5 +92,8 @@ namespace Ragot
         {
             SDL_GL_SwapWindow (window_handle);
         }
+        
+        unsigned get_width()  { return width;}
+        unsigned get_height() { return height;}
     };
 }

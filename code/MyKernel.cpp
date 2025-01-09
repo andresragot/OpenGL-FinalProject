@@ -18,7 +18,7 @@ namespace Ragot {
         }
         else
         {
-                   tasks.push_back (new_task);
+           tasks.push_back (new_task);
                    
             if (is_running)
             {
@@ -41,16 +41,14 @@ namespace Ragot {
             threads.emplace_back(&Task::execute, task);
         }
         
-        std::thread critical (&Kernel::execute_critical, this);
-        
-        is_running = true;
-        
         for (auto& t : threads)
         {
-            t.join();
+            t.detach();
         }
         
-        critical.join();
+        is_running = true;
+                
+        execute_critical();
     }
 
     void Kernel::execute_critical()

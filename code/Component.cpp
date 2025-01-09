@@ -112,6 +112,8 @@ namespace Ragot
         glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, 0);
         
         glBindVertexArray (0);
+        
+        has_task = true;
     }
     
     Skybox_Component::~Skybox_Component()
@@ -124,6 +126,8 @@ namespace Ragot
     {
         if (!camera)
             return;
+            
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
         glUseProgram (shader_program_id);
         
@@ -143,6 +147,8 @@ namespace Ragot
         
         glBindVertexArray (0);
         glUseProgram (0);
+        
+        // cout << "Render Skybox task" << endl;
     }
     
     GLuint Skybox_Component::compile_shaders()

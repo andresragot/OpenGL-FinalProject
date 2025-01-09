@@ -37,9 +37,8 @@ namespace Ragot
         SDL_GL_SetAttribute
         (
             SDL_GL_CONTEXT_PROFILE_MASK,
-            SDL_GL_CONTEXT_PROFILE_CORE
-            /*context_details.core_profile ? SDL_GL_CONTEXT_PROFILE_CORE :
-            SDL_GL_CONTEXT_PROFILE_COMPATIBILITY*/
+            context_details.core_profile ? SDL_GL_CONTEXT_PROFILE_CORE :
+            SDL_GL_CONTEXT_PROFILE_COMPATIBILITY
         );
         
         if (context_details.depth_buffer_size  ) SDL_GL_SetAttribute (SDL_GL_DEPTH_SIZE,     context_details.depth_buffer_size);
@@ -66,6 +65,9 @@ namespace Ragot
         assert(glad_is_initialized);
         
         SDL_GL_SetSwapInterval(context_details.enable_vsync ? 1 : 0);
+        
+         this->width =  width;
+        this->height = height;
     }
     
     Window::~Window()

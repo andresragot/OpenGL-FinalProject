@@ -97,6 +97,11 @@ namespace Ragot
             return mesh;
         }
         
+        Critical_Task render_task;
+        
+    private:
+        shared_ptr <Mesh> mesh;
+        
         void render()
         {
             if (mesh)
@@ -104,10 +109,6 @@ namespace Ragot
                 mesh->render();
             }
         }
-        
-    private:
-        shared_ptr <Mesh> mesh;
-        Critical_Task render_task;
     };
     
     class Camera_Component : public Component
@@ -141,11 +142,13 @@ namespace Ragot
         void set_camera(const Camera & cam) { camera = &cam; }
        
         Critical_Task render_task;
-        void render ();
         
     private:
         GLuint compile_shaders();
         void show_compilation_error (GLuint  shader_id);
         void     show_linkage_error (GLuint program_id);
+        
+        void render ();
+        
     };
 }

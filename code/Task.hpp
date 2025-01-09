@@ -98,6 +98,7 @@ using std::function;
     };
 
     /// @class Clase que ejecutará tareas críticas como lo son el Render que luego el Kernel podrá detener el resto de tareas para ejecutar estas.
+    /// estas tareas se ejecutan todas en el hilo principal.
     class Critical_Task : public Task
     {
     public:

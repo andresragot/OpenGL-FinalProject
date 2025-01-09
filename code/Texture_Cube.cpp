@@ -41,6 +41,8 @@ namespace Ragot
         
         
         
+        glEnable        (GL_TEXTURE_CUBE_MAP);
+                
         glGenTextures   (1, &texture_id);
         
         glActiveTexture (GL_TEXTURE0);

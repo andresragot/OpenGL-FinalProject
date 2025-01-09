@@ -20,6 +20,8 @@ namespace Ragot
     
     public:
         map <string, shared_ptr < Component > > components;
+        
+        void set_scene (Scene * scene) { this->scene = scene; }
     };
 
 }
