@@ -10,6 +10,8 @@
 #include "Task.hpp"
 #include <thread>
 #include <vector>
+#include <memory>
+#include <mutex>
 
 
 namespace Ragot
@@ -18,8 +20,10 @@ namespace Ragot
 
     class Kernel
     {
-        vector < Task * > tasks;
-        vector < Critical_Task * > render_tasks;
+        vector < std::shared_ptr < Task > > tasks;
+        vector < std::shared_ptr < Critical_Task > > render_tasks;
+        
+        std::mutex tasks_mutex;
     
         std::atomic<bool> exit;
         std::atomic <bool> is_running;
@@ -29,7 +33,7 @@ namespace Ragot
     public:
         /// Función que agrega todas las Tasks a el núcleo.
         /// @param new_task este parámetro define la nueva Tarea que agregaremos a la cola.
-        void add (Task * new_task);
+        void add (std::shared_ptr <Task> new_task);
         
         /// Esta función es necesaria que se llame para que todas las funciones se hagan
         void run();

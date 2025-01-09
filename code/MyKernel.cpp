@@ -7,12 +7,14 @@
 
 #include "MyKernel.hpp"
 
-
-namespace Ragot {
-
-    void Kernel::add(Task *new_task)
+namespace Ragot
+{
+    using namespace std;
+    
+    void Kernel::add (shared_ptr <Task> new_task)
     {
-        if (auto render_task = dynamic_cast<Critical_Task *> (new_task))
+        lock_guard<mutex> lock(tasks_mutex);
+        if (auto render_task = dynamic_pointer_cast<Critical_Task>(new_task))
         {
             render_tasks.push_back (render_task);
         }
@@ -24,7 +26,7 @@ namespace Ragot {
             {
                 std:: thread unique (&Task::execute, new_task);
                 
-                unique.join();
+                unique.detach();
             }
         }
     }

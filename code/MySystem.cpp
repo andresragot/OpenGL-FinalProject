@@ -18,9 +18,11 @@ namespace Ragot
     System::System(const string & Window_Name, const int width, const int height)
     :
         window(Window_Name, Window::Position::CENTERED, Window::Position::CENTERED, width, height, { 3, 3 }),
-        buffer_swap([this] { window.swap_buffers(); } ),
-        handle_events([this] { sdl_events(); }),
-        process_events ([this] { input(); })
+        buffer_swap   ([this] { window.swap_buffers(); } ),
+        handle_events ([this] { sdl_events(); }),
+        scene_render  ([this] { scene.render(); }),
+        scene_update  ([this] { scene.update(); }),
+        process_events([this] { input(); })
     {
         initialize();
     }
@@ -28,9 +30,11 @@ namespace Ragot
     System::System()
     :
         window("Final Project", Window::Position::CENTERED, Window::Position::CENTERED, 2000, 640, { 3, 3 }),
-        buffer_swap([this] { window.swap_buffers(); } ),
-        handle_events([this] { sdl_events(); }),
-        process_events ([this] { input(); })
+        buffer_swap   ([this] { window.swap_buffers(); } ),
+        handle_events ([this] { sdl_events(); }),
+        scene_render  ([this] { scene.render(); }),
+        scene_update  ([this] { scene.update(); }),
+        process_events([this] { input(); })
     {
         initialize();
     }
@@ -42,10 +46,11 @@ namespace Ragot
         glEnable     (GL_DEPTH_TEST);
         glClearColor (0.1f, 0.1f, 0.1f, 1.f);
     
-        // TODO: Habilitar lo que haya que habilitar del sistema.
-        kernel.add (&buffer_swap);
-        kernel.add (&handle_events);
-        kernel.add (&process_events);
+        kernel.add (make_shared <Critical_Task> (buffer_swap   ));
+        kernel.add (make_shared <Critical_Task> (scene_render  ));
+        kernel.add (make_shared <Critical_Task> (handle_events ));
+        kernel.add (make_shared <Light_Task   > (scene_update  ));
+        kernel.add (make_shared <Light_Task   > (process_events));
     }
     
     void System::sdl_events()
@@ -119,11 +124,12 @@ namespace Ragot
                 
                 if (auto skybox_component = std::dynamic_pointer_cast<Skybox_Component>(component))
                 {
-                    kernel.add (& skybox_component->render_task);
+                    skybox_component->set_camera(scene.camera);
+                    kernel.add (make_shared < Critical_Task > (skybox_component->render_task));
                 }
                 else if (auto mesh_component = std::dynamic_pointer_cast<Mesh_Component>(component))
                 {
-                    kernel.add (& mesh_component->render_task);
+                    kernel.add (make_shared < Critical_Task > (mesh_component->render_task));
                 }
             }
         }

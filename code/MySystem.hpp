@@ -43,6 +43,8 @@ namespace Ragot
     {
         Critical_Task buffer_swap;
         Critical_Task handle_events;
+        Critical_Task scene_render;
+        Light_Task    scene_update;
         Light_Task    process_events;
         
         queue<SDL_Event> eventQueue;
