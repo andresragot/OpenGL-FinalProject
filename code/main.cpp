@@ -68,14 +68,12 @@ int main ()
 #include "Camera.hpp"
 #include "Texture_Cube.hpp"
 #include "Mesh.hpp"
-#include "Cube.hpp"
 #include <SOIL2.h>
 #include <memory>
 #include "Color_Buffer.hpp"
 
 using namespace Ragot;
 using namespace std;
-using namespace udit;
 
 int main(int argc, char* argv[])
 {
