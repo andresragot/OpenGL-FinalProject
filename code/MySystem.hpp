@@ -73,6 +73,7 @@ namespace Ragot
     public:
         void    add_entities (shared_ptr<Entity> entity, const string & name);
         void remove_entities (const string & name);
+        shared_ptr < Entity > get_entity (const string & name) const;
     };
     
     class System

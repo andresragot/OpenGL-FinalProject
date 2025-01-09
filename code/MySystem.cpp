@@ -228,13 +228,13 @@ namespace Ragot
             }
         }
     }
-    
+        
     void System::add_entities(shared_ptr<Entity> entity, const string & name)
     {
         scene.add_entities(entity, name);
         
         // Se recorre toda la lista de componentes para poder identificar cuales tienen listas que tienen que ser agregaadas al kernel.
-        for (const auto & it : entity->components)
+        for (const auto & it : entity->get_components())
         {
             if (it.second->get_has_task())
             {
@@ -346,6 +346,10 @@ namespace Ragot
             entity->set_scene(this);
             entities.emplace (name, entity);
         }
+        else
+        {
+            entities.insert_or_assign(name, entity);
+        }
     }
     
     void Scene::on_shift_pressed(bool down)
@@ -363,5 +367,15 @@ namespace Ragot
         {
             entities.erase(iterator);
         }
+    }
+    
+    shared_ptr < Entity > Scene::get_entity(const string & name) const
+    {
+        auto it = entities.find (name);
+        if (it != entities.end())
+        {
+            return it->second;
+        }
+        return nullptr;
     }
 }

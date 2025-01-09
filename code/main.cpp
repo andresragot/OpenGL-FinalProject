@@ -85,7 +85,7 @@ int main(int argc, char* argv[])
     Camera camera;
     skybox_component->set_camera(camera);
     
-    entity->components ["Skybox"] = skybox_component;
+    entity->add_components(skybox_component, "Skybox");
         
     my_system.add_entities( entity, "Skybox" );
     
