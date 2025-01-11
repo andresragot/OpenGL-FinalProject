@@ -5,12 +5,9 @@
 //  Created by Andrés Ragot on 4/1/25.
 //
 
-#define GLM_ENABLE_EXPERIMENTAL
-
 #include "Mesh.hpp"
 #include <gtc/matrix_transform.hpp>         // translate, rotate, scale, perspective
 #include <gtc/type_ptr.hpp>                 // value_ptr
-#include <gtx/string_cast.hpp>              // to_string
 
 #include <iostream>
 
@@ -27,8 +24,7 @@ namespace Ragot
 
         "#version 330\n"
         ""
-        "uniform mat4 model_view_matrix;"
-        "uniform mat4 projection_matrix;"
+        "uniform mat4 mvp_matrix;"
         ""
         "layout (location = 0) in vec3 vertex_coordinates;"
         "layout (location = 1) in vec3 vertex_color;"
@@ -37,7 +33,7 @@ namespace Ragot
         ""
         "void main()"
         "{"
-        "   gl_Position = projection_matrix * model_view_matrix * vec4(vertex_coordinates, 1.0);"
+        "   gl_Position = mvp_matrix * vec4(vertex_coordinates, 1.0);"
         "   front_color = vertex_color;"
         "}";
 
@@ -58,8 +54,7 @@ namespace Ragot
     {
         program_id = compile_shaders();
         
-        model_view_matrix_id = glGetUniformLocation (program_id, "model_view_matrix");
-        projection_matrix_id = glGetUniformLocation (program_id, "projection_matrix");
+        movel_view_projection_matrix = glGetUniformLocation (program_id, "mvp_matrix");
         
         load_mesh(mesh_file_path);
     }
@@ -99,34 +94,13 @@ namespace Ragot
         glBindVertexArray (0);
     }
 
-    void Mesh::render(shared_ptr<Camera> camera)
+    void Mesh::render(const glm::mat4 & mvp_matrix)
     {
         angle += 0.01f;
     
         glUseProgram(program_id);
-        
-        if (camera)
-        {
-            glm::mat4 projection_matrix = camera->get_projection_matrix();
-            glUniformMatrix4fv (projection_matrix_id, 1, GL_FALSE, glm::value_ptr(projection_matrix));
-            
-            glm::mat4 model_view_matrix = camera->get_transform_matrix_inverse();
-            model_view_matrix = glm::translate(model_view_matrix, glm::vec3(0.f, 0.f, -2.f));
-            glUniformMatrix4fv (model_view_matrix_id, 1, GL_FALSE, glm::value_ptr(model_view_matrix));            
-        }
-        else
-        {
-            glm::mat4 projection_matrix = glm::perspective (20.f, GLfloat(1024) / 640, 1.f, 5000.f);
-            glm::mat4 model_view_matrix(1);
 
-            model_view_matrix = translate  (model_view_matrix, glm::vec3(0.f, 0.f, -2.f));
-            model_view_matrix = glm::rotate(model_view_matrix, angle, glm::vec3(0.f, 1.f, 0.f));
-            
-            glUniformMatrix4fv (model_view_matrix_id, 1, GL_FALSE, glm::value_ptr(model_view_matrix));
-            glUniformMatrix4fv (projection_matrix_id, 1, GL_FALSE, glm::value_ptr(projection_matrix));
-
-        }
-        
+        glUniformMatrix4fv (movel_view_projection_matrix, 1, GL_FALSE, glm::value_ptr(mvp_matrix));
         
         glBindVertexArray (vao_id);
         glDrawElements    (GL_TRIANGLES, number_of_indices, GL_UNSIGNED_INT, 0);

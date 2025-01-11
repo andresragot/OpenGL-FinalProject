@@ -8,7 +8,7 @@
 #include "Component.hpp"
 #include <cassert>
 #include <iostream>
-
+#include "Entity.hpp"
 
 namespace Ragot
 {
@@ -226,6 +226,24 @@ namespace Ragot
         cerr << info_log.c_str () << endl;
 
         assert(false);
+    }
+    
+    void Mesh_Component::render()
+    {
+        if (mesh)
+        {
+            auto entity = get_entity();
+            if (entity)
+            {
+                glm::mat4 model_matrix = entity->transform.get_transform_matrix();
+                glm::mat4 view_matrix = camera ? camera->get_transform_matrix_inverse() : glm::mat4(1.0f);
+                glm::mat4 projection_matrix = camera ? camera->get_projection_matrix() : glm::perspective(20.f, GLfloat(1024) / 640, 1.f, 5000.f);
+                
+                glm::mat4 mvp_matrix = projection_matrix * view_matrix * model_matrix;
+                
+                mesh->render(mvp_matrix);
+            }
+        }
     }
     
 }

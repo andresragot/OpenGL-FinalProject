@@ -40,7 +40,7 @@ namespace Ragot
         
         GLuint  program_id;
         
-        GLint   model_view_matrix_id;
+        GLint   movel_view_projection_matrix;
         GLint   projection_matrix_id;
         
     private:
@@ -71,7 +71,7 @@ namespace Ragot
         }
        
     public:
-        void render(std::shared_ptr<Camera> camera);
+        void render(const glm::mat4 & mvp_matrix);
         
         const vector < glm::vec3 > & get_coordinates() const { return coordinates; }
         const vector < glm::vec3 > &     get_normals() const { return     normals; }

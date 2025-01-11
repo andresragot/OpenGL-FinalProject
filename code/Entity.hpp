@@ -12,7 +12,7 @@
 
 namespace Ragot
 {
-    class Entity
+class Entity : public std::enable_shared_from_this<Entity>
     {
         Scene * scene;
         

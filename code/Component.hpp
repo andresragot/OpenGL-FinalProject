@@ -113,13 +113,7 @@ namespace Ragot
         shared_ptr <Mesh  >   mesh;
         shared_ptr <Camera> camera;
         
-        void render()
-        {
-            if (mesh)
-            {
-                mesh->render(camera);
-            }
-        }
+        void render();
     };
     
     class Skybox_Component: public Component
