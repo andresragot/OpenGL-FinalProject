@@ -125,6 +125,7 @@ namespace Ragot
     void Skybox_Component::render()
     {
         if (!camera)
+        {
             return;
         }
             
