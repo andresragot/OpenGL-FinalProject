@@ -79,18 +79,21 @@ int main(int argc, char* argv[])
 {
     System my_system;
     
-    auto entity = make_shared < Entity >();
+    auto skybox_entity = make_shared < Entity >();
 
     auto skybox_component = std::make_shared < Skybox_Component > ("fotos/sky-cube-map-");
-    Camera camera;
-    skybox_component->set_camera(camera);
+    skybox_entity->add_components(skybox_component, "Skybox");
+    my_system.add_entities( skybox_entity, "Skybox" );
     
-    entity->add_components(skybox_component, "Skybox");
-        
-    my_system.add_entities( entity, "Skybox" );
-    
+    auto mesh_entity = make_shared < Entity > ();
+
+    Mesh mesh("stanford-bunny.obj");
+    auto mesh_component = std::make_shared < Mesh_Component > ();
+    mesh_component->set_mesh(make_shared < Mesh > (mesh));
+    mesh_entity->add_components(mesh_component, "Mesh");
+    my_system.add_entities(mesh_entity, "Mesh");
+
     my_system.run();
     
-    SDL_Quit();
     return 0;
 }

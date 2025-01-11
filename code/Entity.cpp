@@ -13,6 +13,8 @@ namespace Ragot
 {
     void Entity::add_components(shared_ptr < Component > component, const string & name)
     {
+        component->set_entity(make_shared < Entity > (*this));
+        
         if (!components.contains(name))
         {
             components.emplace(name, component);

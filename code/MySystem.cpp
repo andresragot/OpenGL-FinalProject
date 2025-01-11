@@ -29,7 +29,7 @@ namespace Ragot
     
     System::System()
     :
-        window("Final Project", Window::Position::CENTERED, Window::Position::CENTERED, 2000, 640, { 3, 3 }),
+        window("Final Project", Window::Position::CENTERED, Window::Position::CENTERED, 1024, 640, { 3, 3 }),
         buffer_swap   ([this] { window.swap_buffers(); } ),
         handle_events ([this] { sdl_events(); }),
         scene_render  ([this] { scene.render(); }),
@@ -43,7 +43,7 @@ namespace Ragot
     {
         glEnable     (GL_CULL_FACE );
         glEnable     (GL_DEPTH_TEST);
-        glClearColor (0.1f, 0.1f, 0.1f, 1.f);
+        glClearColor (0.3f, 0.3f, 0.3f, 1.f);
         
         scene.resize (window.get_width(), window.get_height());
     
@@ -93,6 +93,7 @@ namespace Ragot
         int  mouse_y     = 0;
         bool button_down = false;
         
+        bool camera_value_changed = false;
         vec3 camera_translation (0);
         
         while (true)
@@ -115,21 +116,27 @@ namespace Ragot
                     switch (event.key.keysym.sym)
                     {
                         case SDLK_w:
+                            camera_value_changed = true;
                             camera_translation.z = -1.f;
                         break;
                         case SDLK_s:
+                            camera_value_changed = true;
                             camera_translation.z = +1.0f;
                         break;
                         case SDLK_a:
+                            camera_value_changed = true;
                             camera_translation.x = -1.f;
                         break;
                         case SDLK_d:
+                            camera_value_changed = true;
                             camera_translation.x = +1.0f;
                         break;
                         case SDLK_q:
+                            camera_value_changed = true;
                             camera_translation.y = -1.0f;
                         break;
                         case SDLK_e:
+                            camera_value_changed = true;
                             camera_translation.y = +1.0f;
                         break;
                         case SDLK_LSHIFT:
@@ -138,10 +145,6 @@ namespace Ragot
                             kernel.add (shift_task);
                         break;
                     }
-                    
-                    auto keyboard = make_shared < Once_Task > ([&] {scene.on_translation (camera_translation);});
-                    kernel.add (keyboard);
-                    
                     break;
                 }
                 
@@ -151,30 +154,31 @@ namespace Ragot
                     {
                         case SDLK_w:
                         case SDLK_s:
+                            camera_value_changed = true;
                             camera_translation.z = 0.0f;
                         break;
                         
                         case SDLK_a:
                         case SDLK_d:
+                            camera_value_changed = true;
                             camera_translation.x = 0.0f;
                         break;
                         
                         case SDLK_q:
                         case SDLK_e:
+                            camera_value_changed = true;
                             camera_translation.y = 0.0f;
                         break;
                         
                         case SDLK_LSHIFT:
                         case SDLK_RSHIFT:
+                            camera_value_changed = true;
                             auto shift_task = make_shared < Once_Task > ([&] { scene.on_shift_pressed(false); });
                             kernel.add (shift_task);
                         break;
                         
                     }
-                    
-                    auto keyboard = make_shared < Once_Task > ([&] {scene.on_translation (camera_translation);});
-                    kernel.add (keyboard);
-                    
+                                        
                     break;
                 }
                 
@@ -226,6 +230,15 @@ namespace Ragot
                 default:
                     break;
             }
+            
+            if (camera_value_changed)
+            {
+                camera_value_changed = false;
+                
+                auto keyboard = make_shared < Once_Task > ([&] {scene.on_translation (camera_translation);});
+                kernel.add (keyboard);
+            }
+        
         }
     }
         
@@ -242,11 +255,11 @@ namespace Ragot
                 
                 if (auto skybox_component = std::dynamic_pointer_cast<Skybox_Component>(component))
                 {
-                    skybox_component->set_camera(scene.camera);
                     kernel.add (make_shared < Critical_Task > (skybox_component->render_task));
                 }
                 else if (auto mesh_component = std::dynamic_pointer_cast<Mesh_Component>(component))
                 {
+                    cout << "Mesh component added" << endl;
                     kernel.add (make_shared < Critical_Task > (mesh_component->render_task));
                 }
             }
@@ -258,7 +271,7 @@ namespace Ragot
         this->width = width;
         this->height = height;
     
-        camera.set_ratio (float(width) / height);
+        camera->set_ratio (float(width) / height);
         
         glViewport   (0, 0, width, height);
     }
@@ -309,7 +322,7 @@ namespace Ragot
             angle_around_x = -1.4f;
         }
         
-        vec3 camera_forward = glm::normalize (vec3 (camera.get_target()) - vec3 (camera.get_location()));
+        vec3 camera_forward = glm::normalize (vec3 (camera->get_target()) - vec3 (camera->get_location()));
         vec3   camera_right = glm::normalize (glm::cross(camera_forward, vec3 (0.f, 1.f, 0.f)));
         vec3      camera_up = glm::vec3(0.f, 1.f, 0.f);
         
@@ -318,7 +331,7 @@ namespace Ragot
         
         if (turbo) camera_translation *= camera_turbo_speed;
         
-        camera.move(camera_translation);
+        camera->move(camera_translation);
         
         // cout << "angle_x: " << angle_around_x << "\n" << "angle_y: " << angle_around_y << endl;
         
@@ -327,8 +340,8 @@ namespace Ragot
         camera_rotation = glm::rotate (camera_rotation, angle_around_y, glm::vec3(0.f, 1.f, 0.f));
         camera_rotation = glm::rotate (camera_rotation, angle_around_x, glm::vec3(1.f, 0.f, 0.f));
         
-        camera.set_target (0, 0, -1);
-        camera.rotate     (camera_rotation);
+        camera->set_target (0, 0, -1);
+        camera->rotate     (camera_rotation);
 
     }
     
@@ -349,6 +362,21 @@ namespace Ragot
         else
         {
             entities.insert_or_assign(name, entity);
+        }
+        
+        for (auto component : entity->get_components())
+        {
+            if (auto skybox = std::dynamic_pointer_cast < Skybox_Component > (component.second))
+            {
+                cout << "setting camera skybox" << endl;
+                skybox->set_camera (camera);
+            }
+            else
+            if (auto mesh = std::dynamic_pointer_cast < Mesh_Component > (component.second))
+            {
+                cout << "setitng camera mesh" << endl;
+                mesh->set_camera(camera);
+            }
         }
     }
     

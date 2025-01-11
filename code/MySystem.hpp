@@ -30,7 +30,7 @@ namespace Ragot
     class Scene
     {
     public:
-        Camera camera;
+        shared_ptr<Camera> camera = make_shared < Camera > ();
         
     private:
         
@@ -44,7 +44,7 @@ namespace Ragot
         float  angle_delta_x;
         float  angle_delta_y;
         
-        float camera_speed = 0.0025f;
+        float camera_speed = 0.025f;
 
         bool   pointer_pressed;
         int    last_pointer_x;
@@ -102,8 +102,10 @@ namespace Ragot
         Window window;
         System(const string & Window_Name, const int width, const int height);
         System();
+       ~System() { SDL_Quit(); }
         
     public:
+    
         void add_entities (shared_ptr<Entity> entity, const string & name);
     
         void run()

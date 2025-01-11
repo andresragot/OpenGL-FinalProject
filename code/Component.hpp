@@ -85,35 +85,41 @@ namespace Ragot
     public:
         Mesh_Component() : render_task ([this] { render(); }) { has_task = true; }
         
-        explicit Mesh_Component (std::shared_ptr <Mesh> mesh) : mesh (std::move(mesh)), render_task ([this] { render(); }) { has_task = true; }
+        explicit Mesh_Component (shared_ptr <Mesh> mesh) : mesh (std::move(mesh)), render_task ([this] { render(); }) { has_task = true; }
         
-        void set_mesh (std::shared_ptr <Mesh> new_mesh)
+        void set_mesh (shared_ptr <Mesh> new_mesh)
         {
             mesh = std::move(new_mesh);
         }
         
-        std::shared_ptr <Mesh> get_mesh() const
+        shared_ptr <Mesh> get_mesh() const
         {
             return mesh;
         }
         
+        void set_camera (shared_ptr<Camera> cam)
+        {
+            camera = cam;
+        }
+        
+        shared_ptr<Camera> get_camera() const
+        {
+            return camera;
+        }
+                
         Critical_Task render_task;
         
     private:
-        shared_ptr <Mesh> mesh;
+        shared_ptr <Mesh  >   mesh;
+        shared_ptr <Camera> camera;
         
         void render()
         {
             if (mesh)
             {
-                mesh->render();
+                mesh->render(camera);
             }
         }
-    };
-    
-    class Camera_Component : public Component
-    {
-
     };
     
     class Skybox_Component: public Component
@@ -131,7 +137,7 @@ namespace Ragot
         GLint  model_view_matrix_id;
         GLint  projection_matrix_id;
         
-        const Camera * camera = nullptr;
+        shared_ptr<Camera> camera = nullptr;
         
         Texture_Cube texture_cube;
         
@@ -139,7 +145,7 @@ namespace Ragot
         Skybox_Component (const std::string & texture_path);
        ~Skybox_Component ();
        
-        void set_camera(const Camera & cam) { camera = &cam; }
+        void set_camera(shared_ptr<Camera> cam) { camera = cam; }
        
         Critical_Task render_task;
         
