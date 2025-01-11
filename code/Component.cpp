@@ -132,8 +132,13 @@ namespace Ragot
         glUseProgram (shader_program_id);
         
         texture_cube.bind ();
-        const mat4   model_view_matrix = camera->get_transform_matrix_inverse ();
+              mat4   model_view_matrix = camera->get_transform_matrix_inverse ();
         const mat4 & projection_matrix = camera->get_projection_matrix ();
+
+        // Se elimina la parte de la traslación
+        model_view_matrix[3][0] = 0.0f;
+        model_view_matrix[3][1] = 0.0f;
+        model_view_matrix[3][2] = 0.0f;
         
         glUniformMatrix4fv (model_view_matrix_id, 1, GL_FALSE, value_ptr(model_view_matrix));
         glUniformMatrix4fv (projection_matrix_id, 1, GL_FALSE, value_ptr(projection_matrix));
