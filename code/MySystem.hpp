@@ -83,7 +83,7 @@ namespace Ragot
         shared_ptr < Camera > get_camera () const { return camera; }
         
     private:
-        void set_lights (const Shader_Program shader_program);
+        void set_lights (GLuint shader_program_id);
     };
     
     class System

@@ -391,21 +391,32 @@ namespace Ragot
             
             if (auto mesh_component = std::dynamic_pointer_cast<Model_Component>(component))
             {
-                set_lights(mesh_component->get_shader_program());
+                set_lights(mesh_component->get_shader_program_id());
             }
         }
     }
     
-    void Scene::set_lights(const Shader_Program shader_program)
+    void Scene::set_lights(GLuint shader_program_id)
     {
+        glUseProgram (shader_program_id);
         for (size_t i = 0; i < lights.size(); ++i)
         {
             string light_index = "lights[" + to_string(i) + "]";
-            GLint light_color_id     = shader_program.get_uniform_location(light_index +     ".color");
-            GLint light_position_id  = shader_program.get_uniform_location(light_index +  ".position");
-            GLint light_constant_id  = shader_program.get_uniform_location(light_index +  ".constant");
-            GLint light_linear_id    = shader_program.get_uniform_location(light_index +    ".linear");
-            GLint light_quadratic_id = shader_program.get_uniform_location(light_index + ".quadratic");
+            string aux_var;
+            aux_var = light_index +     ".color";
+            GLint light_color_id     = glGetUniformLocation (shader_program_id, aux_var.c_str());
+            
+            aux_var = light_index +  ".position";
+            GLint light_position_id  = glGetUniformLocation (shader_program_id, aux_var.c_str());
+            
+            aux_var = light_index +  ".constant";
+            GLint light_constant_id  = glGetUniformLocation (shader_program_id, aux_var.c_str());
+            
+            aux_var = light_index +    ".linear";
+            GLint light_linear_id    = glGetUniformLocation (shader_program_id, aux_var.c_str());
+            
+            aux_var = light_index + ".quadratic";
+            GLint light_quadratic_id = glGetUniformLocation (shader_program_id, aux_var.c_str());
             
             glUniform3fv (light_color_id, 1, glm::value_ptr(lights[i]->color));
             
@@ -434,13 +445,16 @@ namespace Ragot
             }
         }
         
-        GLint  ambient_intensity_id = shader_program.get_uniform_location( "ambient_intensity");
-        GLint  diffuse_intensity_id = shader_program.get_uniform_location( "diffuse_intensity");
-        GLint specular_intensity_id = shader_program.get_uniform_location("specular_intensity");
+        GLint  ambient_intensity_id = glGetUniformLocation(shader_program_id, "ambient_intensity");
+        GLint  diffuse_intensity_id = glGetUniformLocation(shader_program_id,  "diffuse_intensity");
+        GLint specular_intensity_id = glGetUniformLocation(shader_program_id, "specular_intensity");
         
         glUniform1f ( ambient_intensity_id, 0.2f);
         glUniform1f ( diffuse_intensity_id, 0.8f);
         glUniform1f (specular_intensity_id, 1.0f);
+        
+        
+        glUseProgram (0);
     }
     
     void Scene::on_shift_pressed(bool down)

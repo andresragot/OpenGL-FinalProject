@@ -72,7 +72,7 @@ namespace Ragot
         
         glGetProgramiv (program_id, GL_LINK_STATUS, &succeded);
         if(!succeded)  show_linkage_error();
-    }
+     }
     
     void Shader_Program::show_linkage_error()
     {
@@ -81,7 +81,7 @@ namespace Ragot
         
         glGetProgramiv (program_id, GL_INFO_LOG_LENGTH, &info_log_length);
         
-        info_log.resize (info_log_length);
+        info_log.resize (info_log_length + 1);
         
         glGetProgramInfoLog (program_id, info_log_length, NULL, &info_log.front ());
         

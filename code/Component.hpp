@@ -15,6 +15,7 @@
 #include "Task.hpp"
 #include "Camera.hpp"
 #include "Texture_Cube.hpp"
+#include "Shader_Program.hpp"
 
 using glm::vec3;
 using glm::mat4;
@@ -80,75 +81,30 @@ namespace Ragot
         
     };
     
-    class Mesh_Component : public Component
+    class Model_Component : public Component
     {
     public:
-        Mesh_Component() : render_task ([this] { render(); }) { has_task = true; }
+        Model_Component() = delete;
         
-        explicit Mesh_Component (shared_ptr <Mesh> mesh) : mesh (std::move(mesh)), render_task ([this] { render(); }) { has_task = true; }
-        
-        void set_mesh (shared_ptr <Mesh> new_mesh)
-        {
-            mesh = std::move(new_mesh);
-        }
-        
-        shared_ptr <Mesh> get_mesh() const
-        {
-            return mesh;
-        }
-        
-        void set_camera (shared_ptr<Camera> cam)
-        {
-            camera = cam;
-        }
-        
-        shared_ptr<Camera> get_camera() const
-        {
-            return camera;
-        }
+        Model_Component (const string & model_file_path);
                 
         Critical_Task render_task;
         
+        const GLuint      get_shader_program_id() const { return material.get_shader_program_id(); };
     private:
-        shared_ptr <Mesh  >   mesh;
-        shared_ptr <Camera> camera;
+        Mesh mesh;
+        Material material;
         
-        void render();
-    };
-    
-    class Skybox_Component: public Component
-    {
-    private:
-        static const GLfloat coordinates[];
-        static const std::string vertex_shader_code;
-        static const std::string fragment_shader_code;
+        static const string   vertex_shader_code;
+        static const string fragment_shader_code;
         
-        GLuint vbo_id;
-        GLuint vao_id;
-        
-        GLuint shader_program_id;
-        
-        GLint  model_view_matrix_id;
-        GLint  projection_matrix_id;
-        
-        shared_ptr<Camera> camera = nullptr;
-        
-        Texture_Cube texture_cube;
-        
-    public:
-        Skybox_Component (const std::string & texture_path);
-       ~Skybox_Component ();
-       
-        void set_camera(shared_ptr<Camera> cam) { camera = cam; }
-       
-        Critical_Task render_task;
+        GLint model_view_matrix_id;
+        GLint projection_matrix_id;
+        GLint     normal_matrix_id;
+        GLint          view_pos_id;
         
     private:
-        GLuint compile_shaders();
-        void show_compilation_error (GLuint  shader_id);
-        void     show_linkage_error (GLuint program_id);
-        
+        void configure_material ();
         void render ();
-        
     };
 }

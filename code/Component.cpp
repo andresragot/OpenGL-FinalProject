@@ -13,237 +13,166 @@
 namespace Ragot
 {
 
-// void check_gl_error(const std::string &label) { GLenum error; while ((error = glGetError()) != GL_NO_ERROR) { std::cerr << "OpenGL error [" << label << "]: " << error << std::endl; } }
+    void check_gl_error(const std::string &label)
+    {
+        GLenum error;
+        while ((error = glGetError()) != GL_NO_ERROR)
+        {
+            std::cerr << "OpenGL error [" << label << "]: " << error << std::endl;
+                // if (error != 1280) assert(false);
+        }
+    }
 
     using namespace std;
     using namespace glm;
     
-    const GLfloat Skybox_Component::coordinates[] =
-    {
-        -1.0f, +1.0f, -1.0f,
-        -1.0f, -1.0f, -1.0f,
-        +1.0f, -1.0f, -1.0f,
-        +1.0f, -1.0f, -1.0f,
-        +1.0f, +1.0f, -1.0f,
-        -1.0f, +1.0f, -1.0f,
-        -1.0f, -1.0f, +1.0f,
-        -1.0f, -1.0f, -1.0f,
-        -1.0f, +1.0f, -1.0f,
-        -1.0f, +1.0f, -1.0f,
-        -1.0f, +1.0f, +1.0f,
-        -1.0f, -1.0f, +1.0f,
-        +1.0f, -1.0f, -1.0f,
-        +1.0f, -1.0f, +1.0f,
-        +1.0f, +1.0f, +1.0f,
-        +1.0f, +1.0f, +1.0f,
-        +1.0f, +1.0f, -1.0f,
-        +1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f, +1.0f,
-        -1.0f, +1.0f, +1.0f,
-        +1.0f, +1.0f, +1.0f,
-        +1.0f, +1.0f, +1.0f,
-        +1.0f, -1.0f, +1.0f,
-        -1.0f, -1.0f, +1.0f,
-        -1.0f, +1.0f, -1.0f,
-        +1.0f, +1.0f, -1.0f,
-        +1.0f, +1.0f, +1.0f,
-        +1.0f, +1.0f, +1.0f,
-        -1.0f, +1.0f, +1.0f,
-        -1.0f, +1.0f, -1.0f,
-        -1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f, +1.0f,
-        +1.0f, -1.0f, -1.0f,
-        +1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f, +1.0f,
-        +1.0f, -1.0f, +1.0f,
-    };
-    
-    const string Skybox_Component::vertex_shader_code =
+    const string Model_Component::vertex_shader_code =
+
         "#version 330\n"
         ""
         "uniform mat4 model_view_matrix;"
         "uniform mat4 projection_matrix;"
+        "uniform mat4 normal_matrix;"
         ""
         "layout (location = 0) in vec3 vertex_coordinates;"
+        "layout (location = 1) in vec3 vertex_normal;"
+        "layout (location = 2) in vec3 vertex_color;"
         ""
-        "out vec3 texture_coordinates;"
+        "out vec3 normal;"
+        "out vec3 fragment_position;"
         ""
         "void main()"
         "{"
-        "   texture_coordinates = vec3(vertex_coordinates.x, -vertex_coordinates.y, vertex_coordinates.z);"
-        "   gl_Position = projection_matrix * model_view_matrix * vec4(vertex_coordinates, 1.0);"
+        "   vec4 view_space_pos = model_view_matrix * vec4(vertex_coordinates, 1.0);"
+        "   fragment_position = vec3(view_space_pos);"
+        "   normal = normalize(mat3(normal_matrix) * vertex_normal);"
+        "   gl_Position = projection_matrix * view_space_pos;"
         "}";
 
-    const string Skybox_Component::fragment_shader_code =
+    const string Model_Component::fragment_shader_code =
 
         "#version 330\n"
         ""
-        "in  vec3 texture_coordinates;"
-        "out vec4 fragment_color;"
+        "struct Light"
+        "{"
+        "   vec4 position;"
+        "   vec3 color;"
+        "   float constant;"
+        "   float linear;"
+        "   float quadratic;"
+        "};"
         ""
-        "uniform samplerCube sampler;"
+        "uniform Light lights[3];"
+        "uniform float ambient_intensity;"
+        "uniform float diffuse_intensity;"
+        "uniform float specular_intensity;"
+        "uniform float shininess;"
+        ""
+        "uniform vec3 view_pos;"
+        "uniform vec3 material_color;"
+        ""
+        "in  vec3            normal;"
+        "in  vec3 fragment_position;"
+        ""
+        "out vec4    fragment_color;"
         ""
         "void main()"
         "{"
-        "    fragment_color = texture (sampler, texture_coordinates);"
+        "   vec3 result    = vec3(0.0);"
+        "   vec3 light_dir = vec3(0.0);"
+        "   vec3 norm      = normalize(normal);"
+        "   vec3 view_dir  = normalize(view_pos - fragment_position);"
+        ""
+        "   for (int i = 0; i < 3 ; ++i)\n "
+        "   {\n"
+        "       vec3 light_dir    = normalize(vec3(lights[i].position) - fragment_position);"
+        "       float distance    = length(vec3(lights[i].position) - fragment_position);"
+        "       float attenuation = 1.0 / (lights[i].constant + lights[i].linear * distance + lights[i].quadratic * (distance * distance));"
+        "       vec3 ambient      = ambient_intensity * lights[i].color;"
+        "       float diff        = max(dot(norm, light_dir), 0.0);"
+        "       vec3 diffuse      = diffuse_intensity * diff * lights[i].color;"
+        "       vec3 halfway_dir  = normalize(light_dir + view_dir);"
+        "       float spec        = pow(max(dot(norm, halfway_dir), 0.0), shininess);"
+        "       vec3 specular     = specular_intensity * spec * lights[i].color;"
+        ""
+        "       ambient   *= attenuation;"
+        "       diffuse   *= attenuation;"
+        "       specular  *= attenuation;"
+        "       result    += (ambient + diffuse + specular) * material_color;"
+        "   }\n"
+        "   fragment_color = vec4(result, 1.0);"
         "}";
         
-    Skybox_Component::Skybox_Component (const string & texture_base_path)
+    Model_Component::Model_Component(const string & model_file_path)
     :
-        texture_cube (texture_base_path),
-        render_task([this] { render(); })
+            mesh (model_file_path),
+            material ({vertex_shader_code}, {fragment_shader_code}),
+            render_task ([this] { render(); })
     {
-        assert(texture_cube.is_ok ());
-        
-        shader_program_id = compile_shaders();
-        
-        model_view_matrix_id = glGetUniformLocation (shader_program_id, "model_view_matrix");
-        projection_matrix_id = glGetUniformLocation (shader_program_id, "projection_matrix");
-        
-        glGenBuffers (1, &vbo_id);
-        glGenVertexArrays (1, &vao_id);
-        
-        glBindVertexArray (vao_id);
-        
-        glBindBuffer (GL_ARRAY_BUFFER, vbo_id);
-        glBufferData (GL_ARRAY_BUFFER, sizeof(coordinates), coordinates, GL_STATIC_DRAW);
-        
-        glEnableVertexAttribArray (0);
-        glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        
-        glBindVertexArray (0);
-        
         has_task = true;
-    }
-    
-    Skybox_Component::~Skybox_Component()
-    {
-        glDeleteVertexArrays (1, &vao_id);
-        glDeleteBuffers      (1, &vbo_id);
-    }
-    
-    void Skybox_Component::render()
-    {
-        if (!camera)
-        {
-            return;
-        }
-            
-        glUseProgram (shader_program_id);
         
-        texture_cube.bind ();
-              mat4   model_view_matrix = camera->get_transform_matrix_inverse ();
-        const mat4 & projection_matrix = camera->get_projection_matrix ();
+        material.use_shader_program();
 
-        // Se elimina la parte de la traslación
-        model_view_matrix[3][0] = 0.0f;
-        model_view_matrix[3][1] = 0.0f;
-        model_view_matrix[3][2] = 0.0f;
+        model_view_matrix_id = material.get_shader_program_uniform_location("model_view_matrix");
+        projection_matrix_id = material.get_shader_program_uniform_location("projection_matrix");
+            normal_matrix_id = material.get_shader_program_uniform_location(    "normal_matrix");
+                 view_pos_id = material.get_shader_program_uniform_location(         "view_pos");
+                 
+                 
+        configure_material();
         
-        glUniformMatrix4fv (model_view_matrix_id, 1, GL_FALSE, value_ptr(model_view_matrix));
-        glUniformMatrix4fv (projection_matrix_id, 1, GL_FALSE, value_ptr(projection_matrix));
-        
-        glDepthMask (GL_FALSE);
-        
-        glBindVertexArray (vao_id);
-        glDrawArrays (GL_TRIANGLES, 0, 36);
-                
-        glDepthMask (GL_TRUE);
-        
-        glBindVertexArray (0);
         glUseProgram (0);
         
-        // cout << "Render Skybox task" << endl;
     }
     
-    GLuint Skybox_Component::compile_shaders()
+    void Model_Component::configure_material()
     {
-        GLint succeeded = GL_FALSE;
+        GLint material_color_id = material.get_shader_program_uniform_location("material_color");
+        GLint      shininess_id = material.get_shader_program_uniform_location(     "shininess");
         
-        GLuint   vertex_shader_id = glCreateShader (GL_VERTEX_SHADER  );
-        GLuint fragment_shader_id = glCreateShader (GL_FRAGMENT_SHADER);
         
-        const char *   vertex_shaders_code[] = {         vertex_shader_code.c_str () };
-        const char * fragment_shaders_code[] = {       fragment_shader_code.c_str () };
-        const GLint    vertex_shaders_size[] = { (GLint)  vertex_shader_code.size () };
-        const GLint  fragment_shaders_size[] = { (GLint)fragment_shader_code.size () };
-        
-        glShaderSource  (  vertex_shader_id, 1,   vertex_shaders_code,   vertex_shaders_size);
-        glShaderSource  (fragment_shader_id, 1, fragment_shaders_code, fragment_shaders_size);
-        
-        glCompileShader (  vertex_shader_id);
-        glCompileShader (fragment_shader_id);
-        
-        glGetShaderiv   (  vertex_shader_id, GL_COMPILE_STATUS, &succeeded);
-        if (!succeeded) show_compilation_error (  vertex_shader_id);
-        
-        glGetShaderiv   (fragment_shader_id, GL_COMPILE_STATUS, &succeeded);
-        if (!succeeded) show_compilation_error (fragment_shader_id);
-        
-        GLuint program_id = glCreateProgram();
-        
-        glAttachShader (program_id,   vertex_shader_id);
-        glAttachShader (program_id, fragment_shader_id);
-        
-        glLinkProgram  (program_id);
-        
-        glGetProgramiv (program_id, GL_LINK_STATUS, &succeeded);
-        if (!succeeded) show_linkage_error (program_id);
-        
-        glDeleteShader (  vertex_shader_id);
-        glDeleteShader (fragment_shader_id);
-        
-        return program_id;
+        glUniform3fv (material_color_id, 1, glm::value_ptr(material.get_color()));
+        glUniform1f  (shininess_id, material.get_shininess());
     }
     
-    void Skybox_Component::show_compilation_error (GLuint shader_id)
+    void Model_Component::render()
     {
-        string info_log;
-        GLint  info_log_length;
-
-        glGetShaderiv (shader_id, GL_INFO_LOG_LENGTH, &info_log_length);
-
-        info_log.resize (info_log_length);
-
-        glGetShaderInfoLog (shader_id, info_log_length, NULL, &info_log.front ());
-
-        cerr << info_log.c_str () << endl;
-        
-        assert(false);
-    }
-
-    void Skybox_Component::show_linkage_error (GLuint program_id)
-    {
-        string info_log;
-        GLint  info_log_length;
-
-        glGetProgramiv (program_id, GL_INFO_LOG_LENGTH, &info_log_length);
-
-        info_log.resize (info_log_length);
-
-        glGetProgramInfoLog (program_id, info_log_length, NULL, &info_log.front ());
-
-        cerr << info_log.c_str () << endl;
-
-        assert(false);
-    }
-    
-    void Mesh_Component::render()
-    {
-        if (mesh)
+        auto entity = get_entity();
+        if (entity)
         {
-            auto entity = get_entity();
-            if (entity)
-            {
-                glm::mat4 model_matrix = entity->transform.get_transform_matrix();
-                glm::mat4 view_matrix = camera ? camera->get_transform_matrix_inverse() : glm::mat4(1.0f);
-                glm::mat4 projection_matrix = camera ? camera->get_projection_matrix() : glm::perspective(20.f, GLfloat(1024) / 640, 1.f, 5000.f);
-                
-                glm::mat4 mvp_matrix = projection_matrix * view_matrix * model_matrix;
-                
-                mesh->render(mvp_matrix);
-            }
+        
+            glDisable(GL_CULL_FACE);
+
+
+            auto scene = entity->get_scene();
+            auto camera = scene->get_camera();
+            
+            material.use_shader_program();
+    
+            entity->transform.set_position({0.f, 0.f, -2.f});
+            glm::mat4 model_matrix = entity->transform.get_transform_matrix();
+            glm::mat4 view_matrix = camera ? camera->get_transform_matrix_inverse() : glm::mat4(1.0f);
+            glm::vec3 view_pos = camera ? camera->get_location() : glm::vec3 (1.0f);
+            glm::mat4 model_view_matrix = model_matrix * view_matrix;
+            glm::mat4 projection_matrix = camera ? camera->get_projection_matrix() : glm::perspective(45.f, GLfloat(1024) / 640, 1.f, 5000.f);
+            glm::mat4 normal_matrix = glm::transpose (glm::inverse (model_view_matrix));
+                                    
+            glUniformMatrix4fv (model_view_matrix_id, 1, GL_FALSE, glm::value_ptr(model_view_matrix));
+            glUniformMatrix4fv (projection_matrix_id, 1, GL_FALSE, glm::value_ptr(projection_matrix));
+            glUniformMatrix4fv (    normal_matrix_id, 1, GL_FALSE, glm::value_ptr(    normal_matrix));
+            glUniform3fv       (         view_pos_id, 1,           glm::value_ptr(         view_pos));
+            
+            glBindVertexArray (mesh.get_vao_id());
+            glDrawElements    (GL_TRIANGLES, mesh.get_number_of_indices(), GL_UNSIGNED_INT, 0);
+
+            GLint vao_bound;
+            glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &vao_bound);
+            
+            glBindVertexArray (0);
+            glUseProgram      (0);
+            
+            // TODO: hacer render
+            // mesh->render(mvp_matrix);
         }
     }
-    
 }

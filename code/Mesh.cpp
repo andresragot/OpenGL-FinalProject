@@ -6,8 +6,6 @@
 //
 
 #include "Mesh.hpp"
-#include <gtc/matrix_transform.hpp>         // translate, rotate, scale, perspective
-#include <gtc/type_ptr.hpp>                 // value_ptr
 
 #include <iostream>
 
@@ -19,43 +17,9 @@ namespace Ragot
 {
     using namespace glm;
     using namespace std;
-    
-    const string Mesh::vertex_shader_code =
-
-        "#version 330\n"
-        ""
-        "uniform mat4 mvp_matrix;"
-        ""
-        "layout (location = 0) in vec3 vertex_coordinates;"
-        "layout (location = 1) in vec3 vertex_color;"
-        ""
-        "out vec3 front_color;"
-        ""
-        "void main()"
-        "{"
-        "   gl_Position = mvp_matrix * vec4(vertex_coordinates, 1.0);"
-        "   front_color = vertex_color;"
-        "}";
-
-    const string Mesh::fragment_shader_code =
-
-        "#version 330\n"
-        ""
-        "in  vec3    front_color;"
-        "out vec4 fragment_color;"
-        ""
-        "void main()"
-        "{"
-        "    fragment_color = vec4(1.0, 0.0, 0.0, 1.0);"
-        "}";
-
-    
+        
     Mesh::Mesh(const string & mesh_file_path)
     {
-        program_id = compile_shaders();
-        
-        movel_view_projection_matrix = glGetUniformLocation (program_id, "mvp_matrix");
-        
         load_mesh(mesh_file_path);
     }
     
@@ -80,9 +44,6 @@ namespace Ragot
         
         // Se suben a un VBO los datos de color y se vinculan al VAO:
         
-        glBindBuffer (GL_ARRAY_BUFFER, vbo_ids[COLOR_VBO]);
-        glBufferData (GL_ARRAY_BUFFER, colors.size() * sizeof (vec3), colors.data(), GL_STATIC_DRAW);
-        
         glEnableVertexAttribArray (1);
         glVertexAttribPointer (1, 3, GL_FLOAT, GL_FALSE, 0, 0);
         
@@ -92,21 +53,6 @@ namespace Ragot
         number_of_indices = (GLsizei) sizeof(indices);
         
         glBindVertexArray (0);
-    }
-
-    void Mesh::render(const glm::mat4 & mvp_matrix)
-    {
-        angle += 0.01f;
-    
-        glUseProgram(program_id);
-
-        glUniformMatrix4fv (movel_view_projection_matrix, 1, GL_FALSE, glm::value_ptr(mvp_matrix));
-        
-        glBindVertexArray (vao_id);
-        glDrawElements    (GL_TRIANGLES, number_of_indices, GL_UNSIGNED_INT, 0);
-            
-        glBindVertexArray (0);
-        glUseProgram(0); ///< TODO: mejorar el flujo del useprogram
     }
     
     void Mesh::load_mesh(const std::string & mesh_file_path)
@@ -154,20 +100,18 @@ namespace Ragot
             
             if (mesh->HasTextureCoords(0))
             {
-                // TODO: TEXTURAS
-            }
-            else
-            {
-                colors.resize(number_of_vertices);
-                
-                for (auto & color : colors)
+                texture_coords.resize(number_of_vertices);
+                for (unsigned i = 0; i < number_of_vertices; ++i)
                 {
-                    color = {1.f, 1.f, 1.f};
+                    texture_coords[i] = vec2 ( mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
                 }
+                                
+                glBindBuffer (GL_ARRAY_BUFFER, vbo_ids[TEXTURE_UVS_VBO]);
+                glBufferData (GL_ARRAY_BUFFER, texture_coords.size() * sizeof(vec2), texture_coords.data(), GL_STATIC_DRAW);
+                glEnableVertexAttribArray (TEXTURE_UVS_VBO);
+                glVertexAttribPointer (TEXTURE_UVS_VBO, 2, GL_FLOAT, GL_FALSE, 0, 0);
             }
             
-            glBindBuffer (GL_ARRAY_BUFFER, vbo_ids[COLOR_VBO]);
-            glBufferData (GL_ARRAY_BUFFER, colors.size() * sizeof(vec3), colors.data(), GL_STATIC_DRAW);
             
             glEnableVertexAttribArray (2);
             glVertexAttribPointer (2, 3, GL_FLOAT, GL_FALSE, 0, 0);
@@ -194,7 +138,7 @@ namespace Ragot
             
             std::cout << "Number of vertices: " << number_of_vertices << std::endl;
             std::cout << "Number of indices: "  << number_of_indices  << std::endl;
-
+            
         }
     }
     
@@ -208,93 +152,10 @@ namespace Ragot
         );
     }
     
-    GLuint Mesh::compile_shaders ()
+    Material::Material(const vector < string > & source_code_vertex, const vector < string > & source_code_fragment)
+    : shader_program(source_code_vertex, source_code_fragment)
     {
-        GLint succeeded = GL_FALSE;
-
-        // Se crean objetos para los shaders:
-
-        GLuint   vertex_shader_id = glCreateShader (GL_VERTEX_SHADER  );
-        GLuint fragment_shader_id = glCreateShader (GL_FRAGMENT_SHADER);
-
-        // Se carga el código de los shaders:
-
-        const char *   vertex_shaders_code[] = {          vertex_shader_code.c_str () };
-        const char * fragment_shaders_code[] = {        fragment_shader_code.c_str () };
-        const GLint    vertex_shaders_size[] = { (GLint)  vertex_shader_code.size  () };
-        const GLint  fragment_shaders_size[] = { (GLint)fragment_shader_code.size  () };
-
-        glShaderSource  (  vertex_shader_id, 1,   vertex_shaders_code,   vertex_shaders_size);
-        glShaderSource  (fragment_shader_id, 1, fragment_shaders_code, fragment_shaders_size);
-
-        // Se compilan los shaders:
-
-        glCompileShader (  vertex_shader_id);
-        glCompileShader (fragment_shader_id);
-
-        // Se comprueba que si la compilación ha tenido éxito:
-
-        glGetShaderiv   (  vertex_shader_id, GL_COMPILE_STATUS, &succeeded);
-        if (!succeeded) show_compilation_error (  vertex_shader_id);
-
-        glGetShaderiv   (fragment_shader_id, GL_COMPILE_STATUS, &succeeded);
-        if (!succeeded) show_compilation_error (fragment_shader_id);
-
-        // Se crea un objeto para un programa:
-
-        GLuint program_id = glCreateProgram ();
-
-        // Se cargan los shaders compilados en el programa:
-
-        glAttachShader  (program_id,   vertex_shader_id);
-        glAttachShader  (program_id, fragment_shader_id);
-
-        // Se linkan los shaders:
-
-        glLinkProgram   (program_id);
-
-        // Se comprueba si el linkage ha tenido éxito:
-
-        glGetProgramiv  (program_id, GL_LINK_STATUS, &succeeded);
-        if (!succeeded) show_linkage_error (program_id);
-
-        // Se liberan los shaders compilados una vez se han linkado:
-
-        glDeleteShader (  vertex_shader_id);
-        glDeleteShader (fragment_shader_id);
-
-        return (program_id);
-    }
-
-    void Mesh::show_compilation_error (GLuint shader_id)
-    {
-        string info_log;
-        GLint  info_log_length;
-
-        glGetShaderiv (shader_id, GL_INFO_LOG_LENGTH, &info_log_length);
-
-        info_log.resize (info_log_length);
-
-        glGetShaderInfoLog (shader_id, info_log_length, NULL, &info_log.front ());
-
-        cerr << info_log.c_str () << endl;
-
-        assert(false);
-    }
-
-    void Mesh::show_linkage_error (GLuint program_id)
-    {
-        string info_log;
-        GLint  info_log_length;
-
-        glGetProgramiv (program_id, GL_INFO_LOG_LENGTH, &info_log_length);
-
-        info_log.resize (info_log_length);
-
-        glGetProgramInfoLog (program_id, info_log_length, NULL, &info_log.front ());
-
-        cerr << info_log.c_str () << endl;
-
-        assert(false);
+        shininess = 32.0f;
+        color = { 1.f, 1.f, 1.f };
     }
 }

@@ -13,6 +13,7 @@
 #include <string>
 #include "Task.hpp"
 #include "Camera.hpp"
+#include "Shader_Program.hpp"
 
 namespace Ragot
 {
@@ -26,23 +27,15 @@ namespace Ragot
         {
             COORDINATES_VBO,
             NORMALS_VBO,
-            COLOR_VBO,
+            TEXTURE_UVS_VBO,
             INDICES_EBO,
             VBO_COUNT
         };
         
-        vector < glm::vec3 > coordinates;
-        vector < glm::vec3 >     normals;
-        vector < GLuint >        indices;
-        vector < glm::vec3 >      colors;
-        
-        static const std::string   vertex_shader_code;
-        static const std::string fragment_shader_code;
-        
-        GLuint  program_id;
-        
-        GLint   movel_view_projection_matrix;
-        GLint   projection_matrix_id;
+        vector < glm::vec3 >    coordinates;
+        vector < glm::vec3 >        normals;
+        vector < glm::vec2 > texture_coords;
+        vector < GLuint >           indices;
         
     private:
         GLuint vbo_ids[VBO_COUNT];
@@ -53,9 +46,6 @@ namespace Ragot
         float angle;
         
         void load_mesh(const std::string & mesh_file_path);
-        GLuint compile_shaders        ();
-        void   show_compilation_error (GLuint  shader_id);
-        void   show_linkage_error     (GLuint program_id);
         
     protected:
         glm::vec3 random_color();
@@ -71,12 +61,35 @@ namespace Ragot
             glDeleteBuffers      (VBO_COUNT, vbo_ids);
         }
        
+    public:        
+        const vector < glm::vec3 > & get_coordinates() const { return    coordinates; }
+        const vector < glm::vec3 > &     get_normals() const { return        normals; }
+        const vector < glm::vec2 > & get_textures_uv() const { return texture_coords; }
+        const vector <    GLuint > &     get_indices() const { return        indices; }
+        const GLuint                      get_vao_id() const { return         vao_id; }
+        const GLsizei          get_number_of_indices() const { return number_of_indices; }
+    };
+    
+    class Material
+    {
+    private:
+        Shader_Program shader_program;
+        // vector < Texture2D > textures; TODO: esto
+        glm::vec3 color;
+        float shininess;
+    
     public:
-        void render(const glm::mat4 & mvp_matrix);
+        Material () = delete;
+        Material (const vector < string > & source_code_vertex, const vector < string > & source_code_fragment);
+       ~Material () = default;
         
-        const vector < glm::vec3 > & get_coordinates() const { return coordinates; }
-        const vector < glm::vec3 > &     get_normals() const { return     normals; }
-        const vector < glm::vec3 > &      get_colors() const { return      colors; }
-        const vector <    GLuint > &     get_indices() const { return     indices; }
+        void use_shader_program() { shader_program.use(); }
+        GLint get_shader_program_uniform_location (const string & uniform) { return shader_program.get_uniform_location(uniform); }
+        GLuint get_shader_program_id() const { return shader_program.get_id(); }
+        
+        
+        const glm::vec3 get_color() { return     color; }
+        const float get_shininess() { return shininess; }
+    
     };
 }

@@ -117,7 +117,7 @@ namespace Ragot
             return;
         }
             
-        glUseProgram (shader_program.get_id());
+        shader_program.use();
         
         texture_cube.bind ();
               mat4   model_view_matrix = camera->get_transform_matrix_inverse ();
