@@ -80,10 +80,6 @@ int main(int argc, char* argv[])
     System my_system;
     
     auto skybox_entity = make_shared < Entity >();
-
-    auto skybox_component = std::make_shared < Skybox_Component > ("fotos/sky-cube-map-");
-    skybox_entity->add_components(skybox_component, "Skybox");
-    my_system.add_entities( skybox_entity, "Skybox" );
     
     auto mesh_entity = make_shared < Entity > ();
 

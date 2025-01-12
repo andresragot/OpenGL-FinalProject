@@ -266,6 +266,23 @@ namespace Ragot
         }
     }
     
+    Scene::Scene()
+    :
+        skybox("fotos/sky-cube-map-")
+    {
+        skybox.set_camera(camera);
+        
+        lights.reserve(3);
+        
+        auto directional_light = make_shared < DirectionalLight > (vec3 (1.f, 1.f, 1.f), vec3 (-1.f, -1.f, -1.f));
+        auto       point_light = make_shared <       PointLight > (vec3 (1.f, 0.f, 0.f), vec3 (10.f,  0.f, -2.f));
+        auto        area_light = make_shared <        AreaLight > (vec3 (0.f, 1.f, 0.f), vec3  (0.f,  0.f,  0.f), vec3(10.f, 10.f, 10.f));
+        
+        lights.push_back( directional_light);
+        lights.push_back (      point_light);
+        lights.push_back (       area_light);
+    }
+        
     void Scene::resize(int width, int height)
     {
         this->width = width;
@@ -304,6 +321,8 @@ namespace Ragot
     void Scene::render()
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        skybox.render();
     }
     
     void Scene::update()

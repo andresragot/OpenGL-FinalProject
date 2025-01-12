@@ -19,9 +19,7 @@
 namespace Ragot
 {
     using namespace std;
-    
-    void check_gl_error(const std::string &label) { GLenum error; while ((error = glGetError()) != GL_NO_ERROR) { std::cerr << "OpenGL error [" << label << "]: " << error << std::endl; } }
-    
+        
     Texture_Cube::Texture_Cube(const string & texture_base_path)
     {
         texture_is_loaded = false;
@@ -38,8 +36,6 @@ namespace Ragot
                 return;
             }
         }
-        
-        
         
         glEnable        (GL_TEXTURE_CUBE_MAP);
                 

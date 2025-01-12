@@ -29,8 +29,11 @@ namespace Ragot
 
     class Scene
     {
-    public:
+    private:
         shared_ptr<Camera> camera = make_shared < Camera > ();
+        map <string, shared_ptr <Entity>> entities;
+        Skybox skybox;
+        vector < shared_ptr < Light > > lights;
         
     private:
         
@@ -66,14 +69,17 @@ namespace Ragot
         
         void update();
         void render();
+        
+        
+    public:
+        Scene();
     
-    private:
-        map <string, shared_ptr <Entity>> entities;
         
     public:
         void    add_entities (shared_ptr<Entity> entity, const string & name);
         void remove_entities (const string & name);
         shared_ptr < Entity > get_entity (const string & name) const;
+        shared_ptr < Camera > get_camera () const { return camera; }
     };
     
     class System
@@ -89,6 +95,7 @@ namespace Ragot
         mutex queueMutex;
         condition_variable queueCondition;
         
+        Window window;
         Scene scene;
         
         Kernel kernel;
@@ -99,7 +106,6 @@ namespace Ragot
         void sdl_events();
         
     public:
-        Window window;
         System(const string & Window_Name, const int width, const int height);
         System();
        ~System() { SDL_Quit(); }
