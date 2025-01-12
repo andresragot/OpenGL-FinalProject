@@ -81,6 +81,9 @@ namespace Ragot
         void remove_entities (const string & name);
         shared_ptr < Entity > get_entity (const string & name) const;
         shared_ptr < Camera > get_camera () const { return camera; }
+        
+    private:
+        void set_lights (const Shader_Program shader_program);
     };
     
     class System

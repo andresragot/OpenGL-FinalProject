@@ -241,30 +241,25 @@ namespace Ragot
         
         }
     }
-        
+    
     void System::add_entities(shared_ptr<Entity> entity, const string & name)
     {
         scene.add_entities(entity, name);
         
-        // Se recorre toda la lista de componentes para poder identificar cuales tienen listas que tienen que ser agregaadas al kernel.
+        // Se recorre toda la lista de componentes para poder identificar cuales tienen tareas que tienen que ser agregaadas al kernel.
         for (const auto & it : entity->get_components())
         {
             if (it.second->get_has_task())
             {
                 auto component = it.second;
                 
-                if (auto skybox_component = std::dynamic_pointer_cast<Skybox_Component>(component))
-                {
-                    kernel.add (make_shared < Critical_Task > (skybox_component->render_task));
-                }
-                else if (auto mesh_component = std::dynamic_pointer_cast<Mesh_Component>(component))
                 {
                     cout << "Mesh component added" << endl;
                     kernel.add (make_shared < Critical_Task > (mesh_component->render_task));
                 }
             }
         }
-    }
+    } 
     
     Scene::Scene()
     :
@@ -383,20 +378,62 @@ namespace Ragot
             entities.insert_or_assign(name, entity);
         }
         
-        for (auto component : entity->get_components())
+        for (const auto & it : entity->get_components())
         {
-            if (auto skybox = std::dynamic_pointer_cast < Skybox_Component > (component.second))
+            auto component = it.second;
+            
+            /*if (auto mesh_component = std::dynamic_pointer_cast<Model_Component>(component))
             {
-                cout << "setting camera skybox" << endl;
-                skybox->set_camera (camera);
+                set_lights(mesh_component->get_shader_program());
+            }*/
+        }
+    }
+    
+    void Scene::set_lights(const Shader_Program shader_program)
+    {
+        for (size_t i = 0; i < lights.size(); ++i)
+        {
+            string light_index = "lights[" + to_string(i) + "]";
+            GLint light_color_id     = shader_program.get_uniform_location(light_index +     ".color");
+            GLint light_position_id  = shader_program.get_uniform_location(light_index +  ".position");
+            GLint light_constant_id  = shader_program.get_uniform_location(light_index +  ".constant");
+            GLint light_linear_id    = shader_program.get_uniform_location(light_index +    ".linear");
+            GLint light_quadratic_id = shader_program.get_uniform_location(light_index + ".quadratic");
+            
+            glUniform3fv (light_color_id, 1, glm::value_ptr(lights[i]->color));
+            
+            if (auto dir_light = std::dynamic_pointer_cast<DirectionalLight>(lights[i]))
+            {
+                glUniform4f (light_position_id, dir_light->direction.x, dir_light->direction.y, dir_light->direction.z, 0.0f);
+                glUniform1f (light_constant_id, 1.0f);
+                glUniform1f (light_linear_id, 0.0f);
+                glUniform1f (light_quadratic_id, 0.0f);
             }
             else
-            if (auto mesh = std::dynamic_pointer_cast < Mesh_Component > (component.second))
+            if (auto point_light = std::dynamic_pointer_cast<PointLight>(lights[i]))
             {
-                cout << "setitng camera mesh" << endl;
-                mesh->set_camera(camera);
+                glUniform4f(light_position_id, point_light->position.x, point_light->position.y, point_light->position.z, 1.0f);
+                glUniform1f(light_constant_id, 1.0f);
+                glUniform1f(light_linear_id, 0.09f);
+                glUniform1f(light_quadratic_id, 0.032f);
+            }
+            else
+            if (auto area_light = std::dynamic_pointer_cast<AreaLight>(lights[i]))
+            {
+                glUniform4f(light_position_id, area_light->position.x, area_light->position.y, area_light->position.z, 1.0f);
+                glUniform1f(light_constant_id, 1.0f);
+                glUniform1f(light_linear_id, 0.09f);
+                glUniform1f(light_quadratic_id, 0.032f);
             }
         }
+        
+        GLint  ambient_intensity_id = shader_program.get_uniform_location( "ambient_intensity");
+        GLint  diffuse_intensity_id = shader_program.get_uniform_location( "diffuse_intensity");
+        GLint specular_intensity_id = shader_program.get_uniform_location("specular_intensity");
+        
+        glUniform1f ( ambient_intensity_id, 0.2f);
+        glUniform1f ( diffuse_intensity_id, 0.8f);
+        glUniform1f (specular_intensity_id, 1.0f);
     }
     
     void Scene::on_shift_pressed(bool down)
