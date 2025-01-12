@@ -142,18 +142,35 @@ namespace Ragot
             glEnableVertexAttribArray (0);
             glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, 0);
             
-            colors.resize(number_of_vertices);
-            
-            for (auto & color : colors)
+            if (mesh->HasNormals())
             {
-                color = {1.f, 1.f, 1.f};
+                glBindBuffer (GL_ARRAY_BUFFER, vbo_ids[NORMALS_VBO]);
+                glBufferData (GL_ARRAY_BUFFER, number_of_vertices * sizeof (aiVector3D), mesh->mNormals, GL_STATIC_DRAW);
+                
+                glEnableVertexAttribArray (1);
+                glVertexAttribPointer (1, 3, GL_FLOAT, GL_FALSE, 0, 0);
+                
+            }
+            
+            if (mesh->HasTextureCoords(0))
+            {
+                // TODO: TEXTURAS
+            }
+            else
+            {
+                colors.resize(number_of_vertices);
+                
+                for (auto & color : colors)
+                {
+                    color = {1.f, 1.f, 1.f};
+                }
             }
             
             glBindBuffer (GL_ARRAY_BUFFER, vbo_ids[COLOR_VBO]);
             glBufferData (GL_ARRAY_BUFFER, colors.size() * sizeof(vec3), colors.data(), GL_STATIC_DRAW);
             
-            glEnableVertexAttribArray (1);
-            glVertexAttribPointer (1, 3, GL_FLOAT, GL_FALSE, 0, 0);
+            glEnableVertexAttribArray (2);
+            glVertexAttribPointer (2, 3, GL_FLOAT, GL_FALSE, 0, 0);
             
             number_of_indices = mesh->mNumFaces * 3;
             

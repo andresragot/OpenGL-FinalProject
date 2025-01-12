@@ -25,6 +25,7 @@ namespace Ragot
         enum
         {
             COORDINATES_VBO,
+            NORMALS_VBO,
             COLOR_VBO,
             INDICES_EBO,
             VBO_COUNT
