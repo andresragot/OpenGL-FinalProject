@@ -270,13 +270,15 @@ namespace Ragot
         
         lights.reserve(3);
         
-        auto directional_light = make_shared < DirectionalLight > (vec3 (1.f, 1.f, 1.f), vec3 (-1.f, -1.f, -1.f));
+        auto directional_light = make_shared < DirectionalLight > (vec3 (0.f, 1.f, 1.f), vec3 (-1.f, -1.f, -1.f));
         auto       point_light = make_shared <       PointLight > (vec3 (1.f, 0.f, 0.f), vec3 (10.f,  0.f, -2.f));
-        auto        area_light = make_shared <        AreaLight > (vec3 (0.f, 1.f, 0.f), vec3  (0.f,  0.f,  0.f), vec3(10.f, 10.f, 10.f));
+        auto        area_light = make_shared <        AreaLight > (vec3 (1.f, 1.f, 0.f), vec3  (0.f,  0.f,  0.f), vec3(10.f, 10.f, 10.f));
         
         lights.push_back( directional_light);
         lights.push_back (      point_light);
         lights.push_back (       area_light);
+        
+        glDisable(GL_CULL_FACE);
     }
         
     void Scene::resize(int width, int height)

@@ -36,16 +36,18 @@ namespace Ragot
         ""
         "layout (location = 0) in vec3 vertex_coordinates;"
         "layout (location = 1) in vec3 vertex_normal;"
-        "layout (location = 2) in vec3 vertex_color;"
+        "layout (location = 2) in vec2 vertex_texture_uv;"
         ""
         "out vec3 normal;"
         "out vec3 fragment_position;"
+        "out vec2 texture_uv;"
         ""
         "void main()"
         "{"
         "   vec4 view_space_pos = model_view_matrix * vec4(vertex_coordinates, 1.0);"
         "   fragment_position = vec3(view_space_pos);"
         "   normal = normalize(mat3(normal_matrix) * vertex_normal);"
+        "   texture_uv = vertex_texture_uv;"
         "   gl_Position = projection_matrix * view_space_pos;"
         "}";
 
@@ -71,8 +73,11 @@ namespace Ragot
         "uniform vec3 view_pos;"
         "uniform vec3 material_color;"
         ""
+        "uniform sampler2D sampler2d;"
+        ""
         "in  vec3            normal;"
         "in  vec3 fragment_position;"
+        "in  vec2 texture_uv;"
         ""
         "out vec4    fragment_color;"
         ""
@@ -100,13 +105,13 @@ namespace Ragot
         "       specular  *= attenuation;"
         "       result    += (ambient + diffuse + specular) * material_color;"
         "   }\n"
-        "   fragment_color = vec4(result, 1.0);"
+        "   fragment_color = vec4(result, 1.0) * vec4(texture (sampler2d, texture_uv.st).rgb, 1.0);"
         "}";
         
     Model_Component::Model_Component(const string & model_file_path)
     :
             mesh (model_file_path),
-            material ({vertex_shader_code}, {fragment_shader_code}),
+            material ({vertex_shader_code}, {fragment_shader_code}, "Intergalactic Spaceship_color_4.jpg"),
             render_task ([this] { render(); })
     {
         has_task = true;
@@ -140,10 +145,6 @@ namespace Ragot
         auto entity = get_entity();
         if (entity)
         {
-        
-            glDisable(GL_CULL_FACE);
-
-
             auto scene = entity->get_scene();
             auto camera = scene->get_camera();
             
@@ -164,9 +165,6 @@ namespace Ragot
             
             glBindVertexArray (mesh.get_vao_id());
             glDrawElements    (GL_TRIANGLES, mesh.get_number_of_indices(), GL_UNSIGNED_INT, 0);
-
-            GLint vao_bound;
-            glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &vao_bound);
             
             glBindVertexArray (0);
             glUseProgram      (0);

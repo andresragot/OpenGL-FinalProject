@@ -158,8 +158,8 @@
             filePath = "../../code/Component.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "Model_Component::render()"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "../../code/Component.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "Model_Component::Model_Component(model_file_path)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +222,8 @@
             filePath = "../../code/MySystem.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "410"
-            endingLineNumber = "410"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
             landmarkName = "Scene::set_lights(shader_program_id)"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +254,8 @@
             filePath = "../../code/Mesh.hpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "~Mesh()"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "../../code/Component.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "Model_Component::Model_Component(model_file_path)"
             landmarkType = "7">
          </BreakpointContent>
@@ -312,7 +312,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D179EBB9-6841-40A1-8EA1-CAEC1D6A2AC5"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../code/Shader_Program.hpp"
@@ -334,8 +334,8 @@
             filePath = "../../code/Mesh.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "Mesh::load_mesh(mesh_file_path)"
             landmarkType = "7">
          </BreakpointContent>

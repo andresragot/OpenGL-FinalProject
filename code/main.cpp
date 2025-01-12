@@ -82,10 +82,11 @@ int main(int argc, char* argv[])
     
     auto mesh_entity = make_shared < Entity > ();
 
-    auto mesh_component = std::make_shared < Model_Component > ("Mod_PC_MoreGeo.fbx");
+    auto mesh_component = std::make_shared < Model_Component > ("Intergalactic_Spaceship-(Wavefront).obj");
     mesh_entity->add_components(mesh_component, "Mesh");
     // mesh_entity->transform.set_rotation({0.f, 90.f, 0.f});
-    mesh_entity->transform.set_scale({0.01f, 0.01f, 0.01f});
+    // mesh_entity->transform.set_scale({0.01f, 0.01f, 0.01f});
+    mesh_entity->transform.set_position({0.f, 0.f, -10.f});
     my_system.add_entities(mesh_entity, "Mesh");
 
     my_system.run();

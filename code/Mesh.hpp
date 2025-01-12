@@ -11,9 +11,10 @@
 #include <glm.hpp>
 #include <vector>
 #include <string>
-#include "Task.hpp"
 #include "Camera.hpp"
 #include "Shader_Program.hpp"
+#include "Color.hpp"
+#include "Color_Buffer.hpp"
 
 namespace Ragot
 {
@@ -69,18 +70,51 @@ namespace Ragot
         const GLuint                      get_vao_id() const { return         vao_id; }
         const GLsizei          get_number_of_indices() const { return number_of_indices; }
     };
+
+    class Texture2D
+    {
+    private:
+        typedef Color_Buffer < Rgba8888 > Color_Buffer;
+        
+    private:
+        GLuint texture_id;
+        bool   texture_is_loaded;
+    
+    public:
+        Texture2D (const string & texture_base_path);
+       ~Texture2D ();
+       
+    private:
+        Texture2D (const Texture2D & ) = delete;
+        Texture2D & operator = (const Texture2D & ) = delete;
+        
+    public:
+        bool is_ok() const
+        {
+            return texture_is_loaded;
+        }
+        
+        bool bind () const
+        {
+            return texture_is_loaded ? glBindTexture (GL_TEXTURE_2D, texture_id), true : false;
+        }
+        
+    private:
+        GLint create_texture_2d (const string & texture_path);
+        unique_ptr < Color_Buffer > load_image (const string & texture_path);
+    };
     
     class Material
     {
     private:
         Shader_Program shader_program;
-        // vector < Texture2D > textures; TODO: esto
+        Texture2D texture;
         glm::vec3 color;
         float shininess;
     
     public:
         Material () = delete;
-        Material (const vector < string > & source_code_vertex, const vector < string > & source_code_fragment);
+        Material (const vector < string > & source_code_vertex, const vector < string > & source_code_fragment, const string & texture_base_path);
        ~Material () = default;
         
         void use_shader_program() { shader_program.use(); }
@@ -92,4 +126,5 @@ namespace Ragot
         const float get_shininess() { return shininess; }
     
     };
+    
 }

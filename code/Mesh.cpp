@@ -8,6 +8,7 @@
 #include "Mesh.hpp"
 
 #include <iostream>
+#include <SOIL2.h>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -103,7 +104,8 @@ namespace Ragot
                 texture_coords.resize(number_of_vertices);
                 for (unsigned i = 0; i < number_of_vertices; ++i)
                 {
-                    texture_coords[i] = vec2 ( mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
+                    // std::cout << "Texture Coord " << i << ": " << mesh->mTextureCoords[0][i].x << ", " << mesh->mTextureCoords[0][i].y << std::endl;
+                    texture_coords[i] = vec2 ( mesh->mTextureCoords[0][i].x, 1.0f - mesh->mTextureCoords[0][i].y);
                 }
                                 
                 glBindBuffer (GL_ARRAY_BUFFER, vbo_ids[TEXTURE_UVS_VBO]);
@@ -111,10 +113,6 @@ namespace Ragot
                 glEnableVertexAttribArray (TEXTURE_UVS_VBO);
                 glVertexAttribPointer (TEXTURE_UVS_VBO, 2, GL_FLOAT, GL_FALSE, 0, 0);
             }
-            
-            
-            glEnableVertexAttribArray (2);
-            glVertexAttribPointer (2, 3, GL_FLOAT, GL_FALSE, 0, 0);
             
             number_of_indices = mesh->mNumFaces * 3;
             
@@ -152,9 +150,98 @@ namespace Ragot
         );
     }
     
-    Material::Material(const vector < string > & source_code_vertex, const vector < string > & source_code_fragment)
-    : shader_program(source_code_vertex, source_code_fragment)
+    Texture2D::Texture2D(const string & texture_base_path)
     {
+        texture_id = create_texture_2d(texture_base_path);
+        texture_is_loaded = texture_id > 0;
+    }
+    
+    Texture2D::~Texture2D()
+    {
+        if (texture_is_loaded)
+        {
+            glDeleteTextures (1, &texture_id);
+        }
+    }
+    
+    GLint Texture2D::create_texture_2d(const string & texture_path)
+    {
+        auto image = load_image (texture_path);
+        
+        if (image)
+        {
+            GLuint texture_id;
+            glEnable (GL_TEXTURE_2D);
+            glGenTextures (1, &texture_id);
+            glBindTexture (GL_TEXTURE_2D, texture_id);
+            
+            glTexImage2D
+            (
+                 GL_TEXTURE_2D,
+                 0,
+                 GL_RGBA,
+                 image->get_width (),
+                 image->get_height (),
+                 0,
+                 GL_RGBA,
+                 GL_UNSIGNED_BYTE,
+                 image->colors()
+            );
+            
+            glGenerateMipmap (GL_TEXTURE_2D);
+            
+            glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE);
+            glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE);
+            glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameteri  (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+            return texture_id;
+            
+        }
+        
+        return -1;
+    }
+    
+    unique_ptr< Texture2D::Color_Buffer> Texture2D::load_image(const string &texture_path)
+    {
+        int image_width = 0;
+        int image_height = 0;
+        int image_channels = 0;
+        
+        uint8_t * loaded_pixels = SOIL_load_image
+        (
+            texture_path.c_str(),
+            &image_width,
+            &image_height,
+            &image_channels,
+             SOIL_LOAD_RGBA
+        );
+        
+        if (loaded_pixels)
+        {
+            auto image = make_unique < Color_Buffer > (image_width, image_height);
+            
+            std::copy_n
+            (
+                loaded_pixels,
+                size_t (image_width) * size_t (image_height) * sizeof (Color_Buffer::Color),
+                reinterpret_cast< uint8_t *>(image->colors ())
+            );
+            
+            SOIL_free_image_data(loaded_pixels);
+            
+            return image;
+        }
+        
+        return nullptr;
+    }
+    
+    Material::Material(const vector < string > & source_code_vertex, const vector < string > & source_code_fragment, const string & texture_base_path)
+    : shader_program(source_code_vertex, source_code_fragment),
+      texture(texture_base_path)
+    {
+        assert (texture.is_ok());
+    
         shininess = 32.0f;
         color = { 1.f, 1.f, 1.f };
     }
