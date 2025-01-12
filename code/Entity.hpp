@@ -26,6 +26,9 @@ class Entity : public std::enable_shared_from_this<Entity>
     public:
         void set_scene (Scene * scene) { this->scene = scene; }
         
+        const Scene * get_scene()       { return scene; }
+        const Scene * get_scene() const { return scene; }
+        
         void add_components (shared_ptr < Component > component, const string & name);
         
         void remove_component (const string & name);
