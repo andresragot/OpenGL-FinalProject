@@ -11,6 +11,7 @@
 #include "Task.hpp"
 #include "MyKernel.hpp"
 #include "Camera.hpp"
+#include "Ambient.hpp"
 #include <string>
 #include <memory>
 #include <map>
