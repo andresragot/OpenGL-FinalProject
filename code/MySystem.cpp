@@ -253,7 +253,7 @@ namespace Ragot
             {
                 auto component = it.second;
                 
-                if (auto mesh_component = std::dynamic_pointer_cast<Mesh_Component>(component))
+                if (auto mesh_component = std::dynamic_pointer_cast<Model_Component>(component))
                 {
                     cout << "Mesh component added" << endl;
                     kernel.add (make_shared < Critical_Task > (mesh_component->render_task));
@@ -383,16 +383,16 @@ namespace Ragot
         {
             auto component = it.second;
             
-            if (auto mesh_component = std::dynamic_pointer_cast<Mesh_Component>(component))
+            /*if (auto mesh_component = std::dynamic_pointer_cast<Mesh_Component>(component))
             {
                 cout << "Setting camera mesh" << endl;
                 mesh_component->set_camera(camera);
-            }
+            }*/
             
-            /*if (auto mesh_component = std::dynamic_pointer_cast<Model_Component>(component))
+            if (auto mesh_component = std::dynamic_pointer_cast<Model_Component>(component))
             {
                 set_lights(mesh_component->get_shader_program());
-            }*/
+            }
         }
     }
     
