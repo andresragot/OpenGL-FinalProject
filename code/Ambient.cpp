@@ -6,6 +6,7 @@
 //
 
 #include "Ambient.hpp"
+#include <iostream>
 
 namespace Ragot
 {
@@ -162,7 +163,7 @@ namespace Ragot
         "void main()"
         "{"
         "   float sample = texture (sampler, vertex_uv).r;"
-        "   intensity    = sample * 0.75 + 0.25;"
+        "   intensity    = sample * 1.5 + 0.5;"
         "   float height = sample * max_height;"
         "   vec4  xyzw   = vec4(vertex_xz.x, height, vertex_xz.y, 1.0);"
         "   gl_Position  = projection_matrix * model_view_matrix * xyzw;"
@@ -181,8 +182,22 @@ namespace Ragot
         "}";
 
     Terrain::Terrain (float width, float depth, unsigned x_slices, unsigned z_slices)
-    : shader_program({ vertex_shader_code }, { fragment_shader_code })
+    :
+        shader_program({ vertex_shader_code }, { fragment_shader_code }),
+        texture("fotos/NvF5e.jpg")
     {
+    
+        assert(texture.is_ok());
+        
+        shader_program.use();
+        
+        model_view_matrix_id = shader_program.get_uniform_location("model_view_matrix");
+        projection_matrix_id = shader_program.get_uniform_location("projection_matrix");
+        
+        glUniform1f (shader_program.get_uniform_location("max_height"), 10.f);
+        
+        glUseProgram (0);
+    
         number_of_vertices = x_slices * z_slices;
         
         vector < float > coordinates (number_of_vertices * 2);
@@ -206,8 +221,8 @@ namespace Ragot
             {
                 coordinates [coordinate_index + 0] = x;
                 coordinates [coordinate_index + 1] = z;
-                coordinates [coordinate_index + 0] = u;
-                coordinates [coordinate_index + 1] = v;
+                 texture_uv [coordinate_index + 0] = u;
+                 texture_uv [coordinate_index + 1] = v;
             }
             
             x += x_step = - x_step;
@@ -237,5 +252,38 @@ namespace Ragot
     {
         glDeleteVertexArrays (1, &vao_id);
         glDeleteBuffers (VBO_COUNT, vbo_ids);
+    }
+    
+    void Terrain::render()
+    {
+        shader_program.use();
+    
+        texture.bind();
+            
+              mat4   model_view_matrix = camera->get_transform_matrix_inverse ();
+        const mat4 & projection_matrix = camera->get_projection_matrix ();
+
+        // Se elimina la parte de la traslación
+        // model_view_matrix[3][0] = 0.0f;
+        // model_view_matrix[3][1] = 0.0f;
+        // model_view_matrix[3][2] = 0.0f;
+        
+        
+        model_view_matrix = glm::translate(model_view_matrix, glm::vec3(-0.5f, -5.f, -0.5f));
+        
+        glUniformMatrix4fv (model_view_matrix_id, 1, GL_FALSE, value_ptr(model_view_matrix));
+        glUniformMatrix4fv (projection_matrix_id, 1, GL_FALSE, value_ptr(projection_matrix));
+        
+        glDepthMask (GL_FALSE);
+        
+        glBindVertexArray (vao_id);
+        glDrawArrays (GL_LINE_STRIP, 0, number_of_vertices);
+                
+        glDepthMask (GL_TRUE);
+        
+        glBindVertexArray (0);
+        glUseProgram (0);
+        
+    
     }
 }

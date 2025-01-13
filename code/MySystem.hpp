@@ -34,6 +34,7 @@ namespace Ragot
         shared_ptr<Camera> camera = make_shared < Camera > ();
         map <string, shared_ptr <Entity>> entities;
         Skybox skybox;
+        Terrain terrain;
         vector < shared_ptr < Light > > lights;
         
     private:

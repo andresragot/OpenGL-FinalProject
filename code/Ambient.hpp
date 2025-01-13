@@ -57,20 +57,27 @@ namespace Ragot
         };
     private:
         Shader_Program shader_program;
-        Texture2D< Monochrome8 > texture;
         
         static const string   vertex_shader_code;
         static const string fragment_shader_code;
-    
-        GLuint vao_id;
-        GLuint vbo_ids[VBO_COUNT];
         
+    
         GLsizei number_of_vertices;
+        GLuint vbo_ids[VBO_COUNT];
+        GLuint vao_id;
+        
+        GLint  model_view_matrix_id;
+        GLint  projection_matrix_id;
+        
+        shared_ptr< Camera > camera = nullptr;
+        
+        Texture2D< Monochrome8 > texture;
     public:
         Terrain (float width, float depth, unsigned x_slices, unsigned z_slices);
        ~Terrain ();
        
     public:
+        void set_camera(shared_ptr<Camera> cam) { camera = cam; }
         void render();
     };
     

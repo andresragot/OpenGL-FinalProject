@@ -85,15 +85,20 @@ namespace Ragot
     protected:
         GLuint texture_id;
         bool   texture_is_loaded;
-    
+        
+    private:
+        bool is_uint8 = false;
+
     public:
         Texture2D (const string & texture_base_path);
-        Texture2D () : texture_id(0), texture_is_loaded(false) {}
        ~Texture2D ();
        
     private:
         Texture2D (const Texture2D & ) = delete;
         Texture2D & operator = (const Texture2D & ) = delete;
+    
+    protected:
+        Texture2D () : texture_id(0), texture_is_loaded(false) {}
         
     public:
         bool is_ok() const
@@ -139,6 +144,7 @@ namespace Ragot
         GLint get_shader_program_uniform_location (const string & uniform) { return shader_program.get_uniform_location(uniform); }
         GLuint get_shader_program_id() const { return shader_program.get_id(); }
         
+        const bool bind_texture() const { return texture.bind(); }
         
         const glm::vec3 get_color() { return     color; }
         const float get_shininess() { return shininess; }

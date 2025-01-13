@@ -111,7 +111,7 @@ namespace Ragot
     Model_Component::Model_Component(const string & model_file_path)
     :
             mesh (model_file_path),
-            material ({vertex_shader_code}, {fragment_shader_code}, "Intergalactic Spaceship_color_4.jpg"),
+            material ({vertex_shader_code}, {fragment_shader_code}, "fotos/Intergalactic Spaceship_color_4.jpg"),
             render_task ([this] { render(); })
     {
         has_task = true;
@@ -149,11 +149,14 @@ namespace Ragot
             auto camera = scene->get_camera();
             
             material.use_shader_program();
+            
+            material.bind_texture();
     
             glm::mat4 model_matrix = entity->transform.get_transform_matrix();
             glm::mat4 view_matrix = camera ? camera->get_transform_matrix_inverse() : glm::mat4(1.0f);
-            glm::vec3 view_pos = camera ? camera->get_location() : glm::vec3 (1.0f);
             glm::mat4 model_view_matrix = model_matrix * view_matrix;
+            
+            glm::vec3 view_pos = camera ? camera->get_location() : glm::vec3 (1.0f);
             glm::mat4 projection_matrix = camera ? camera->get_projection_matrix() : glm::perspective(45.f, GLfloat(1024) / 640, 1.f, 5000.f);
             glm::mat4 normal_matrix = glm::transpose (glm::inverse (model_view_matrix));
                                     
@@ -168,8 +171,6 @@ namespace Ragot
             glBindVertexArray (0);
             glUseProgram      (0);
             
-            // TODO: hacer render
-            // mesh->render(mvp_matrix);
         }
     }
 }

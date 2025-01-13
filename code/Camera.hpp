@@ -84,7 +84,7 @@ namespace Ragot
 
         void move (const glm::vec3 & translation)
         {
-            location += glm::vec4 (translation, 1.f);
+            location += glm::vec4 (translation, 0.f);
             // target   += glm::vec4 (translation, 1.f);
         }
 

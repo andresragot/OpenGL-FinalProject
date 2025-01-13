@@ -153,9 +153,11 @@ namespace Ragot
     template < typename COLOR_FORMAT >
     Texture2D < COLOR_FORMAT >::Texture2D(const string & texture_base_path)
     {
+        is_uint8 = sizeof(COLOR_FORMAT) == sizeof (uint8_t);
         texture_id = create_texture_2d(texture_base_path);
         texture_is_loaded = texture_id > 0;
     }
+    
     
     template < typename COLOR_FORMAT >
     Texture2D < COLOR_FORMAT >::~Texture2D()
@@ -166,7 +168,6 @@ namespace Ragot
         }
     }
     
-    // Asegúrate de incluir este código en el archivo de implementación (.cpp)
     template class Texture2D<unsigned char>;  // Esto garantiza que el destructor para 'Monochrome8' esté instanciado
 
     
@@ -186,11 +187,11 @@ namespace Ragot
             (
                  GL_TEXTURE_2D,
                  0,
-                 GL_RGBA,
+                 (is_uint8 ? GL_R8 : GL_RGBA),
                  image->get_width (),
                  image->get_height (),
                  0,
-                 GL_RGBA,
+                 (is_uint8 ? GL_RED : GL_RGBA),
                  GL_UNSIGNED_BYTE,
                  image->colors()
             );
@@ -222,7 +223,7 @@ namespace Ragot
             &image_width,
             &image_height,
             &image_channels,
-             SOIL_LOAD_RGBA
+            is_uint8 ? SOIL_LOAD_L : SOIL_LOAD_RGBA
         );
         
         if (loaded_pixels)

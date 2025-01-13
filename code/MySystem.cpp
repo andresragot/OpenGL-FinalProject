@@ -264,15 +264,17 @@ namespace Ragot
     
     Scene::Scene()
     :
-        skybox("fotos/sky-cube-map-")
+        skybox("fotos/sky-cube-map-"),
+        terrain(10, 10, 10, 20)
     {
-        skybox.set_camera(camera);
+         skybox.set_camera(camera);
+        terrain.set_camera(camera);
         
         lights.reserve(3);
         
-        auto directional_light = make_shared < DirectionalLight > (vec3 (0.f, 1.f, 1.f), vec3 (-1.f, -1.f, -1.f));
-        auto       point_light = make_shared <       PointLight > (vec3 (1.f, 0.f, 0.f), vec3 (10.f,  0.f, -2.f));
-        auto        area_light = make_shared <        AreaLight > (vec3 (1.f, 1.f, 0.f), vec3  (0.f,  0.f,  0.f), vec3(10.f, 10.f, 10.f));
+        auto directional_light = make_shared < DirectionalLight > (vec3 (1.f, 1.f, 1.f), vec3 (-1.f, -1.f, -1.f));
+        auto       point_light = make_shared <       PointLight > (vec3 (1.f, 1.f, 1.f), vec3 (10.f,  0.f, -2.f));
+        auto        area_light = make_shared <        AreaLight > (vec3 (1.f, 1.f, 1.f), vec3  (0.f,  0.f,  0.f), vec3(10.f, 10.f, 10.f));
         
         lights.push_back( directional_light);
         lights.push_back (      point_light);
@@ -320,7 +322,8 @@ namespace Ragot
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-        skybox.render();
+         skybox.render();
+        terrain.render();
     }
     
     void Scene::update()
