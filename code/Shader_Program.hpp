@@ -99,6 +99,10 @@ namespace Ragot
         }
         
     private:
+        Shader_Program (const Shader_Program & ) = delete;
+        Shader_Program & operator = (const Shader_Program & ) = delete;
+    
+    private:
         void initialize (GLuint vertex_shadex_id, GLuint fragment_shader_id);
         
         void show_linkage_error();

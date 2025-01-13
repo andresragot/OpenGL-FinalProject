@@ -53,6 +53,11 @@ namespace Ragot
         
         void build_mesh();
         
+    private:
+        private:
+        Mesh (const Mesh & ) = delete;
+        Mesh & operator = (const Mesh & ) = delete;
+        
     public:
         Mesh() = default;
         Mesh (const std::string & mesh_file_path);
