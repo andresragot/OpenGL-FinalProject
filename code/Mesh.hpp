@@ -76,17 +76,19 @@ namespace Ragot
         const GLsizei          get_number_of_indices() const { return number_of_indices; }
     };
 
+    template < typename COLOR_FORMAT >
     class Texture2D
     {
-    private:
-        typedef Color_Buffer < Rgba8888 > Color_Buffer;
+    protected:
+        typedef Color_Buffer < COLOR_FORMAT > Color_Buffer;
         
-    private:
+    protected:
         GLuint texture_id;
         bool   texture_is_loaded;
     
     public:
         Texture2D (const string & texture_base_path);
+        Texture2D () : texture_id(0), texture_is_loaded(false) {}
        ~Texture2D ();
        
     private:
@@ -99,21 +101,32 @@ namespace Ragot
             return texture_is_loaded;
         }
         
-        bool bind () const
+        virtual bool bind () const
         {
             return texture_is_loaded ? glBindTexture (GL_TEXTURE_2D, texture_id), true : false;
         }
         
-    private:
+    protected:
         GLint create_texture_2d (const string & texture_path);
         unique_ptr < Color_Buffer > load_image (const string & texture_path);
+    };
+    
+    class Texture_Cube : public Texture2D < Rgba8888 >
+    {
+    public:
+        Texture_Cube (const string & texture_base_path);
+        
+        bool bind() const override
+        {
+            return texture_is_loaded ? glBindTexture (GL_TEXTURE_CUBE_MAP, texture_id), true : false;
+        }
     };
     
     class Material
     {
     private:
         Shader_Program shader_program;
-        Texture2D texture;
+        Texture2D< Rgba8888 > texture;
         glm::vec3 color;
         float shininess;
     

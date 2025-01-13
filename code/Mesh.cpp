@@ -150,13 +150,15 @@ namespace Ragot
         );
     }
     
-    Texture2D::Texture2D(const string & texture_base_path)
+    template < typename COLOR_FORMAT >
+    Texture2D < COLOR_FORMAT >::Texture2D(const string & texture_base_path)
     {
         texture_id = create_texture_2d(texture_base_path);
         texture_is_loaded = texture_id > 0;
     }
     
-    Texture2D::~Texture2D()
+    template < typename COLOR_FORMAT >
+    Texture2D < COLOR_FORMAT >::~Texture2D()
     {
         if (texture_is_loaded)
         {
@@ -164,7 +166,8 @@ namespace Ragot
         }
     }
     
-    GLint Texture2D::create_texture_2d(const string & texture_path)
+    template < typename COLOR_FORMAT >
+    GLint Texture2D < COLOR_FORMAT >::create_texture_2d(const string & texture_path)
     {
         auto image = load_image (texture_path);
         
@@ -202,7 +205,8 @@ namespace Ragot
         return -1;
     }
     
-    unique_ptr< Texture2D::Color_Buffer> Texture2D::load_image(const string &texture_path)
+    template < typename COLOR_FORMAT >
+    unique_ptr< Color_Buffer < COLOR_FORMAT > > Texture2D < COLOR_FORMAT > ::load_image(const string &texture_path)
     {
         int image_width = 0;
         int image_height = 0;
@@ -224,7 +228,7 @@ namespace Ragot
             std::copy_n
             (
                 loaded_pixels,
-                size_t (image_width) * size_t (image_height) * sizeof (Color_Buffer::Color),
+                size_t (image_width) * size_t (image_height) * sizeof (COLOR_FORMAT),
                 reinterpret_cast< uint8_t *>(image->colors ())
             );
             
@@ -234,6 +238,66 @@ namespace Ragot
         }
         
         return nullptr;
+    }
+    
+    Texture_Cube::Texture_Cube (const string & texture_base_path)
+    {
+        vector < shared_ptr< Color_Buffer > > texture_sides (6);
+        
+        for (size_t texture_index = 0; texture_index < 6; texture_index++)
+        {
+        
+            texture_sides[texture_index] = load_image (texture_base_path + char('0' + texture_index) + ".png");
+            
+            if (!texture_sides [texture_index])
+            {
+                return;
+            }
+        }
+        
+        glEnable        (GL_TEXTURE_CUBE_MAP);
+                
+        glGenTextures   (1, &texture_id);
+        
+        glActiveTexture (GL_TEXTURE0);
+        glBindTexture   (GL_TEXTURE_CUBE_MAP, texture_id);
+        
+        glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE);
+        glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T,     GL_CLAMP_TO_EDGE);
+        glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R,     GL_CLAMP_TO_EDGE);
+        
+        static const GLenum texture_target[] =
+        {
+            GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
+            GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
+            GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
+            GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+            GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
+            GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+        };
+        
+        for (size_t texture_index = 0; texture_index < 6; ++texture_index)
+        {
+            
+            Color_Buffer & texture = *texture_sides[texture_index];
+            
+            glTexImage2D
+            (
+                texture_target [texture_index],
+                0,
+                GL_RGBA,
+                texture.get_width  (),
+                texture.get_height (),
+                0,
+                GL_RGBA,
+                GL_UNSIGNED_BYTE,
+                texture.colors ()
+            );
+        }
+        
+        texture_is_loaded = true;
     }
     
     Material::Material(const vector < string > & source_code_vertex, const vector < string > & source_code_fragment, const string & texture_base_path)

@@ -9,7 +9,7 @@
 
 #include "Camera.hpp"
 #include "Shader_Program.hpp"
-#include "Texture_Cube.hpp"
+#include "Mesh.hpp"
 
 #include <glad/glad.h>
 #include <string>
