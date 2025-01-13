@@ -166,6 +166,10 @@ namespace Ragot
         }
     }
     
+    // Asegúrate de incluir este código en el archivo de implementación (.cpp)
+    template class Texture2D<unsigned char>;  // Esto garantiza que el destructor para 'Monochrome8' esté instanciado
+
+    
     template < typename COLOR_FORMAT >
     GLint Texture2D < COLOR_FORMAT >::create_texture_2d(const string & texture_path)
     {

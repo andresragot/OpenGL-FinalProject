@@ -66,7 +66,6 @@ int main ()
 #include "Component.hpp"
 #include "Window.hpp"
 #include "Camera.hpp"
-#include "Texture_Cube.hpp"
 #include "Mesh.hpp"
 #include <SOIL2.h>
 #include <memory>

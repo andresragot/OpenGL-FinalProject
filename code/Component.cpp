@@ -150,7 +150,6 @@ namespace Ragot
             
             material.use_shader_program();
     
-            entity->transform.set_position({0.f, 0.f, -2.f});
             glm::mat4 model_matrix = entity->transform.get_transform_matrix();
             glm::mat4 view_matrix = camera ? camera->get_transform_matrix_inverse() : glm::mat4(1.0f);
             glm::vec3 view_pos = camera ? camera->get_location() : glm::vec3 (1.0f);

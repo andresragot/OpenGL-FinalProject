@@ -12,7 +12,6 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>         // translate, rotate, scale, perspective
 #include <gtc/type_ptr.hpp>                 // value_ptr, quat
-#include "Task.hpp"
 #include "Camera.hpp"
 #include "Shader_Program.hpp"
 

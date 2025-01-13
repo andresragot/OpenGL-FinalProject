@@ -10,6 +10,7 @@
 #include "Camera.hpp"
 #include "Shader_Program.hpp"
 #include "Mesh.hpp"
+#include "Color.hpp"
 
 #include <glad/glad.h>
 #include <string>
@@ -23,7 +24,7 @@ namespace Ragot
         Shader_Program shader_program;
     
         static const GLfloat coordinates[];
-        static const string vertex_shader_code;
+        static const string   vertex_shader_code;
         static const string fragment_shader_code;
         
         GLuint vbo_id;
@@ -43,6 +44,34 @@ namespace Ragot
         void set_camera(shared_ptr<Camera> cam) { camera = cam; }
         void render ();
         
+    };
+    
+    class Terrain
+    {
+    private:
+        enum
+        {
+            COORDINATES_VBO,
+            TEXTURE_UVS_VBO,
+            VBO_COUNT
+        };
+    private:
+        Shader_Program shader_program;
+        Texture2D< Monochrome8 > texture;
+        
+        static const string   vertex_shader_code;
+        static const string fragment_shader_code;
+    
+        GLuint vao_id;
+        GLuint vbo_ids[VBO_COUNT];
+        
+        GLsizei number_of_vertices;
+    public:
+        Terrain (float width, float depth, unsigned x_slices, unsigned z_slices);
+       ~Terrain ();
+       
+    public:
+        void render();
     };
     
     class Light
