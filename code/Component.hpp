@@ -14,7 +14,6 @@
 #include <gtc/type_ptr.hpp>                 // value_ptr, quat
 #include "Task.hpp"
 #include "Camera.hpp"
-#include "Texture_Cube.hpp"
 #include "Shader_Program.hpp"
 
 using glm::vec3;
