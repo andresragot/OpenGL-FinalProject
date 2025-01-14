@@ -321,8 +321,6 @@ namespace Ragot
     
     void Scene::render()
     {
-        
-        //framebuffer.bind_texture();
         framebuffer.bind_frame_buffer();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
@@ -330,7 +328,10 @@ namespace Ragot
         glDepthFunc(GL_LESS);
         
          skybox.render();
+        
+        glDisable (GL_CULL_FACE);
         terrain.render();
+        glEnable (GL_CULL_FACE);
     }
     
     void Scene::postproccess()

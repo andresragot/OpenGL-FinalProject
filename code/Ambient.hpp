@@ -53,6 +53,7 @@ namespace Ragot
         {
             COORDINATES_VBO,
             TEXTURE_UVS_VBO,
+            INDICES_EBO,
             VBO_COUNT
         };
     private:
@@ -63,11 +64,14 @@ namespace Ragot
         
     
         GLsizei number_of_vertices;
+        GLsizei number_of_indices;
         GLuint vbo_ids[VBO_COUNT];
         GLuint vao_id;
         
         GLint  model_view_matrix_id;
         GLint  projection_matrix_id;
+        GLint  view_position_id;
+        GLint  light_position_id;
         
         shared_ptr< Camera > camera = nullptr;
         
