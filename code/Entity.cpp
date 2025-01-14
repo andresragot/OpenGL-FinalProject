@@ -33,7 +33,7 @@
 
 namespace Ragot
 {
-    void Entity::add_components(shared_ptr < Component > component, const string & name)
+    void Entity::add_component(shared_ptr < Component > component, const string & name)
     {
         component->set_entity(shared_from_this());
         

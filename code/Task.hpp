@@ -34,110 +34,154 @@
 #include <atomic>
 #include <functional>
 
-namespace Ragot {
+namespace Ragot
+{
+    using std::condition_variable;
+    using std::mutex;
+    using std::atomic;
+    using std::function;
 
-using std::condition_variable;
-using std::mutex;
-using std::atomic;
-using std::function;
-    
+    /**
+     * @brief Base class for managing tasks.
+     */
     class Task
     {
-        static condition_variable cv;
-        static mutex mtx;
-        static atomic <bool> is_stop; // Variable para detener la tarea
-        static atomic <bool> finish_execution;
+        static condition_variable cv; ///< Condition variable for task control.
+        static mutex mtx; ///< Mutex for task synchronization.
+        static atomic<bool> is_stop; ///< Variable to stop the task.
+        static atomic<bool> finish_execution; ///< Variable to finish execution.
+
     public:
-        /// Constructor que acepta la función que correrá esa Task
-        Task (function<void()> task_func) : task_func(task_func) {}
-        /// Destructor por defecto.
-       ~Task () = default;
-        
-        /// Función que ejcutará virtualmente para que se divida entre todos los casos que tenemos.
-        virtual void execute () = 0;
-        
-        /// esta funcion está hecha de cierta manera para que siempre incluso si lo ejecuta un hilo, se detienen todos.
+        /**
+         * @brief Constructor that accepts the function to run for this task.
+         * @param task_func Function to run for this task.
+         */
+        Task(function<void()> task_func) : task_func(task_func) {}
+
+        /**
+         * @brief Default destructor.
+         */
+        virtual ~Task() = default;
+
+        /**
+         * @brief Virtual function to execute the task, to be overridden by derived classes.
+         */
+        virtual void execute() = 0;
+
+        /**
+         * @brief Stops execution of all tasks, even if executed by one thread.
+         */
         void stop_execution()
         {
-            std::lock_guard <mutex> lock (mtx);
+            std::lock_guard<mutex> lock(mtx);
             finish_execution = true;
             cv.notify_all();
         }
-        
-        /// Función que hace que se detengan durante un tiempo por si hay una parte crítica del código.
+
+        /**
+         * @brief Stops execution temporarily for critical sections of code.
+         */
         void stop()
         {
-            std::lock_guard<mutex> lock (mtx);
+            std::lock_guard<mutex> lock(mtx);
             is_stop = true;
             cv.notify_all();
         }
-        
-        /// Función que hace que las ejecucuibes se reanuden.
+
+        /**
+         * @brief Resumes execution after a stop.
+         */
         void resume()
         {
-            std::lock_guard<mutex> lock (mtx);
+            std::lock_guard<mutex> lock(mtx);
             is_stop = false;
             cv.notify_all();
         }
-        
+
     protected:
-        /// Función que indica si se debería de detener la ejecución
-        ///  @return regresará si se debe de detener o no
+        /**
+         * @brief Checks if the task should stop execution.
+         * @return True if the task should stop, false otherwise.
+         */
         bool shouldStop()
         {
             return is_stop.load();
         }
-        
-        /// Función que indica si se debería de finalizar la ejecución
-        ///  @return regresará si se debe de finalizar o no
+
+        /**
+         * @brief Checks if the task should finish execution.
+         * @return True if the task should finish, false otherwise.
+         */
         bool shouldFinish()
         {
             return finish_execution.load();
         }
-        
-        ///  pequeña funcion para esperar una vez se pueda continuat con la ejecución
+
+        /**
+         * @brief Waits for resume signal to continue execution.
+         */
         void wait_for_resume()
         {
-            std::unique_lock<mutex> lock (mtx);
-            
+            std::unique_lock<mutex> lock(mtx);
             cv.wait(lock, [this] {return !shouldStop() || shouldFinish(); });
         }
-        
+
     protected:
-        function<void()> task_func;
+        function<void()> task_func; ///< Function to run for this task.
     };
 
-    /// @class Clase que ejecutará tareas cíclicas como lo son el Update o Input.
+    /**
+     * @brief Class to execute cyclic tasks such as Update or Input.
+     */
     class Light_Task : public Task
     {
     public:
-        /// Constructor que llama al padre.
-        Light_Task (function<void()> task_func) : Task(task_func) {}
-        
-        /// Función de ejecución específica.
+        /**
+         * @brief Constructor that calls the base class constructor.
+         * @param task_func Function to run for this task.
+         */
+        Light_Task(function<void()> task_func) : Task(task_func) {}
+
+        /**
+         * @brief Specific execution function for light tasks.
+         */
         void execute() override;
     };
 
-    /// @class Clase que ejecutará tareas críticas como lo son el Render que luego el Kernel podrá detener el resto de tareas para ejecutar estas.
-    /// estas tareas se ejecutan todas en el hilo principal.
+    /**
+     * @brief Class to execute critical tasks such as rendering, which the Kernel can pause other tasks to execute. These tasks run in the main thread.
+     */
     class Critical_Task : public Task
     {
     public:
-        /// Constructor que llama al constructor del padre
-        Critical_Task (function<void()> task_func) : Task(task_func) {}
-        
-        /// Función de ejecución específica.
+        /**
+         * @brief Constructor that calls the base class constructor.
+         * @param task_func Function to run for this task.
+         */
+        Critical_Task(function<void()> task_func) : Task(task_func) {}
+
+        /**
+         * @brief Specific execution function for critical tasks.
+         */
         void execute() override;
     };
 
-    /// @class Tipo de tarea que solamente se ejecutará una única vez.
+    /**
+     * @brief Class for tasks that are executed only once.
+     */
     class Once_Task : public Task
     {
     public:
-        /// Constructor que llama al padre
-        Once_Task (function<void()> task_func) : Task(task_func) {}
-        
-        /// Función de ejecución específica.
+        /**
+         * @brief Constructor that calls the base class constructor.
+         * @param task_func Function to run for this task.
+         */
+        Once_Task(function<void()> task_func) : Task(task_func) {}
+
+        /**
+         * @brief Specific execution function for once-only tasks.
+         */
         void execute() override;
     };
 }
+

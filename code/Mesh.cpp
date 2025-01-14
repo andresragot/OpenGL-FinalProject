@@ -45,38 +45,6 @@ namespace Ragot
         load_mesh(mesh_file_path);
     }
     
-    void Mesh::build_mesh()
-    {
-        // Se generan los índices para los VBOs del cubo:
-        glGenBuffers (VBO_COUNT, vbo_ids);
-        
-        glGenVertexArrays (1, &vao_id);
-        
-        // Se activa el VAO del cubo para configurarlo;
-        
-        glBindVertexArray (vao_id);
-        
-        // Se suben a un VBO los datos de coordenadas y se vinculan al VAO:
-        
-        glBindBuffer (GL_ARRAY_BUFFER, vbo_ids[COORDINATES_VBO]);
-        glBufferData (GL_ARRAY_BUFFER, coordinates.size() * sizeof (vec3), coordinates.data(), GL_STATIC_DRAW);
-        
-        glEnableVertexAttribArray (0);
-        glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        
-        // Se suben a un VBO los datos de color y se vinculan al VAO:
-        
-        glEnableVertexAttribArray (1);
-        glVertexAttribPointer (1, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        
-        glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, vbo_ids[INDICES_EBO]);
-        glBufferData (GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof (GLuint), indices.data(), GL_STATIC_DRAW);
-        
-        number_of_indices = (GLsizei) sizeof(indices);
-        
-        glBindVertexArray (0);
-    }
-    
     void Mesh::load_mesh(const std::string & mesh_file_path)
     {
         Assimp::Importer importer;
@@ -90,9 +58,6 @@ namespace Ragot
         
         if (scene && scene->mNumMeshes > 0)
         {
-            // TODO: Cargar todas las meshes del file
-            std::cout << "Num of meshes in file: " << scene->mNumMeshes << std::endl;
-            
             auto mesh = scene->mMeshes[0];
             
             size_t number_of_vertices = mesh->mNumVertices;
@@ -125,7 +90,6 @@ namespace Ragot
                 texture_coords.resize(number_of_vertices);
                 for (unsigned i = 0; i < number_of_vertices; ++i)
                 {
-                    // std::cout << "Texture Coord " << i << ": " << mesh->mTextureCoords[0][i].x << ", " << mesh->mTextureCoords[0][i].y << std::endl;
                     texture_coords[i] = vec2 ( mesh->mTextureCoords[0][i].x, 1.0f - mesh->mTextureCoords[0][i].y);
                 }
                                 
@@ -154,21 +118,8 @@ namespace Ragot
             
             glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, vbo_ids[INDICES_EBO]);
             glBufferData (GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof (GLuint), indices.data(), GL_STATIC_DRAW);
-            
-            std::cout << "Number of vertices: " << number_of_vertices << std::endl;
-            std::cout << "Number of indices: "  << number_of_indices  << std::endl;
-            
+                        
         }
-    }
-    
-    vec3 Mesh::random_color()
-    {
-        return vec3
-        (
-            float (rand ()) / float (RAND_MAX),
-            float (rand ()) / float (RAND_MAX),
-            float (rand ()) / float (RAND_MAX)
-        );
     }
     
     template < typename COLOR_FORMAT >

@@ -103,7 +103,6 @@ namespace Ragot
             case SDL_MOUSEBUTTONUP:
                 return "SDL_MOUSEBUTTONUP";
             case SDL_MOUSEMOTION: return "SDL_MOUSEMOTION";
-            // Agrega más casos según los tipos de eventos que desees manejar
             default:
                 return "Unknown Event";
         }
@@ -268,7 +267,6 @@ namespace Ragot
     {
         scene.add_entities(entity, name);
         
-        // Se recorre toda la lista de componentes para poder identificar cuales tienen tareas que tienen que ser agregaadas al kernel.
         for (const auto & it : entity->get_components())
         {
             if (it.second->get_has_task())
@@ -388,9 +386,7 @@ namespace Ragot
         if (turbo) camera_translation *= camera_turbo_speed;
         
         camera->move(camera_translation);
-        
-        // cout << "angle_x: " << angle_around_x << "\n" << "angle_y: " << angle_around_y << endl;
-        
+                
         glm::mat4 camera_rotation(1);
         
         camera_rotation = glm::rotate (camera_rotation, angle_around_y, glm::vec3(0.f, 1.f, 0.f));
@@ -423,13 +419,7 @@ namespace Ragot
         for (const auto & it : entity->get_components())
         {
             auto component = it.second;
-            
-            /*if (auto mesh_component = std::dynamic_pointer_cast<Mesh_Component>(component))
-            {
-                cout << "Setting camera mesh" << endl;
-                mesh_component->set_camera(camera);
-            }*/
-            
+                        
             if (auto mesh_component = std::dynamic_pointer_cast<Model_Component>(component))
             {
                 set_lights(mesh_component->get_shader_program_id());

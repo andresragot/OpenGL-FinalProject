@@ -33,17 +33,6 @@
 
 namespace Ragot
 {
-    void check_gl_error(const std::string &label)
-    {
-        GLenum error;
-        while ((error = glGetError()) != GL_NO_ERROR)
-        {
-            std::cerr << "OpenGL error [" << label << "]: " << error << std::endl;
-                // if (error != 1280) assert(false);
-        }
-    }
-
-
     float Frame_Buffer::vertices[] = {   -1.f, +1.f, +0.f,
                                          -1.f, -1.f, +0.f,
                                          +1.f, -1.f, +0.f,
@@ -104,10 +93,8 @@ namespace Ragot
     Frame_Buffer::Frame_Buffer(unsigned width, unsigned height)
     : shader_program({vertex_code_shader}, {fragment_code_shader})
     {
-        check_gl_error("shader_program creation");
         glGenVertexArrays (1, &vao_id);
         glGenBuffers (VBO_COUNT, vbo_id);
-        check_gl_error("gen buffer and vertex arrays");
         
         
         glBindVertexArray (vao_id);
@@ -115,15 +102,13 @@ namespace Ragot
         glBufferData (GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
         
         glEnableVertexAttribArray (0);
-        glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-        check_gl_error("coordinates vbo");
+        glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, 0);;
         
         glBindBuffer (GL_ARRAY_BUFFER, vbo_id[UV_COORDINATES_VBO]);
         glBufferData (GL_ARRAY_BUFFER, sizeof (uv_coordenates), uv_coordenates, GL_STATIC_DRAW);
         
         glEnableVertexAttribArray (1);
         glVertexAttribPointer (1, 2, GL_FLOAT, GL_FALSE, 0, 0);
-        check_gl_error("uv coordinates vbo");
         
         glBindVertexArray (0);
         
@@ -162,7 +147,6 @@ namespace Ragot
         
         unbind_frame_buffer();
         
-        check_gl_error("generate texture");
         
         shader_program.use();
         glUniform1i (shader_program.get_uniform_location("screen_texture"), 1);
@@ -177,7 +161,6 @@ namespace Ragot
     
     void Frame_Buffer::render()
     {
-        check_gl_error("pre render");
         time_t timestamp;
         time (&timestamp);
         shader_program.use();
@@ -189,7 +172,6 @@ namespace Ragot
         
         glBindVertexArray (vao_id);
         glDrawArrays (GL_TRIANGLES, 0, 6);
-        check_gl_error("draw arrays");
         
         glBindVertexArray (0);
         
@@ -198,7 +180,6 @@ namespace Ragot
         glActiveTexture (GL_TEXTURE0);
         
         glUseProgram (0);
-        check_gl_error("post render");
         
     }
     

@@ -37,96 +37,171 @@ namespace Ragot
 {
     using namespace std;
 
+    /**
+     * @brief Class for managing an OpenGL shader.
+     */
     class Shader
     {
     private:
-        GLuint  id;
-        string  error;
-        bool    compilation_succeeded;
+        GLuint id; ///< Shader ID.
+        string error; ///< Compilation error message.
+        bool compilation_succeeded; ///< Flag indicating if compilation succeeded.
         
     protected:
-        Shader (const vector< string > & source_code, GLenum type);
-        
-        GLuint compile_shader();
-        void show_compilation_error ();
-        
-    public:
-        Shader () = delete;
+        /**
+         * @brief Constructor for the Shader class.
+         * @param source_code Vector of shader source code.
+         * @param type Shader type (e.g., GL_VERTEX_SHADER, GL_FRAGMENT_SHADER).
+         */
+        Shader(const vector<string>& source_code, GLenum type);
 
-       ~Shader ()
+        /**
+         * @brief Compiles the shader.
+         * @return Shader ID.
+         */
+        GLuint compile_shader();
+
+        /**
+         * @brief Displays compilation errors.
+         */
+        void show_compilation_error();
+
+    public:
+        Shader() = delete; ///< Deleted default constructor.
+
+        /**
+         * @brief Destructor for the Shader class.
+         */
+        ~Shader()
         {
-            glDeleteShader (id);
+            glDeleteShader(id);
         }
-        
-        GLuint get_id () const
+
+        /**
+         * @brief Gets the shader ID.
+         * @return Shader ID.
+         */
+        GLuint get_id() const
         {
             return id;
         }
-        
-        string * get_error ()
+
+        /**
+         * @brief Gets the compilation error message.
+         * @return Pointer to the error message string.
+         */
+        string* get_error()
         {
             return error.empty() ? nullptr : &error;
         }
-        
-        bool is_ok () const
+
+        /**
+         * @brief Checks if the shader is compiled successfully.
+         * @return True if compilation succeeded, false otherwise.
+         */
+        bool is_ok() const
         {
             return compilation_succeeded;
         }
-        
     };
 
+    /**
+     * @brief Class for managing an OpenGL vertex shader.
+     */
     class Vertex_Shader : public Shader
     {
     public:
-        Vertex_Shader (const vector < string > & source_code) : Shader (source_code, GL_VERTEX_SHADER)
+        /**
+         * @brief Constructor for the Vertex_Shader class.
+         * @param source_code Vector of vertex shader source code.
+         */
+        Vertex_Shader(const vector<string>& source_code) : Shader(source_code, GL_VERTEX_SHADER)
         {
         }
     };
 
+    /**
+     * @brief Class for managing an OpenGL fragment shader.
+     */
     class Fragment_Shader : public Shader
     {
     public:
-        Fragment_Shader (const vector <string > & source_code) : Shader (source_code, GL_FRAGMENT_SHADER)
+        /**
+         * @brief Constructor for the Fragment_Shader class.
+         * @param source_code Vector of fragment shader source code.
+         */
+        Fragment_Shader(const vector<string>& source_code) : Shader(source_code, GL_FRAGMENT_SHADER)
         {
         }
     };
 
+    /**
+     * @brief Class for managing an OpenGL shader program.
+     */
     class Shader_Program
     {
     private:
-        GLuint program_id;
-    
+        GLuint program_id; ///< Shader program ID.
+
     public:
-        Shader_Program (const vector < string > & source_code_vertex, const vector < string > & source_code_fragment);
-        Shader_Program () = delete;
-       ~Shader_Program ()
+        /**
+         * @brief Constructor for the Shader_Program class.
+         * @param source_code_vertex Vector of vertex shader source code.
+         * @param source_code_fragment Vector of fragment shader source code.
+         */
+        Shader_Program(const vector<string>& source_code_vertex, const vector<string>& source_code_fragment);
+
+        Shader_Program() = delete; ///< Deleted default constructor.
+
+        /**
+         * @brief Destructor for the Shader_Program class.
+         */
+        ~Shader_Program()
         {
-            glDeleteProgram (program_id);
+            glDeleteProgram(program_id);
         }
-        
+
+        /**
+         * @brief Uses the shader program.
+         */
         void use() const
         {
             glUseProgram(program_id);
         }
-        
+
+        /**
+         * @brief Gets the shader program ID.
+         * @return Shader program ID.
+         */
         GLuint get_id() const
         {
             return program_id;
         }
-        
-        GLuint get_uniform_location (string uniform_name ) const
+
+        /**
+         * @brief Gets the uniform location in the shader program.
+         * @param uniform_name Name of the uniform.
+         * @return Uniform location.
+         */
+        GLuint get_uniform_location(string uniform_name) const
         {
-            return glGetUniformLocation (program_id, uniform_name.c_str());
+            return glGetUniformLocation(program_id, uniform_name.c_str());
         }
-        
+
     private:
-        Shader_Program (const Shader_Program & ) = delete;
-        Shader_Program & operator = (const Shader_Program & ) = delete;
-    
-    private:
-        void initialize (GLuint vertex_shadex_id, GLuint fragment_shader_id);
-        
+        Shader_Program(const Shader_Program&) = delete; ///< Deleted copy constructor.
+        Shader_Program& operator=(const Shader_Program&) = delete; ///< Deleted copy assignment operator.
+
+        /**
+         * @brief Initializes the shader program.
+         * @param vertex_shader_id Vertex shader ID.
+         * @param fragment_shader_id Fragment shader ID.
+         */
+        void initialize(GLuint vertex_shader_id, GLuint fragment_shader_id);
+
+        /**
+         * @brief Displays linkage errors.
+         */
         void show_linkage_error();
-        
     };
 }

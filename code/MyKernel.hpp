@@ -39,35 +39,46 @@ namespace Ragot
 {
     using std::vector;
 
+    /**
+     * @brief Class for managing the kernel that executes tasks.
+     */
     class Kernel
     {
-        vector < std::shared_ptr < Task > > tasks;
-        vector < std::shared_ptr < Critical_Task > > render_tasks;
+        vector<std::shared_ptr<Task>> tasks; ///< Vector of tasks.
+        vector<std::shared_ptr<Critical_Task>> render_tasks; ///< Vector of critical render tasks.
         
-        std::mutex tasks_mutex;
+        std::mutex tasks_mutex; ///< Mutex for synchronizing access to tasks.
     
-        std::atomic<bool> exit;
-        std::atomic <bool> is_running;
+        std::atomic<bool> exit; ///< Atomic flag to signal exit.
+        std::atomic<bool> is_running; ///< Atomic flag to indicate if the kernel is running.
         
-        std::condition_variable cv;
+        std::condition_variable cv; ///< Condition variable for task control.
         
     public:
-        /// Función que agrega todas las Tasks a el núcleo.
-        /// @param new_task este parámetro define la nueva Tarea que agregaremos a la cola.
-        void add (std::shared_ptr <Task> new_task);
+        /**
+         * @brief Adds a new task to the kernel.
+         * @param new_task Shared pointer to the new task to add.
+         */
+        void add(std::shared_ptr<Task> new_task);
         
-        /// Esta función es necesaria que se llame para que todas las funciones se hagan
+        /**
+         * @brief Runs the kernel, executing all tasks.
+         */
         void run();
         
-        /// Esta función va a hacer que todo el Kernel se detenga
-        void stop ()
+        /**
+         * @brief Stops the kernel and all tasks.
+         */
+        void stop()
         {
             tasks.front()->stop_execution();
             exit = true;
             cv.notify_all();
         }
         
-        ///  Función que va a correr todas las funciones criticas del código a la vez.
+        /**
+         * @brief Executes all critical functions at once.
+         */
         void execute_critical();
     };
 }

@@ -39,104 +39,179 @@
 namespace Ragot
 {
     using namespace std;
-    
+
+    /**
+     * @class Skybox
+     * @brief Class for rendering a skybox in the scene.
+     */
     class Skybox
     {
     private:
-        Shader_Program shader_program;
-    
-        static const GLfloat coordinates[];
-        static const string   vertex_shader_code;
-        static const string fragment_shader_code;
-        
-        GLuint vbo_id;
-        GLuint vao_id;
-        
-        GLint  model_view_matrix_id;
-        GLint  projection_matrix_id;
-        
-        shared_ptr<Camera> camera = nullptr;
-        
-        Texture_Cube texture_cube;
-        
+        Shader_Program shader_program; ///< Shader program for the skybox.
+        static const GLfloat coordinates[]; ///< Array of coordinates for the skybox vertices.
+        static const string vertex_shader_code; ///< Vertex shader code.
+        static const string fragment_shader_code; ///< Fragment shader code.
+        GLuint vbo_id; ///< Vertex Buffer Object ID.
+        GLuint vao_id; ///< Vertex Array Object ID.
+        GLint model_view_matrix_id; ///< Model-view matrix uniform location.
+        GLint projection_matrix_id; ///< Projection matrix uniform location.
+        shared_ptr<Camera> camera = nullptr; ///< Shared pointer to the camera.
+        Texture_Cube texture_cube; ///< Texture cube for the skybox.
+
     public:
-        Skybox (const string & texture_path);
-       ~Skybox ();
-       
+        /**
+         * @brief Constructor for the Skybox class.
+         * @param texture_path Path to the texture for the skybox.
+         */
+        Skybox(const string & texture_path);
+
+        /**
+         * @brief Destructor for the Skybox class.
+         */
+        ~Skybox();
+
+        /**
+         * @brief Sets the camera for the skybox.
+         * @param cam Shared pointer to the camera.
+         */
         void set_camera(shared_ptr<Camera> cam) { camera = cam; }
-        void render ();
-        
+
+        /**
+         * @brief Renders the skybox.
+         */
+        void render();
     };
-    
+
+    /**
+     * @class Terrain
+     * @brief Class for rendering a terrain in the scene.
+     */
     class Terrain
     {
     private:
         enum
         {
-            COORDINATES_VBO,
-            TEXTURE_UVS_VBO,
-            INDICES_EBO,
-            VBO_COUNT
+            COORDINATES_VBO, ///< VBO for coordinates.
+            TEXTURE_UVS_VBO, ///< VBO for texture UVs.
+            INDICES_EBO, ///< EBO for indices.
+            VBO_COUNT ///< Number of VBOs.
         };
-    private:
-        Shader_Program shader_program;
-        
-        static const string   vertex_shader_code;
-        static const string fragment_shader_code;
-        
-    
-        GLsizei number_of_vertices;
-        GLsizei number_of_indices;
-        GLuint vbo_ids[VBO_COUNT];
-        GLuint vao_id;
-        
-        GLint  model_view_matrix_id;
-        GLint  projection_matrix_id;
-        GLint  view_position_id;
-        GLint  light_position_id;
-        
-        shared_ptr< Camera > camera = nullptr;
-        
-        Texture2D< Monochrome8 > texture;
+
+        Shader_Program shader_program; ///< Shader program for the terrain.
+        static const string vertex_shader_code; ///< Vertex shader code.
+        static const string fragment_shader_code; ///< Fragment shader code.
+        GLsizei number_of_vertices; ///< Number of vertices.
+        GLsizei number_of_indices; ///< Number of indices.
+        GLuint vbo_ids[VBO_COUNT]; ///< Array of VBO IDs.
+        GLuint vao_id; ///< Vertex Array Object ID.
+        GLint model_view_matrix_id; ///< Model-view matrix uniform location.
+        GLint projection_matrix_id; ///< Projection matrix uniform location.
+        GLint view_position_id; ///< View position uniform location.
+        GLint light_position_id; ///< Light position uniform location.
+        shared_ptr< Camera > camera = nullptr; ///< Shared pointer to the camera.
+        Texture2D< Monochrome8 > texture; ///< Texture for the terrain.
+
     public:
-        Terrain (float width, float depth, unsigned x_slices, unsigned z_slices);
-       ~Terrain ();
-       
-    public:
+        /**
+         * @brief Constructor for the Terrain class.
+         * @param width Width of the terrain.
+         * @param depth Depth of the terrain.
+         * @param x_slices Number of slices along the x-axis.
+         * @param z_slices Number of slices along the z-axis.
+         */
+        Terrain(float width, float depth, unsigned x_slices, unsigned z_slices);
+
+        /**
+         * @brief Destructor for the Terrain class.
+         */
+        ~Terrain();
+
+        /**
+         * @brief Sets the camera for the terrain.
+         * @param cam Shared pointer to the camera.
+         */
         void set_camera(shared_ptr<Camera> cam) { camera = cam; }
+
+        /**
+         * @brief Renders the terrain.
+         */
         void render();
     };
-    
+
+    /**
+     * @class Light
+     * @brief Base class for different types of lights.
+     */
     class Light
     {
     public:
-        glm::vec3 color;
-        Light (const glm:: vec3 & color) : color(color) {}
+        glm::vec3 color; ///< Color of the light.
+
+        /**
+         * @brief Constructor for the Light class.
+         * @param color Color of the light.
+         */
+        Light(const glm::vec3 & color) : color(color) {}
+
+        /**
+         * @brief Virtual destructor for the Light class.
+         */
         virtual ~Light() = default;
     };
-    
+
+    /**
+     * @class DirectionalLight
+     * @brief Class for directional light.
+     */
     class DirectionalLight : public Light
     {
     public:
-        glm::vec3 direction;
-        DirectionalLight(const glm::vec3 & color, const glm::vec3 direction) : Light (color), direction (direction) {}
+        glm::vec3 direction; ///< Direction of the light.
+
+        /**
+         * @brief Constructor for the DirectionalLight class.
+         * @param color Color of the light.
+         * @param direction Direction of the light.
+         */
+        DirectionalLight(const glm::vec3 & color, const glm::vec3 direction)
+            : Light(color), direction(direction) {}
     };
-    
+
+    /**
+     * @class PointLight
+     * @brief Class for point light.
+     */
     class PointLight : public Light
     {
     public:
-        glm::vec3 position;
-        PointLight(const glm::vec3 & color, const glm::vec3 & position) : Light (color), position (position) {}
+        glm::vec3 position; ///< Position of the light.
+
+        /**
+         * @brief Constructor for the PointLight class.
+         * @param color Color of the light.
+         * @param position Position of the light.
+         */
+        PointLight(const glm::vec3 & color, const glm::vec3 & position)
+            : Light(color), position(position) {}
     };
-    
+
+    /**
+     * @class AreaLight
+     * @brief Class for area light.
+     */
     class AreaLight : public Light
     {
     public:
-        glm::vec3 position;
-        glm::vec3 size;
-        AreaLight (const glm::vec3 & color, const glm::vec3 & position, const glm::vec3 & size) :
-            Light (color), position (position), size (size) {}
-        
-    };
+        glm::vec3 position; ///< Position of the light.
+        glm::vec3 size; ///< Size of the area light.
 
+        /**
+         * @brief Constructor for the AreaLight class.
+         * @param color Color of the light.
+         * @param position Position of the light.
+         * @param size Size of the area light.
+         */
+        AreaLight(const glm::vec3 & color, const glm::vec3 & position, const glm::vec3 & size)
+            : Light(color), position(position), size(size) {}
+    };
 }

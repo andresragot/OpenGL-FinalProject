@@ -31,6 +31,7 @@
 namespace Ragot
 {
     using namespace glm;
+    
     const GLfloat Skybox::coordinates[] =
     {
         -1.0f, +1.0f, -1.0f,
@@ -301,7 +302,7 @@ namespace Ragot
                 GLuint top_left = (j * (x_slices + 1)) + 1;
                 GLuint bottom_left = ((j + 1) * (x_slices + 1)) + i;
                 
-                // orimer triangulo
+                // primer triangulo
                 indices [index++] = top_left;
                 indices [index++] = bottom_left;
                 indices [index++] = top_left + 1;
@@ -351,11 +352,6 @@ namespace Ragot
               mat4   model_view_matrix = camera->get_transform_matrix_inverse ();
         const mat4 & projection_matrix = camera->get_projection_matrix ();
               vec3   view_position     = camera->get_location();
-
-        // Se elimina la parte de la traslación
-        // model_view_matrix[3][0] = 0.0f;
-        // model_view_matrix[3][1] = 0.0f;
-        // model_view_matrix[3][2] = 0.0f;
         
         
         model_view_matrix = glm::translate(model_view_matrix, glm::vec3(50.f, -7.f, -0.f));

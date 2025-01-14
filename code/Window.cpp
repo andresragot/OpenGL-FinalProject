@@ -48,7 +48,6 @@ namespace Ragot
             throw "Failed to initialize the video subsystem.";
         }
         
-        // Se preconfigura el contexto ed OpenGL:
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, context_details.version_major);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, context_details.version_minor);
         

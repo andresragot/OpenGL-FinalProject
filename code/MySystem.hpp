@@ -45,115 +45,214 @@
 
 namespace Ragot
 {
-
     using namespace std;
     
     // Declaración adelantada de Entity
     class Entity;
 
+    /**
+     * @brief Class for managing a scene in OpenGL.
+     */
     class Scene
     {
     private:
-        shared_ptr<Camera> camera = make_shared < Camera > ();
-        map <string, shared_ptr <Entity>> entities;
-        Frame_Buffer framebuffer;
-        Skybox skybox;
-        Terrain terrain;
-        vector < shared_ptr < Light > > lights;
+        shared_ptr<Camera> camera = make_shared<Camera>(); ///< Shared pointer to the camera.
+        map<string, shared_ptr<Entity>> entities; ///< Map of entities in the scene.
+        Frame_Buffer framebuffer; ///< Frame buffer for the scene.
+        Skybox skybox; ///< Skybox for the scene.
+        Terrain terrain; ///< Terrain for the scene.
+        vector<shared_ptr<Light>> lights; ///< Vector of lights in the scene.
         
-    private:
-        
-        mutex scene_mutex;
+        mutex scene_mutex; ///< Mutex for synchronizing access to the scene.
     
-        int width;
-        int height;
+        int width; ///< Width of the scene.
+        int height; ///< Height of the scene.
         
-        float  angle_around_x;
-        float  angle_around_y;
-        float  angle_delta_x;
-        float  angle_delta_y;
+        float angle_around_x; ///< Angle around the x-axis.
+        float angle_around_y; ///< Angle around the y-axis.
+        float angle_delta_x; ///< Delta angle around the x-axis.
+        float angle_delta_y; ///< Delta angle around the y-axis.
         
-        float camera_speed = 0.025f;
+        float camera_speed = 0.025f; ///< Speed of the camera.
 
-        bool   pointer_pressed;
-        int    last_pointer_x;
-        int    last_pointer_y;
-        bool   turbo;
+        bool pointer_pressed; ///< Indicates if the pointer is pressed.
+        int last_pointer_x; ///< Last x-coordinate of the pointer.
+        int last_pointer_y; ///< Last y-coordinate of the pointer.
+        bool turbo; ///< Indicates if turbo mode is enabled.
         
-        float camera_turbo_speed = 2.f;
+        float camera_turbo_speed = 2.f; ///< Turbo speed of the camera.
         
-        glm::vec3 camera_translation;
+        glm::vec3 camera_translation; ///< Translation vector for the camera.
 
-        
     public:
-        void resize (int width, int height);
-        void on_drag (int pointer_x, int pointer_y);
-        void on_click (int pointer_x, int pointer_y, bool down);
-        void on_translation (glm::vec3 translation);
+        /**
+         * @brief Resizes the scene.
+         * @param width New width of the scene.
+         * @param height New height of the scene.
+         */
+        void resize(int width, int height);
+
+        /**
+         * @brief Handles pointer drag events.
+         * @param pointer_x X-coordinate of the pointer.
+         * @param pointer_y Y-coordinate of the pointer.
+         */
+        void on_drag(int pointer_x, int pointer_y);
+
+        /**
+         * @brief Handles pointer click events.
+         * @param pointer_x X-coordinate of the pointer.
+         * @param pointer_y Y-coordinate of the pointer.
+         * @param down Indicates if the pointer is pressed down.
+         */
+        void on_click(int pointer_x, int pointer_y, bool down);
+
+        /**
+         * @brief Handles translation events.
+         * @param translation Translation vector.
+         */
+        void on_translation(glm::vec3 translation);
+
+        /**
+         * @brief Handles shift key press events.
+         * @param down Indicates if the shift key is pressed down.
+         */
         void on_shift_pressed(bool down);
-        
+
     public:
-        
+        /**
+         * @brief Updates the scene.
+         */
         void update();
+
+        /**
+         * @brief Renders the scene.
+         */
         void render();
+
+        /**
+         * @brief Post-processes the scene.
+         */
         void postproccess();
-        
-        
+
     public:
+        /**
+         * @brief Constructor for the Scene class.
+         */
         Scene();
-    
-        
+
     public:
-        void    add_entities (shared_ptr<Entity> entity, const string & name);
-        void remove_entities (const string & name);
-        shared_ptr < Entity > get_entity (const string & name) const;
-        shared_ptr < Camera > get_camera () const { return camera; }
-        
+        /**
+         * @brief Adds an entity to the scene.
+         * @param entity Shared pointer to the entity.
+         * @param name Name of the entity.
+         */
+        void add_entities(shared_ptr<Entity> entity, const string& name);
+
+        /**
+         * @brief Removes an entity from the scene.
+         * @param name Name of the entity.
+         */
+        void remove_entities(const string& name);
+
+        /**
+         * @brief Gets an entity from the scene.
+         * @param name Name of the entity.
+         * @return Shared pointer to the entity.
+         */
+        shared_ptr<Entity> get_entity(const string& name) const;
+
+        /**
+         * @brief Gets the camera of the scene.
+         * @return Shared pointer to the camera.
+         */
+        shared_ptr<Camera> get_camera() const { return camera; }
+
     private:
-        void set_lights (GLuint shader_program_id);
+        /**
+         * @brief Sets the lights in the scene.
+         * @param shader_program_id Shader program ID.
+         */
+        void set_lights(GLuint shader_program_id);
     };
-    
+
+    /**
+     * @brief Class for managing the system in OpenGL.
+     */
     class System
     {
-        Critical_Task buffer_swap;
-        Critical_Task handle_events;
-        Critical_Task scene_render;
-        Light_Task    scene_update;
-        Light_Task    process_events;
+        Critical_Task buffer_swap; ///< Task for swapping buffers.
+        Critical_Task handle_events; ///< Task for handling events.
+        Critical_Task scene_render; ///< Task for rendering the scene.
+        Light_Task scene_update; ///< Task for updating the scene.
+        Light_Task process_events; ///< Task for processing events.
         
+        queue<SDL_Event> eventQueue; ///< Queue of SDL events.
+        mutex queueMutex; ///< Mutex for synchronizing access to the event queue.
+        condition_variable queueCondition; ///< Condition variable for the event queue.
         
-        queue<SDL_Event> eventQueue;
-        mutex queueMutex;
-        condition_variable queueCondition;
+        Window window; ///< Window for rendering.
+        Scene scene; ///< Scene to be rendered.
         
-        Window window;
-        Scene scene;
-        
-        Kernel kernel;
-        
+        Kernel kernel; ///< Kernel for managing tasks.
+
     private:
+        /**
+         * @brief Handles input events.
+         */
         void input();
+
+        /**
+         * @brief Initializes the system.
+         */
         void initialize();
+
+        /**
+         * @brief Handles SDL events.
+         */
         void sdl_events();
-        
+
     public:
-        System(const string & Window_Name, const int width, const int height);
+        /**
+         * @brief Constructor for the System class.
+         * @param Window_Name Name of the window.
+         * @param width Width of the window.
+         * @param height Height of the window.
+         */
+        System(const string& Window_Name, const int width, const int height);
+
+        /**
+         * @brief Default constructor for the System class.
+         */
         System();
-       ~System() { SDL_Quit(); }
-        
+
+        /**
+         * @brief Destructor for the System class.
+         */
+        ~System() { SDL_Quit(); }
+
     public:
-    
-        void add_entities (shared_ptr<Entity> entity, const string & name);
-    
+        /**
+         * @brief Adds an entity to the system.
+         * @param entity Shared pointer to the entity.
+         * @param name Name of the entity.
+         */
+        void add_entities(shared_ptr<Entity> entity, const string& name);
+
+        /**
+         * @brief Runs the system.
+         */
         void run()
         {
             kernel.run();
         }
-    
+
+        /**
+         * @brief Stops the system.
+         */
         void stop()
         {
             kernel.stop();
         }
     };
-    
 }

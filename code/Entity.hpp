@@ -33,45 +33,85 @@
 
 namespace Ragot
 {
-class Entity : public std::enable_shared_from_this<Entity>
+    /**
+     * @brief Class for managing entities in a scene.
+     */
+    class Entity : public std::enable_shared_from_this<Entity>
     {
-        Scene * scene;
+        Scene* scene; ///< Pointer to the scene this entity belongs to.
         
     public:
-        Transform_Component transform;
+        Transform_Component transform; ///< Transform component of the entity.
     
     private:
-        map <string, shared_ptr < Component > > components;
-        vector < shared_ptr < Entity > > children;
+        map<string, shared_ptr<Component>> components; ///< Map of components associated with this entity.
+        vector<shared_ptr<Entity>> children; ///< Vector of child entities.
         
     public:
-        void set_scene (Scene * scene) { this->scene = scene; }
+        /**
+         * @brief Sets the scene for this entity.
+         * @param scene Pointer to the scene.
+         */
+        void set_scene(Scene* scene) { this->scene = scene; }
         
-        const Scene * get_scene()       { return scene; }
-        const Scene * get_scene() const { return scene; }
+        /**
+         * @brief Gets the scene this entity belongs to.
+         * @return Pointer to the scene.
+         */
+        const Scene* get_scene() { return scene; }
+
+        /**
+         * @brief Gets the scene this entity belongs to (const version).
+         * @return Pointer to the scene.
+         */
+        const Scene* get_scene() const { return scene; }
         
-        void add_components (shared_ptr < Component > component, const string & name);
+        /**
+         * @brief Adds a component to the entity.
+         * @param component Shared pointer to the component.
+         * @param name Name of the component.
+         */
+        void add_component(shared_ptr<Component> component, const string& name);
         
-        void remove_component (const string & name);
+        /**
+         * @brief Removes a component from the entity.
+         * @param name Name of the component.
+         */
+        void remove_component(const string& name);
         
-        void add_child (shared_ptr < Entity > child)
+        /**
+         * @brief Adds a child entity.
+         * @param child Shared pointer to the child entity.
+         */
+        void add_child(shared_ptr<Entity> child)
         {
-            child->set_transform_parent (&transform);
+            child->set_transform_parent(&transform);
             children.push_back(child);
         }
         
-        void remove_child (shared_ptr < Entity > child)
+        /**
+         * @brief Removes a child entity.
+         * @param child Shared pointer to the child entity.
+         */
+        void remove_child(shared_ptr<Entity> child)
         {
-            child->set_transform_parent (nullptr);
-            children.erase (remove (children.begin(), children.end(), child), children.end());
+            child->set_transform_parent(nullptr);
+            children.erase(remove(children.begin(), children.end(), child), children.end());
         }
         
-        void set_transform_parent (Transform_Component * parent)
+        /**
+         * @brief Sets the parent transform component.
+         * @param parent Pointer to the parent transform component.
+         */
+        void set_transform_parent(Transform_Component* parent)
         {
-            transform.set_parent (parent);
+            transform.set_parent(parent);
         }
-                
-        const map < string, shared_ptr < Component > > & get_components() const { return components; }
+        
+        /**
+         * @brief Gets the components associated with this entity.
+         * @return Map of components.
+         */
+        const map<string, shared_ptr<Component>>& get_components() const { return components; }
     };
-
 }
