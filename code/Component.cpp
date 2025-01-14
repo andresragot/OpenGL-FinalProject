@@ -13,16 +13,6 @@
 namespace Ragot
 {
 
-    void check_gl_error(const std::string &label)
-    {
-        GLenum error;
-        while ((error = glGetError()) != GL_NO_ERROR)
-        {
-            std::cerr << "OpenGL error [" << label << "]: " << error << std::endl;
-                // if (error != 1280) assert(false);
-        }
-    }
-
     using namespace std;
     using namespace glm;
     

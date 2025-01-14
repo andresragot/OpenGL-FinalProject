@@ -12,9 +12,11 @@
 #include "MyKernel.hpp"
 #include "Camera.hpp"
 #include "Ambient.hpp"
+#include "Postprocess.hpp"
 #include <string>
 #include <memory>
 #include <map>
+#include <vector>
 
 #include <mutex>
 #include <condition_variable>
@@ -33,6 +35,7 @@ namespace Ragot
     private:
         shared_ptr<Camera> camera = make_shared < Camera > ();
         map <string, shared_ptr <Entity>> entities;
+        Frame_Buffer framebuffer;
         Skybox skybox;
         Terrain terrain;
         vector < shared_ptr < Light > > lights;
@@ -59,6 +62,7 @@ namespace Ragot
         float camera_turbo_speed = 2.f;
         
         glm::vec3 camera_translation;
+
         
     public:
         void resize (int width, int height);
@@ -71,6 +75,7 @@ namespace Ragot
         
         void update();
         void render();
+        void postproccess();
         
         
     public:

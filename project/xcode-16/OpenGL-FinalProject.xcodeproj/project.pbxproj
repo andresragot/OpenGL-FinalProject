@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E0F8E302D36CA6B00A63B6B /* Postprocess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E0F8E2F2D36CA6B00A63B6B /* Postprocess.cpp */; };
 		8E8DA2532D29365D0034BBB1 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA2522D29365D0034BBB1 /* Mesh.cpp */; };
 		8E8DA2562D2947470034BBB1 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E8DA2552D2947470034BBB1 /* Window.cpp */; };
 		8E8DA2582D2965BB0034BBB1 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E8DA2572D2965BB0034BBB1 /* Metal.framework */; };
@@ -57,6 +58,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8E0F8E2E2D36CA6B00A63B6B /* Postprocess.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Postprocess.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Postprocess.hpp"; sourceTree = "<absolute>"; };
+		8E0F8E2F2D36CA6B00A63B6B /* Postprocess.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Postprocess.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Postprocess.cpp"; sourceTree = "<absolute>"; };
 		8E8DA2512D29365D0034BBB1 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Mesh.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Mesh.hpp"; sourceTree = "<absolute>"; };
 		8E8DA2522D29365D0034BBB1 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Mesh.cpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Mesh.cpp"; sourceTree = "<absolute>"; };
 		8E8DA2542D2947470034BBB1 /* Window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Window.hpp; path = "/Users/andresragot/Library/CloudStorage/OneDrive-UDIT/UDIT/4to año/1er Semestre/Programación Gráfica/OpenGL-FinalProject/code/Window.hpp"; sourceTree = "<absolute>"; };
@@ -146,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				8EE7AFFB2D33EC7000BC13F9 /* Ambient.hpp */,
+				8E0F8E2E2D36CA6B00A63B6B /* Postprocess.hpp */,
+				8E0F8E2F2D36CA6B00A63B6B /* Postprocess.cpp */,
 				8EE7AFFC2D33EC7000BC13F9 /* Ambient.cpp */,
 				8E8DA2652D2AF17F0034BBB1 /* Camera.hpp */,
 				8E8DA2622D2992110034BBB1 /* Component.hpp */,
@@ -273,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E8DA25E2D2990010034BBB1 /* Entity.cpp in Sources */,
+				8E0F8E302D36CA6B00A63B6B /* Postprocess.cpp in Sources */,
 				8E8DA2642D2992110034BBB1 /* Component.cpp in Sources */,
 				8EF1C25F2D2417FF0046432D /* Task.cpp in Sources */,
 				8EE7AFF72D33D0EF00BC13F9 /* Shader_Program.cpp in Sources */,

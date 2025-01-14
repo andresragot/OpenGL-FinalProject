@@ -18,7 +18,7 @@ namespace Ragot
     System::System(const string & Window_Name, const int width, const int height)
     :
         window(Window_Name, Window::Position::CENTERED, Window::Position::CENTERED, width, height, { 3, 3 }),
-        buffer_swap   ([this] { window.swap_buffers(); } ),
+        buffer_swap   ([this] { scene.postproccess(); window.swap_buffers(); } ),
         handle_events ([this] { sdl_events(); }),
         scene_render  ([this] { scene.render(); }),
         scene_update  ([this] { scene.update(); }),
@@ -30,7 +30,7 @@ namespace Ragot
     System::System()
     :
         window("Final Project", Window::Position::CENTERED, Window::Position::CENTERED, 1024, 640, { 3, 3 }),
-        buffer_swap   ([this] { window.swap_buffers(); } ),
+        buffer_swap   ([this] { scene.postproccess(); window.swap_buffers(); } ),
         handle_events ([this] { sdl_events(); }),
         scene_render  ([this] { scene.render(); }),
         scene_update  ([this] { scene.update(); }),
@@ -43,6 +43,7 @@ namespace Ragot
     {
         glEnable     (GL_CULL_FACE );
         glEnable     (GL_DEPTH_TEST);
+        glDepthFunc  (GL_LESS);
         glClearColor (0.3f, 0.3f, 0.3f, 1.f);
         
         scene.resize (window.get_width(), window.get_height());
@@ -264,6 +265,7 @@ namespace Ragot
     
     Scene::Scene()
     :
+        framebuffer(1024, 640),
         skybox("fotos/sky-cube-map-"),
         terrain(10, 10, 10, 20)
     {
@@ -280,7 +282,6 @@ namespace Ragot
         lights.push_back (      point_light);
         lights.push_back (       area_light);
         
-        glDisable(GL_CULL_FACE);
     }
         
     void Scene::resize(int width, int height)
@@ -320,10 +321,23 @@ namespace Ragot
     
     void Scene::render()
     {
+        
+        //framebuffer.bind_texture();
+        framebuffer.bind_frame_buffer();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
         
          skybox.render();
         terrain.render();
+    }
+    
+    void Scene::postproccess()
+    {
+        glDisable(GL_DEPTH_TEST);
+        framebuffer.unbind_frame_buffer();
+        framebuffer.render();
     }
     
     void Scene::update()
