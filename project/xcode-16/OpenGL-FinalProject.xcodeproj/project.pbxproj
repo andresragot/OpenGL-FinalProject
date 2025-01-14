@@ -149,9 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				8EE7AFFB2D33EC7000BC13F9 /* Ambient.hpp */,
+				8EE7AFFC2D33EC7000BC13F9 /* Ambient.cpp */,
 				8E0F8E2E2D36CA6B00A63B6B /* Postprocess.hpp */,
 				8E0F8E2F2D36CA6B00A63B6B /* Postprocess.cpp */,
-				8EE7AFFC2D33EC7000BC13F9 /* Ambient.cpp */,
 				8E8DA2652D2AF17F0034BBB1 /* Camera.hpp */,
 				8E8DA2622D2992110034BBB1 /* Component.hpp */,
 				8E8DA2632D2992110034BBB1 /* Component.cpp */,
