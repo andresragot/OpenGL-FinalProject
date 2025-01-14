@@ -84,14 +84,18 @@ namespace Ragot
     public:
         Model_Component() = delete;
         
-        Model_Component (const string & model_file_path);
+        Model_Component (const string & model_file_path, const string & texture_file_path);
                 
         Critical_Task render_task;
         
         const GLuint      get_shader_program_id() const { return material.get_shader_program_id(); };
+        
+        void set_transparency (bool trans) { is_transparent = trans; }
+        
     private:
         Mesh mesh;
         Material material;
+        bool is_transparent = false;
         
         static const string   vertex_shader_code;
         static const string fragment_shader_code;

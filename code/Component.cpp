@@ -95,13 +95,13 @@ namespace Ragot
         "       specular  *= attenuation;"
         "       result    += (ambient + diffuse + specular) * material_color;"
         "   }\n"
-        "   fragment_color = vec4(result, 1.0) * vec4(texture (sampler2d, texture_uv.st).rgb, 1.0);"
+        "   fragment_color = vec4(result, 0.7) * vec4(texture (sampler2d, texture_uv.st).rgb, 0.5);"
         "}";
         
-    Model_Component::Model_Component(const string & model_file_path)
+    Model_Component::Model_Component(const string & model_file_path, const string & texture_file_path)
     :
             mesh (model_file_path),
-            material ({vertex_shader_code}, {fragment_shader_code}, "fotos/Intergalactic Spaceship_color_4.jpg"),
+            material ({vertex_shader_code}, {fragment_shader_code}, texture_file_path),
             render_task ([this] { render(); })
     {
         has_task = true;
@@ -140,6 +140,13 @@ namespace Ragot
             
             material.use_shader_program();
             
+            if (is_transparent)
+            {
+                glDepthMask (GL_FALSE);
+                glEnable    (GL_BLEND);
+                glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            }
+            
             material.bind_texture();
     
             glm::mat4 model_matrix = entity->transform.get_transform_matrix();
@@ -160,6 +167,13 @@ namespace Ragot
             
             glBindVertexArray (0);
             glUseProgram      (0);
+            
+            if (is_transparent)
+            {
+                glDisable   (GL_BLEND);
+                glDepthMask (GL_TRUE );
+            }
+            
             
         }
     }
