@@ -113,29 +113,37 @@
 \DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_model___component_a80e8dc4ee45fca8c39f9d8c5669495c8}{Model\_Component}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&model\_file\_path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&texture\_file\_path);}
 \DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_critical___task}{Critical\_Task}}\ \mbox{\hyperlink{class_ragot_1_1_model___component_a554a6b75a735ea0d4935a7e1e54e8831}{render\_task}};\ }
-\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ GLuint\ \mbox{\hyperlink{class_ragot_1_1_model___component_aef5cad6a38416e43dc9b16dd4f183d55}{get\_shader\_program\_id}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ material.get\_shader\_program\_id();\ \}}
-\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_model___component_a3ca3e55043f388c3805a0a26264b6354}{set\_transparency}}(\textcolor{keywordtype}{bool}\ trans)\ \{\ is\_transparent\ =\ trans;\ \}}
-\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh}{Mesh}}\ mesh;\ }
-\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_material}{Material}}\ material;\ }
-\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_transparent\ =\ \textcolor{keyword}{false};\ }
-\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ vertex\_shader\_code;\ }
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ fragment\_shader\_code;\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_light___task}{Light\_Task}}\ update\_task;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ GLuint\ \mbox{\hyperlink{class_ragot_1_1_model___component_aef5cad6a38416e43dc9b16dd4f183d55}{get\_shader\_program\_id}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ material.get\_shader\_program\_id();\ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_model___component_a3ca3e55043f388c3805a0a26264b6354}{set\_transparency}}(\textcolor{keywordtype}{bool}\ trans)\ \{\ is\_transparent\ =\ trans;\ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh}{Mesh}}\ mesh;\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_material}{Material}}\ material;\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_transparent\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ vertical\_position;\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ vertical\_speed\ =\ 0.0000005f;\ }
 \DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ GLint\ model\_view\_matrix\_id;\ }
-\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ GLint\ projection\_matrix\_id;\ }
-\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ GLint\ normal\_matrix\_id;\ }
-\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ GLint\ view\_pos\_id;\ }
-\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ configure\_material();}
-\DoxyCodeLine{00215\ }
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
-\DoxyCodeLine{00220\ \ \ \ \ \};}
-\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ orbit\_angle;\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ orbit\_speed\ =\ 0.00005f;\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ vertex\_shader\_code;\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ fragment\_shader\_code;\ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ GLint\ model\_view\_matrix\_id;\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ GLint\ projection\_matrix\_id;\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ GLint\ normal\_matrix\_id;\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ GLint\ view\_pos\_id;\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ configure\_material();}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00231\ \ \ \ \ \};}
+\DoxyCodeLine{00232\ \}}
 
 \end{DoxyCode}

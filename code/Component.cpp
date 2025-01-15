@@ -31,6 +31,8 @@
 #include <iostream>
 #include "Entity.hpp"
 
+#include <gtc/matrix_transform.hpp>         // translate, rotate, scale, perspective
+
 namespace Ragot
 {
 
@@ -116,14 +118,15 @@ namespace Ragot
         "       specular  *= attenuation;"
         "       result    += (ambient + diffuse + specular) * material_color;"
         "   }\n"
-        "   fragment_color = vec4(result, 0.7) * vec4(texture (sampler2d, texture_uv.st).rgb, 0.5);"
+        "   fragment_color = vec4(result, 0.9) * vec4(texture (sampler2d, texture_uv.st).rgb, 0.9);"
         "}";
         
     Model_Component::Model_Component(const string & model_file_path, const string & texture_file_path)
     :
             mesh (model_file_path),
             material ({vertex_shader_code}, {fragment_shader_code}, texture_file_path),
-            render_task ([this] { render(); })
+            render_task ([this] { render(); }),
+            update_task ([this] { update(); })
     {
         has_task = true;
         
@@ -194,8 +197,58 @@ namespace Ragot
                 glDisable   (GL_BLEND);
                 glDepthMask (GL_TRUE );
             }
-            
-            
         }
+    }
+    
+    void Model_Component::update()
+    {
+        auto entity = get_entity();
+        
+        if (entity->transform.get_parent())
+        {
+            orbit_angle  += orbit_speed;
+            if (orbit_angle > 360.0f)
+            {
+                orbit_angle -= 360.0f;
+            }
+            
+            glm::vec3 parent_pos = glm::vec3(entity->transform.get_parent()->get_transform_matrix() * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
+
+            
+            float radians = glm::radians(orbit_angle);
+            float x = parent_pos.x + 20 * cos(radians);
+            float z = parent_pos.z + 20 * sin(radians);
+            float y = parent_pos.y + 20 * sin(glm::radians(10.f));
+             
+             entity->transform.set_position(glm::vec3(x, y, z));
+             
+             glm::vec3 up = glm::vec3(0.f, 1.f, 0.f);
+             glm::vec3 direction = glm::normalize(entity->transform.get_parent()->get_position() - entity->transform.get_position());
+             glm::vec3 right = glm::normalize(glm::cross(up, direction));
+             
+            glm::mat4 rotation_matrix = glm::mat4(1.0f);
+            rotation_matrix[0] = glm::vec4(right, 0.0f);
+            rotation_matrix[1] = glm::vec4(up, 0.0f);
+            rotation_matrix[2] = glm::vec4(direction, 0.0f);
+            
+            //rotation_matrix = rotation_matrix * glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+            glm::quat rotation = glm::quat_cast(rotation_matrix);
+            
+            glm::vec3 euler_angles = glm::degrees(glm::eulerAngles(rotation));
+             
+            entity->transform.set_rotation(euler_angles);
+        }
+        else
+        {
+            vertical_position += vertical_speed;
+            if (abs(vertical_position) > 2.0f)
+            {
+                vertical_speed *= -1.f;
+            }
+            
+            entity->transform.set_position (glm::vec3 (entity->transform.get_position().x, vertical_position, entity->transform.get_position().z));
+        }
+        
     }
 }

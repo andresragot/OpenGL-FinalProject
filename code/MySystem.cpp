@@ -277,6 +277,7 @@ namespace Ragot
                 {
                     cout << "Mesh component added" << endl;
                     kernel.add (make_shared < Critical_Task > (mesh_component->render_task));
+                    kernel.add (make_shared <    Light_Task > (mesh_component->update_task));
                 }
             }
         }

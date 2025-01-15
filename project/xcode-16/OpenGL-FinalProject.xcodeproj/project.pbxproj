@@ -115,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EF1C23F2D240D9A0046432D /* GameController.framework in Frameworks */,
 				8E8DA26F2D2AFE670034BBB1 /* OpenGL.framework in Frameworks */,
 				8E8DA2582D2965BB0034BBB1 /* Metal.framework in Frameworks */,
 				8EF1C2522D240DD80046432D /* libassimp.a in Frameworks */,
@@ -128,7 +129,6 @@
 				8EF1C2482D240DBD0046432D /* libSDL2main.a in Frameworks */,
 				8EF1C2492D240DBD0046432D /* libSDL2d.a in Frameworks */,
 				8EF1C2412D240DA20046432D /* IOKit.framework in Frameworks */,
-				8EF1C23F2D240D9A0046432D /* GameController.framework in Frameworks */,
 				8EF1C23D2D240D920046432D /* ForceFeedback.framework in Frameworks */,
 				8EF1C23B2D240D8B0046432D /* EventKit.framework in Frameworks */,
 				8EF1C2392D240D860046432D /* CoreVideo.framework in Frameworks */,
@@ -420,7 +420,6 @@
 					"${PROJECT_DIR}/../../libraries/glad/include",
 					"${PROJECT_DIR}/../../libraries/glm/include",
 					"${PROJECT_DIR}/../../libraries/assimp/include",
-					"${PROJECT_DIR}/../../shared/code",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../../libraries/soil2/lib/macos/xcode-16/static-silicon",
@@ -441,7 +440,6 @@
 					"${PROJECT_DIR}/../../libraries/glad/include",
 					"${PROJECT_DIR}/../../libraries/glm/include",
 					"${PROJECT_DIR}/../../libraries/assimp/include",
-					"${PROJECT_DIR}/../../shared/code",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../../libraries/soil2/lib/macos/xcode-16/static-silicon",

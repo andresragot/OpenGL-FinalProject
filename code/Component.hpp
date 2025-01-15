@@ -181,6 +181,7 @@ namespace Ragot
         Model_Component(const string &model_file_path, const string &texture_file_path);
         
         Critical_Task render_task; ///< Task for rendering the model.
+        Light_Task update_task;///<
         
         /**
          * @brief Gets the shader program ID.
@@ -198,6 +199,11 @@ namespace Ragot
         Mesh mesh; ///< Mesh of the model.
         Material material; ///< Material of the model.
         bool is_transparent = false; ///< Indicates whether the model is transparent.
+        float vertical_position; ///< holds the current vertical position for modifications.
+        float vertical_speed = 0.0000005f; ///< speed at which the model moves.
+        
+        float orbit_angle; ///< holds the current angle for modifications.
+        float orbit_speed = 0.00005f; ///< speed at which the model orbits.
         
         static const string vertex_shader_code; ///< Vertex shader code.
         static const string fragment_shader_code; ///< Fragment shader code.
@@ -217,5 +223,10 @@ namespace Ragot
          * @brief Renders the model.
          */
         void render();
+        
+        /**
+         * @brief Updates the model.
+         */
+         void update();
     };
 }
