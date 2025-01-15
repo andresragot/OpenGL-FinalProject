@@ -286,7 +286,7 @@ namespace Ragot
     Scene::Scene()
     :
         framebuffer(1024, 640),
-        skybox("../../assets/fotos/space-cube-map-"),
+        skybox("/../../assets/fotos/space-cube-map-"),
         terrain(10, 10, 10, 20)
     {
          skybox.set_camera(camera);

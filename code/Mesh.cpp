@@ -49,9 +49,15 @@ namespace Ragot
     {
         Assimp::Importer importer;
         
+        string scrRoot = std::getenv("PROJECT_DIR");
+        
+        string file_path = scrRoot + mesh_file_path; // Lo hacemos para poder mover el exec y que sirva.
+        
+        cout << file_path << endl;
+        
         auto scene = importer.ReadFile
         (
-            mesh_file_path,
+            file_path,
             aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType
         );
         
@@ -185,13 +191,17 @@ namespace Ragot
     template < typename COLOR_FORMAT >
     unique_ptr< Color_Buffer < COLOR_FORMAT > > Texture2D < COLOR_FORMAT > ::load_image(const string &texture_path)
     {
+        string scrRoot = std::getenv("PROJECT_DIR");
+        
+        string file_path = scrRoot + texture_path;
+    
         int image_width = 0;
         int image_height = 0;
         int image_channels = 0;
         
         uint8_t * loaded_pixels = SOIL_load_image
         (
-            texture_path.c_str(),
+            file_path.c_str(),
             &image_width,
             &image_height,
             &image_channels,

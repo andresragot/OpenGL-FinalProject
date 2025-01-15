@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
     
     auto mesh_entity = make_shared < Entity > ();
 
-    auto mesh_component = make_shared < Model_Component > ("../../assets/models/Intergalactic_Spaceship-(Wavefront).obj", "../../assets/fotos/Intergalactic Spaceship_color_4.jpg");
+    auto mesh_component = make_shared < Model_Component > ("/../../assets/models/Intergalactic_Spaceship-(Wavefront).obj", "/../../assets/fotos/Intergalactic Spaceship_color_4.jpg");
     mesh_entity->add_component(mesh_component, "Mesh");
     mesh_entity->transform.set_rotation({0.f, 0.f, 0.f});
     mesh_entity->transform.set_position({0.f, 0.f, -10.f});
@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
     
     auto child_entity = make_shared < Entity > ();
     mesh_entity->add_child(child_entity);
-    auto container_mesh_component = make_shared < Model_Component > ("../../assets/models/Quarren Coyote Ship.obj", "../../assets/fotos/Andorian (4).png");
+    auto container_mesh_component = make_shared < Model_Component > ("/../../assets/models/Quarren Coyote Ship.obj", "/../../assets/fotos/Andorian (4).png");
     container_mesh_component->set_transparency(true);
     child_entity->add_component(container_mesh_component, "Mesh");
     my_system.add_entities(child_entity, "Container");
