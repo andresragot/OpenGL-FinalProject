@@ -1,0 +1,122 @@
+\doxysection{Ragot\+::Task Class Reference}
+\hypertarget{class_ragot_1_1_task}{}\label{class_ragot_1_1_task}\index{Ragot::Task@{Ragot::Task}}
+
+
+Base class for managing tasks.  
+
+
+
+
+{\ttfamily \#include $<$Task.\+hpp$>$}
+
+Inheritance diagram for Ragot\+::Task\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ragot_1_1_task}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}} (function$<$ void()$>$ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\+\_\+func}})
+\begin{DoxyCompactList}\small\item\em Constructor that accepts the function to run for this task. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_task_a701a3ad13d3002e60df9ddeb8edad68e}\label{class_ragot_1_1_task_a701a3ad13d3002e60df9ddeb8edad68e} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Task} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_ragot_1_1_task_a909ee0fe7449d09134d614ea2af27e7d}{execute}} ()=0
+\begin{DoxyCompactList}\small\item\em Virtual function to execute the task, to be overridden by derived classes. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_task_ab0e20542985b9815f2f0ebe46cf0d767}\label{class_ragot_1_1_task_ab0e20542985b9815f2f0ebe46cf0d767} 
+void {\bfseries stop\+\_\+execution} ()
+\begin{DoxyCompactList}\small\item\em Stops execution of all tasks, even if executed by one thread. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_task_a39d181960d80fe3ba6567c3dda8da6b8}\label{class_ragot_1_1_task_a39d181960d80fe3ba6567c3dda8da6b8} 
+void {\bfseries stop} ()
+\begin{DoxyCompactList}\small\item\em Stops execution temporarily for critical sections of code. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_task_a80e091f62c9fca8ed0fc72e2cf4c93bf}\label{class_ragot_1_1_task_a80e091f62c9fca8ed0fc72e2cf4c93bf} 
+void {\bfseries resume} ()
+\begin{DoxyCompactList}\small\item\em Resumes execution after a stop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_ragot_1_1_task_a82e30642dc15fc0c5341c654853dcac0}{should\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the task should stop execution. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ragot_1_1_task_ab3609db36be2d698454f99d1949bfc87}{should\+Finish}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the task should finish execution. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_task_ad65b3b48083d81fcf1c70b8aa7f0d166}\label{class_ragot_1_1_task_ad65b3b48083d81fcf1c70b8aa7f0d166} 
+void {\bfseries wait\+\_\+for\+\_\+resume} ()
+\begin{DoxyCompactList}\small\item\em Waits for resume signal to continue execution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}\label{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992} 
+function$<$ void()$>$ {\bfseries task\+\_\+func}
+\begin{DoxyCompactList}\small\item\em Function to run for this task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for managing tasks. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}\index{Ragot::Task@{Ragot::Task}!Task@{Task}}
+\index{Task@{Task}!Ragot::Task@{Ragot::Task}}
+\doxysubsubsection{\texorpdfstring{Task()}{Task()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb} 
+Ragot\+::\+Task\+::\+Task (\begin{DoxyParamCaption}\item[{function$<$ void()$>$}]{task\+\_\+func}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor that accepts the function to run for this task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+\_\+func} & Function to run for this task. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_task_a909ee0fe7449d09134d614ea2af27e7d}\index{Ragot::Task@{Ragot::Task}!execute@{execute}}
+\index{execute@{execute}!Ragot::Task@{Ragot::Task}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_task_a909ee0fe7449d09134d614ea2af27e7d} 
+virtual void Ragot\+::\+Task\+::execute (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Virtual function to execute the task, to be overridden by derived classes. 
+
+
+
+Implemented in \mbox{\hyperlink{class_ragot_1_1_critical___task_a8e18a7878e322eedbdf137057f8e6483}{Ragot\+::\+Critical\+\_\+\+Task}}, \mbox{\hyperlink{class_ragot_1_1_light___task_a32dd074fba8a2848296bf9d7f86848a7}{Ragot\+::\+Light\+\_\+\+Task}}, and \mbox{\hyperlink{class_ragot_1_1_once___task_af96b928037edf9661cc7b98015eff28f}{Ragot\+::\+Once\+\_\+\+Task}}.
+
+\Hypertarget{class_ragot_1_1_task_ab3609db36be2d698454f99d1949bfc87}\index{Ragot::Task@{Ragot::Task}!shouldFinish@{shouldFinish}}
+\index{shouldFinish@{shouldFinish}!Ragot::Task@{Ragot::Task}}
+\doxysubsubsection{\texorpdfstring{shouldFinish()}{shouldFinish()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_task_ab3609db36be2d698454f99d1949bfc87} 
+bool Ragot\+::\+Task\+::should\+Finish (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Checks if the task should finish execution. 
+
+\begin{DoxyReturn}{Returns}
+True if the task should finish, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_task_a82e30642dc15fc0c5341c654853dcac0}\index{Ragot::Task@{Ragot::Task}!shouldStop@{shouldStop}}
+\index{shouldStop@{shouldStop}!Ragot::Task@{Ragot::Task}}
+\doxysubsubsection{\texorpdfstring{shouldStop()}{shouldStop()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_task_a82e30642dc15fc0c5341c654853dcac0} 
+bool Ragot\+::\+Task\+::should\+Stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Checks if the task should stop execution. 
+
+\begin{DoxyReturn}{Returns}
+True if the task should stop, false otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Task.\+hpp\item 
+Task.\+cpp\end{DoxyCompactItemize}

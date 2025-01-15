@@ -1,0 +1,187 @@
+\doxysection{Ragot\+::Entity Class Reference}
+\hypertarget{class_ragot_1_1_entity}{}\label{class_ragot_1_1_entity}\index{Ragot::Entity@{Ragot::Entity}}
+
+
+Class for managing entities in a scene.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+hpp$>$}
+
+Inheritance diagram for Ragot\+::Entity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ragot_1_1_entity}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_ragot_1_1_entity_a6f9798f0c49ba3dccf0b4f5e570877c7}{set\+\_\+scene}} (\mbox{\hyperlink{class_ragot_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*}scene)
+\begin{DoxyCompactList}\small\item\em Sets the scene for this entity. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_ragot_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_ragot_1_1_entity_a9714651b97b5ca6703ab36049a1f8453}{get\+\_\+scene}} ()
+\begin{DoxyCompactList}\small\item\em Gets the scene this entity belongs to. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{class_ragot_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_ragot_1_1_entity_a15225943a7703ff6b8ad958801d71655}{get\+\_\+scene}} () const
+\begin{DoxyCompactList}\small\item\em Gets the scene this entity belongs to (const version). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_entity_ada3d44def0138eede37f6d1741416809}{add\+\_\+component}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_component}{Component}} $>$ component, const string \&name)
+\begin{DoxyCompactList}\small\item\em Adds a component to the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_entity_a51f790804e763bf527c8ea7566d602ae}{remove\+\_\+component}} (const string \&name)
+\begin{DoxyCompactList}\small\item\em Removes a component from the entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_entity_aaad8078626e0a44a99fc4b0d26ec3883}{add\+\_\+child}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ child)
+\begin{DoxyCompactList}\small\item\em Adds a child entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_entity_a42826a397ab8c657656787d53531de5a}{remove\+\_\+child}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ child)
+\begin{DoxyCompactList}\small\item\em Removes a child entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_entity_ac215bbd96db1d661505574de0e28e315}{set\+\_\+transform\+\_\+parent}} (\mbox{\hyperlink{class_ragot_1_1_transform___component}{Transform\+\_\+\+Component}} \texorpdfstring{$\ast$}{*}parent)
+\begin{DoxyCompactList}\small\item\em Sets the parent transform component. \end{DoxyCompactList}\item 
+const map$<$ string, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_component}{Component}} $>$ $>$ \& \mbox{\hyperlink{class_ragot_1_1_entity_a2062ab4332f521c5bfa3989ac2aa7015}{get\+\_\+components}} () const
+\begin{DoxyCompactList}\small\item\em Gets the components associated with this entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_entity_a5a79b11b02f212436bb5db9d8341119a}\label{class_ragot_1_1_entity_a5a79b11b02f212436bb5db9d8341119a} 
+\mbox{\hyperlink{class_ragot_1_1_transform___component}{Transform\+\_\+\+Component}} {\bfseries transform}
+\begin{DoxyCompactList}\small\item\em Transform component of the entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing entities in a scene. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_entity_aaad8078626e0a44a99fc4b0d26ec3883}\index{Ragot::Entity@{Ragot::Entity}!add\_child@{add\_child}}
+\index{add\_child@{add\_child}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{add\_child()}{add\_child()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_aaad8078626e0a44a99fc4b0d26ec3883} 
+void Ragot\+::\+Entity\+::add\+\_\+child (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$}]{child}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a child entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & Shared pointer to the child entity. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_entity_ada3d44def0138eede37f6d1741416809}\index{Ragot::Entity@{Ragot::Entity}!add\_component@{add\_component}}
+\index{add\_component@{add\_component}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{add\_component()}{add\_component()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_ada3d44def0138eede37f6d1741416809} 
+void Ragot\+::\+Entity\+::add\+\_\+component (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_component}{Component}} $>$}]{component}{, }\item[{const string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Adds a component to the entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component} & Shared pointer to the component. \\
+\hline
+{\em name} & Name of the component. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_entity_a2062ab4332f521c5bfa3989ac2aa7015}\index{Ragot::Entity@{Ragot::Entity}!get\_components@{get\_components}}
+\index{get\_components@{get\_components}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{get\_components()}{get\_components()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_a2062ab4332f521c5bfa3989ac2aa7015} 
+const map$<$ string, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_component}{Component}} $>$ $>$ \& Ragot\+::\+Entity\+::get\+\_\+components (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the components associated with this entity. 
+
+\begin{DoxyReturn}{Returns}
+Map of components. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_entity_a9714651b97b5ca6703ab36049a1f8453}\index{Ragot::Entity@{Ragot::Entity}!get\_scene@{get\_scene}}
+\index{get\_scene@{get\_scene}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{get\_scene()}{get\_scene()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_a9714651b97b5ca6703ab36049a1f8453} 
+const \mbox{\hyperlink{class_ragot_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*} Ragot\+::\+Entity\+::get\+\_\+scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the scene this entity belongs to. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the scene. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_entity_a15225943a7703ff6b8ad958801d71655}\index{Ragot::Entity@{Ragot::Entity}!get\_scene@{get\_scene}}
+\index{get\_scene@{get\_scene}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{get\_scene()}{get\_scene()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_a15225943a7703ff6b8ad958801d71655} 
+const \mbox{\hyperlink{class_ragot_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*} Ragot\+::\+Entity\+::get\+\_\+scene (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the scene this entity belongs to (const version). 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the scene. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_entity_a42826a397ab8c657656787d53531de5a}\index{Ragot::Entity@{Ragot::Entity}!remove\_child@{remove\_child}}
+\index{remove\_child@{remove\_child}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{remove\_child()}{remove\_child()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_a42826a397ab8c657656787d53531de5a} 
+void Ragot\+::\+Entity\+::remove\+\_\+child (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$}]{child}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a child entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & Shared pointer to the child entity. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_entity_a51f790804e763bf527c8ea7566d602ae}\index{Ragot::Entity@{Ragot::Entity}!remove\_component@{remove\_component}}
+\index{remove\_component@{remove\_component}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{remove\_component()}{remove\_component()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_a51f790804e763bf527c8ea7566d602ae} 
+void Ragot\+::\+Entity\+::remove\+\_\+component (\begin{DoxyParamCaption}\item[{const string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Removes a component from the entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the component. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_entity_a6f9798f0c49ba3dccf0b4f5e570877c7}\index{Ragot::Entity@{Ragot::Entity}!set\_scene@{set\_scene}}
+\index{set\_scene@{set\_scene}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{set\_scene()}{set\_scene()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_a6f9798f0c49ba3dccf0b4f5e570877c7} 
+void Ragot\+::\+Entity\+::set\+\_\+scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ragot_1_1_scene}{Scene}} \texorpdfstring{$\ast$}{*}}]{scene}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the scene for this entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_entity_ac215bbd96db1d661505574de0e28e315}\index{Ragot::Entity@{Ragot::Entity}!set\_transform\_parent@{set\_transform\_parent}}
+\index{set\_transform\_parent@{set\_transform\_parent}!Ragot::Entity@{Ragot::Entity}}
+\doxysubsubsection{\texorpdfstring{set\_transform\_parent()}{set\_transform\_parent()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_entity_ac215bbd96db1d661505574de0e28e315} 
+void Ragot\+::\+Entity\+::set\+\_\+transform\+\_\+parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_ragot_1_1_transform___component}{Transform\+\_\+\+Component}} \texorpdfstring{$\ast$}{*}}]{parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the parent transform component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent transform component. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Entity.\+hpp\item 
+Entity.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,82 @@
+\doxysection{Entity.\+hpp}
+\hypertarget{_entity_8hpp_source}{}\label{_entity_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ This\ file\ is\ part\ of\ OpenGL-\/FinalProject}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Developed\ by\ Andrés\ Ragot\ -\/\ github.com/andresragot}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ MIT\ License}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2024\ Andrés\ Ragot}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ \ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ SOFTWARE.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00028\ \ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}MySystem.hpp"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}Component.hpp"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{namespace\ }Ragot}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_entity}{Entity}}\ :\ \textcolor{keyword}{public}\ std::enable\_shared\_from\_this<Entity>}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_scene}{Scene}}*\ scene;\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_transform___component}{Transform\_Component}}\ \mbox{\hyperlink{class_ragot_1_1_entity_a5a79b11b02f212436bb5db9d8341119a}{transform}};\ }
+\DoxyCodeLine{00045\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ map<string,\ shared\_ptr<Component>>\ components;\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ vector<shared\_ptr<Entity>>\ children;\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_entity_a6f9798f0c49ba3dccf0b4f5e570877c7}{set\_scene}}(\mbox{\hyperlink{class_ragot_1_1_scene}{Scene}}*\ scene)\ \{\ this-\/>scene\ =\ scene;\ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_ragot_1_1_scene}{Scene}}*\ \mbox{\hyperlink{class_ragot_1_1_entity_a9714651b97b5ca6703ab36049a1f8453}{get\_scene}}()\ \{\ \textcolor{keywordflow}{return}\ scene;\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_ragot_1_1_scene}{Scene}}*\ \mbox{\hyperlink{class_ragot_1_1_entity_a15225943a7703ff6b8ad958801d71655}{get\_scene}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ scene;\ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_entity_ada3d44def0138eede37f6d1741416809}{add\_component}}(shared\_ptr<Component>\ component,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ name);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_entity_a51f790804e763bf527c8ea7566d602ae}{remove\_component}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ name);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_entity_aaad8078626e0a44a99fc4b0d26ec3883}{add\_child}}(shared\_ptr<Entity>\ child)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ child-\/>set\_transform\_parent(\&\mbox{\hyperlink{class_ragot_1_1_entity_a5a79b11b02f212436bb5db9d8341119a}{transform}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ children.push\_back(child);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_entity_a42826a397ab8c657656787d53531de5a}{remove\_child}}(shared\_ptr<Entity>\ child)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ child-\/>set\_transform\_parent(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ children.erase(remove(children.begin(),\ children.end(),\ child),\ children.end());}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_entity_ac215bbd96db1d661505574de0e28e315}{set\_transform\_parent}}(\mbox{\hyperlink{class_ragot_1_1_transform___component}{Transform\_Component}}*\ parent)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_entity_a5a79b11b02f212436bb5db9d8341119a}{transform}}.set\_parent(parent);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ map<string,\ shared\_ptr<Component>>\&\ \mbox{\hyperlink{class_ragot_1_1_entity_a2062ab4332f521c5bfa3989ac2aa7015}{get\_components}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ components;\ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \};}
+\DoxyCodeLine{00117\ \}}
+
+\end{DoxyCode}

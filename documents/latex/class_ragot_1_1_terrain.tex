@@ -1,0 +1,75 @@
+\doxysection{Ragot\+::Terrain Class Reference}
+\hypertarget{class_ragot_1_1_terrain}{}\label{class_ragot_1_1_terrain}\index{Ragot::Terrain@{Ragot::Terrain}}
+
+
+Class for rendering a terrain in the scene.  
+
+
+
+
+{\ttfamily \#include $<$Ambient.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_terrain_a7ecfe792267dd2383f162a3513cb7a2c}{Terrain}} (float width, float depth, unsigned x\+\_\+slices, unsigned z\+\_\+slices)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_terrain}{Terrain} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_terrain_a6c8ce05263d79a224f840cd50a3c8091}\label{class_ragot_1_1_terrain_a6c8ce05263d79a224f840cd50a3c8091} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Terrain} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ragot_1_1_terrain}{Terrain} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_terrain_a222c1d03cb1caab25d1528c24bebb054}{set\+\_\+camera}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_camera}{Camera}} $>$ cam)
+\begin{DoxyCompactList}\small\item\em Sets the camera for the terrain. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_terrain_a87aeb284a99705c418bed301e1480594}\label{class_ragot_1_1_terrain_a87aeb284a99705c418bed301e1480594} 
+void {\bfseries render} ()
+\begin{DoxyCompactList}\small\item\em Renders the terrain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for rendering a terrain in the scene. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_terrain_a7ecfe792267dd2383f162a3513cb7a2c}\index{Ragot::Terrain@{Ragot::Terrain}!Terrain@{Terrain}}
+\index{Terrain@{Terrain}!Ragot::Terrain@{Ragot::Terrain}}
+\doxysubsubsection{\texorpdfstring{Terrain()}{Terrain()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_terrain_a7ecfe792267dd2383f162a3513cb7a2c} 
+Ragot\+::\+Terrain\+::\+Terrain (\begin{DoxyParamCaption}\item[{float}]{width}{, }\item[{float}]{depth}{, }\item[{unsigned}]{x\+\_\+slices}{, }\item[{unsigned}]{z\+\_\+slices}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_terrain}{Terrain} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Width of the terrain. \\
+\hline
+{\em depth} & Depth of the terrain. \\
+\hline
+{\em x\+\_\+slices} & Number of slices along the x-\/axis. \\
+\hline
+{\em z\+\_\+slices} & Number of slices along the z-\/axis. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_terrain_a222c1d03cb1caab25d1528c24bebb054}\index{Ragot::Terrain@{Ragot::Terrain}!set\_camera@{set\_camera}}
+\index{set\_camera@{set\_camera}!Ragot::Terrain@{Ragot::Terrain}}
+\doxysubsubsection{\texorpdfstring{set\_camera()}{set\_camera()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_terrain_a222c1d03cb1caab25d1528c24bebb054} 
+void Ragot\+::\+Terrain\+::set\+\_\+camera (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_camera}{Camera}} $>$}]{cam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the camera for the terrain. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cam} & Shared pointer to the camera. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Ambient.\+hpp\item 
+Ambient.\+cpp\end{DoxyCompactItemize}

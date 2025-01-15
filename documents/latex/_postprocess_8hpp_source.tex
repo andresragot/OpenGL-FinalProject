@@ -1,0 +1,82 @@
+\doxysection{Postprocess.\+hpp}
+\hypertarget{_postprocess_8hpp_source}{}\label{_postprocess_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ This\ file\ is\ part\ of\ OpenGL-\/FinalProject}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Developed\ by\ Andrés\ Ragot\ -\/\ github.com/andresragot}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ MIT\ License}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2024\ Andrés\ Ragot}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ \ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ SOFTWARE.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00028\ \ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}Shader\_Program.hpp"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }Ragot}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_frame___buffer_aecff61929fcfc5642f486e5df98ea94d}{Frame\_Buffer}}}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ COORDINATES\_VBO,\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ UV\_COORDINATES\_VBO,\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ VBO\_COUNT\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ vertices[];\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ uv\_coordenates[];\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ vertex\_code\_shader;\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ fragment\_code\_shader;\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ GLuint\ frame\_buffer\_id;\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ GLuint\ texture\_id;\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ GLuint\ depthbuffer\_id;\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ GLint\ current\_time\_id;\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_shader___program}{Shader\_Program}}\ shader\_program;\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ GLuint\ vbo\_id[VBO\_COUNT];\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ GLuint\ vao\_id;\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_frame___buffer_aab79358f510b43f6a3168f9f65756b62}{Frame\_Buffer}}(\textcolor{keywordtype}{unsigned}\ width,\ \textcolor{keywordtype}{unsigned}\ height);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_frame___buffer_aab79358f510b43f6a3168f9f65756b62}{Frame\_Buffer}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_frame___buffer_a1066481ac0023db3aa9c6e34f6dff2bc}{\string~Frame\_Buffer}}();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_frame___buffer_ab6b5e5e57759c6063dd4a7a0d416ef43}{bind\_frame\_buffer}}()\textcolor{keyword}{\ const\ }\{\ glBindFramebuffer(GL\_FRAMEBUFFER,\ frame\_buffer\_id);\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_frame___buffer_ad04af8fcb7b49ec669a1298bfe28178f}{unbind\_frame\_buffer}}()\textcolor{keyword}{\ const\ }\{\ glBindFramebuffer(GL\_FRAMEBUFFER,\ 0);\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_frame___buffer_a2143532714b149b92e6297e8f7afe9f0}{bind\_texture}}()\textcolor{keyword}{\ const\ }\{\ glBindTexture(GL\_TEXTURE\_2D,\ texture\_id);\ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_frame___buffer_a4a3b8f696376d420f778bd9be2282ed5}{unbind\_texture}}()\textcolor{keyword}{\ const\ }\{\ glBindTexture(GL\_TEXTURE\_2D,\ 0);\ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_frame___buffer_a8521d01207873cf90bb1da663ed9c904}{render}}();\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \};}
+\DoxyCodeLine{00109\ \}}
+
+\end{DoxyCode}

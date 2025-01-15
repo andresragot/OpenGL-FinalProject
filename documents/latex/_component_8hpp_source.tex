@@ -1,0 +1,141 @@
+\doxysection{Component.\+hpp}
+\hypertarget{_component_8hpp_source}{}\label{_component_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ This\ file\ is\ part\ of\ OpenGL-\/FinalProject}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Developed\ by\ Andrés\ Ragot\ -\/\ github.com/andresragot}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ MIT\ License}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2024\ Andrés\ Ragot}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ \ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ SOFTWARE.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00028\ \ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}MySystem.hpp"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}Mesh.hpp"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <glm.hpp>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <gtc/matrix\_transform.hpp>}\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ translate,\ rotate,\ scale,\ perspective}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <gtc/type\_ptr.hpp>}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ value\_ptr,\ quat}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}Camera.hpp"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}Shader\_Program.hpp"{}}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{using\ }glm::vec3;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{using\ }glm::mat4;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{namespace\ }Ragot}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_component}{Component}}}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_ragot_1_1_component_a21a3e09be8069d18aa88f5cd5be5ccb4}{\string~Component}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ std::shared\_ptr<Entity>\ \mbox{\hyperlink{class_ragot_1_1_component_a440bd5f6ab6391835396f09eeb8c1f10}{get\_entity}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ entity.lock();\ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_component_a8730908a728a74bbc31c6e3bc3e730d4}{set\_entity}}(std::shared\_ptr<Entity>\ ent)\ \{\ entity\ =\ ent;\ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_component_abe3f526a0bff5655b6f1fcfa006e3573}{get\_has\_task}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_ragot_1_1_component_a12d7fa12c18e54425c1fddbff5e16075}{has\_task}};\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ std::weak\_ptr<Entity>\ entity;\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_component_a12d7fa12c18e54425c1fddbff5e16075}{has\_task}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00078\ \ \ \ \ \};}
+\DoxyCodeLine{00079\ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_transform___component_a1fc010942f76d6e356594445c852fe0a}{Transform\_Component}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_component}{Component}}}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_transform___component_a1fc010942f76d6e356594445c852fe0a}{Transform\_Component}}()\ :\ position(0.f),\ rotation(0.f),\ scale(1.0f),\ parent(nullptr)\ \{\}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ mat4\ \mbox{\hyperlink{class_ragot_1_1_transform___component_a9368c808c1635e10985f1820f8bb7799}{get\_transform\_matrix}}()}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ mat4\ transform\_matrix(1);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ transform\_matrix\ \ =\ glm::translate(transform\_matrix,\ position);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ transform\_matrix\ \ =\ glm::scale(transform\_matrix,\ scale);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ glm::quat\ quaternion\_rotation\ =\ glm::quat(glm::radians(rotation));}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ transform\_matrix\ *=\ glm::mat4\_cast(quaternion\_rotation);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (parent)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transform\_matrix\ =\ parent-\/>get\_transform\_matrix()\ *\ transform\_matrix;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ transform\_matrix;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_transform___component_a96f2f62836a900963a2f51325fbc30c6}{set\_position}}(\textcolor{keyword}{const}\ vec3\ \&pos)\ \{\ position\ =\ pos;\ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ vec3\ \mbox{\hyperlink{class_ragot_1_1_transform___component_a649ec419474ecf9663da9eb3a09df270}{get\_position}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ position;\ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_transform___component_afa7e24f84dd30d877663c3225764958e}{set\_rotation}}(\textcolor{keyword}{const}\ vec3\ \&rot)\ \{\ rotation\ =\ rot;\ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ vec3\ \mbox{\hyperlink{class_ragot_1_1_transform___component_a673405bca68daa860035fe1e19783cb7}{get\_rotation}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ rotation;\ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_transform___component_a20cf5d98358de37827c70cf34426cade}{set\_scale}}(\textcolor{keyword}{const}\ vec3\ \&scal)\ \{\ scale\ =\ scal;\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ vec3\ \mbox{\hyperlink{class_ragot_1_1_transform___component_a741d4f2db86720c9bd310c0e5f3ca01b}{get\_scale}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ scale;\ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_transform___component_aa3db4c535fdedcf918107cc8322d5045}{set\_parent}}(\mbox{\hyperlink{class_ragot_1_1_transform___component_a1fc010942f76d6e356594445c852fe0a}{Transform\_Component}}\ *par)\ \{\ parent\ =\ par;\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_transform___component_a1fc010942f76d6e356594445c852fe0a}{Transform\_Component}}*\ \mbox{\hyperlink{class_ragot_1_1_transform___component_a395e9be97401a1506be1ebc6f4877caf}{get\_parent}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ parent;\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ vec3\ position;\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ vec3\ rotation;\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ vec3\ scale;\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_transform___component}{Transform\_Component}}*\ parent;\ }
+\DoxyCodeLine{00163\ \ \ \ \ \};}
+\DoxyCodeLine{00164\ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_model___component_a80e8dc4ee45fca8c39f9d8c5669495c8}{Model\_Component}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_component}{Component}}}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_model___component_a80e8dc4ee45fca8c39f9d8c5669495c8}{Model\_Component}}()\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_model___component_a80e8dc4ee45fca8c39f9d8c5669495c8}{Model\_Component}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&model\_file\_path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&texture\_file\_path);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_critical___task}{Critical\_Task}}\ \mbox{\hyperlink{class_ragot_1_1_model___component_a554a6b75a735ea0d4935a7e1e54e8831}{render\_task}};\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ GLuint\ \mbox{\hyperlink{class_ragot_1_1_model___component_aef5cad6a38416e43dc9b16dd4f183d55}{get\_shader\_program\_id}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ material.get\_shader\_program\_id();\ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_model___component_a3ca3e55043f388c3805a0a26264b6354}{set\_transparency}}(\textcolor{keywordtype}{bool}\ trans)\ \{\ is\_transparent\ =\ trans;\ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh}{Mesh}}\ mesh;\ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_material}{Material}}\ material;\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_transparent\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ vertex\_shader\_code;\ }
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ fragment\_shader\_code;\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ GLint\ model\_view\_matrix\_id;\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ GLint\ projection\_matrix\_id;\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ GLint\ normal\_matrix\_id;\ }
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ GLint\ view\_pos\_id;\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ configure\_material();}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
+\DoxyCodeLine{00220\ \ \ \ \ \};}
+\DoxyCodeLine{00221\ \}}
+
+\end{DoxyCode}

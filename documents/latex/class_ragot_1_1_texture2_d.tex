@@ -1,0 +1,158 @@
+\doxysection{Ragot\+::Texture2D\texorpdfstring{$<$}{<} COLOR\+\_\+\+FORMAT \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_ragot_1_1_texture2_d}{}\label{class_ragot_1_1_texture2_d}\index{Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}}
+
+
+Template class for managing a 2D texture.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2}{Texture2D}} (const string \&texture\+\_\+base\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_texture2_d}{Texture2D} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_texture2_d_a88b5887f0d17f56a9895d7f4be05ecba}\label{class_ragot_1_1_texture2_d_a88b5887f0d17f56a9895d7f4be05ecba} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Texture2D} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ragot_1_1_texture2_d}{Texture2D} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ragot_1_1_texture2_d_a3ae6c06ae221d0b7d2292f6740cdec59}{is\+\_\+ok}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the texture is loaded. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_ragot_1_1_texture2_d_a8ba913344bd8220ac82e3b558fab2947}{bind}} () const
+\begin{DoxyCompactList}\small\item\em Binds the texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29}\label{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29} 
+typedef \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29}{Color\+\_\+\+Buffer}}$<$ COLOR\+\_\+\+FORMAT $>$ {\bfseries Color\+\_\+\+Buffer}
+\begin{DoxyCompactList}\small\item\em Type alias for color buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_texture2_d_a3cf5ad76fd687d0df17c638e9bab7731}\label{class_ragot_1_1_texture2_d_a3cf5ad76fd687d0df17c638e9bab7731} 
+{\bfseries Texture2D} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{class_ragot_1_1_texture2_d}{Texture2D} class. \end{DoxyCompactList}\item 
+GLint \mbox{\hyperlink{class_ragot_1_1_texture2_d_ace47525d560131b2ac4506c8537e4b14}{create\+\_\+texture\+\_\+2d}} (const string \&texture\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Creates a 2D texture from a file. \end{DoxyCompactList}\item 
+unique\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29}{Color\+\_\+\+Buffer}} $>$ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2406ef538dca030a7752e78c9999073e}{load\+\_\+image}} (const string \&texture\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Loads an image from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_texture2_d_a491785c2314e4a2154411a30f43c7b97}\label{class_ragot_1_1_texture2_d_a491785c2314e4a2154411a30f43c7b97} 
+GLuint {\bfseries texture\+\_\+id}
+\begin{DoxyCompactList}\small\item\em Texture ID. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_texture2_d_a76fdbdad75a340c6325b981bbfaa822f}\label{class_ragot_1_1_texture2_d_a76fdbdad75a340c6325b981bbfaa822f} 
+bool {\bfseries texture\+\_\+is\+\_\+loaded}
+\begin{DoxyCompactList}\small\item\em Indicates if the texture is loaded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename COLOR\+\_\+\+FORMAT$>$\newline
+class Ragot\+::\+Texture2\+D$<$ COLOR\+\_\+\+FORMAT $>$}
+Template class for managing a 2D texture. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em COLOR\+\_\+\+FORMAT} & Color format of the texture. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2}\index{Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}!Texture2D@{Texture2D}}
+\index{Texture2D@{Texture2D}!Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}}
+\doxysubsubsection{\texorpdfstring{Texture2D()}{Texture2D()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2} 
+template$<$typename COLOR\+\_\+\+FORMAT$>$ \\
+\mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2D}}$<$ COLOR\+\_\+\+FORMAT $>$\+::\+Texture2D (\begin{DoxyParamCaption}\item[{const string \&}]{texture\+\_\+base\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_texture2_d}{Texture2D} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+\_\+base\+\_\+path} & Path to the base texture file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_texture2_d_a8ba913344bd8220ac82e3b558fab2947}\index{Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}!bind@{bind}}
+\index{bind@{bind}!Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_texture2_d_a8ba913344bd8220ac82e3b558fab2947} 
+template$<$typename COLOR\+\_\+\+FORMAT$>$ \\
+virtual bool \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2D}}$<$ COLOR\+\_\+\+FORMAT $>$\+::bind (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Binds the texture. 
+
+\begin{DoxyReturn}{Returns}
+True if the texture is successfully bound, false otherwise. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_ragot_1_1_texture___cube_ac0873ee80efa325f43a9e93c7de168b9}{Ragot\+::\+Texture\+\_\+\+Cube}}.
+
+\Hypertarget{class_ragot_1_1_texture2_d_ace47525d560131b2ac4506c8537e4b14}\index{Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}!create\_texture\_2d@{create\_texture\_2d}}
+\index{create\_texture\_2d@{create\_texture\_2d}!Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}}
+\doxysubsubsection{\texorpdfstring{create\_texture\_2d()}{create\_texture\_2d()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_texture2_d_ace47525d560131b2ac4506c8537e4b14} 
+template$<$typename COLOR\+\_\+\+FORMAT$>$ \\
+GLint \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2D}}$<$ COLOR\+\_\+\+FORMAT $>$\+::create\+\_\+texture\+\_\+2d (\begin{DoxyParamCaption}\item[{const string \&}]{texture\+\_\+path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Creates a 2D texture from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+\_\+path} & Path to the texture file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The texture ID. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_texture2_d_a3ae6c06ae221d0b7d2292f6740cdec59}\index{Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}!is\_ok@{is\_ok}}
+\index{is\_ok@{is\_ok}!Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}}
+\doxysubsubsection{\texorpdfstring{is\_ok()}{is\_ok()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_texture2_d_a3ae6c06ae221d0b7d2292f6740cdec59} 
+template$<$typename COLOR\+\_\+\+FORMAT$>$ \\
+bool \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2D}}$<$ COLOR\+\_\+\+FORMAT $>$\+::is\+\_\+ok (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the texture is loaded. 
+
+\begin{DoxyReturn}{Returns}
+True if the texture is loaded, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_texture2_d_a2406ef538dca030a7752e78c9999073e}\index{Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}!load\_image@{load\_image}}
+\index{load\_image@{load\_image}!Ragot::Texture2D$<$ COLOR\_FORMAT $>$@{Ragot::Texture2D$<$ COLOR\_FORMAT $>$}}
+\doxysubsubsection{\texorpdfstring{load\_image()}{load\_image()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_texture2_d_a2406ef538dca030a7752e78c9999073e} 
+template$<$typename COLOR\+\_\+\+FORMAT$>$ \\
+unique\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29}{Color\+\_\+\+Buffer}}$<$ COLOR\+\_\+\+FORMAT $>$ $>$ \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2D}}$<$ COLOR\+\_\+\+FORMAT $>$\+::load\+\_\+image (\begin{DoxyParamCaption}\item[{const string \&}]{texture\+\_\+path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Loads an image from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+\_\+path} & Path to the texture file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Unique pointer to the color buffer. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Mesh.\+hpp\item 
+Mesh.\+cpp\end{DoxyCompactItemize}

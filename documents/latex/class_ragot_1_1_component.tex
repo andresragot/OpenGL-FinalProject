@@ -1,0 +1,87 @@
+\doxysection{Ragot\+::Component Class Reference}
+\hypertarget{class_ragot_1_1_component}{}\label{class_ragot_1_1_component}\index{Ragot::Component@{Ragot::Component}}
+
+
+Base class for components.  
+
+
+
+
+{\ttfamily \#include $<$Component.\+hpp$>$}
+
+Inheritance diagram for Ragot\+::Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ragot_1_1_component}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_component_a21a3e09be8069d18aa88f5cd5be5ccb4}\label{class_ragot_1_1_component_a21a3e09be8069d18aa88f5cd5be5ccb4} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_ragot_1_1_component}{Component} class. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ \mbox{\hyperlink{class_ragot_1_1_component_a440bd5f6ab6391835396f09eeb8c1f10}{get\+\_\+entity}} () const
+\begin{DoxyCompactList}\small\item\em Gets the entity associated with this component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_component_a8730908a728a74bbc31c6e3bc3e730d4}{set\+\_\+entity}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ ent)
+\begin{DoxyCompactList}\small\item\em Sets the entity associated with this component. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ragot_1_1_component_abe3f526a0bff5655b6f1fcfa006e3573}{get\+\_\+has\+\_\+task}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the component has a task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_component_a12d7fa12c18e54425c1fddbff5e16075}\label{class_ragot_1_1_component_a12d7fa12c18e54425c1fddbff5e16075} 
+bool {\bfseries has\+\_\+task} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the component has a task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for components. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_component_a440bd5f6ab6391835396f09eeb8c1f10}\index{Ragot::Component@{Ragot::Component}!get\_entity@{get\_entity}}
+\index{get\_entity@{get\_entity}!Ragot::Component@{Ragot::Component}}
+\doxysubsubsection{\texorpdfstring{get\_entity()}{get\_entity()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_component_a440bd5f6ab6391835396f09eeb8c1f10} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ Ragot\+::\+Component\+::get\+\_\+entity (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the entity associated with this component. 
+
+\begin{DoxyReturn}{Returns}
+Shared pointer to the associated entity. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_component_abe3f526a0bff5655b6f1fcfa006e3573}\index{Ragot::Component@{Ragot::Component}!get\_has\_task@{get\_has\_task}}
+\index{get\_has\_task@{get\_has\_task}!Ragot::Component@{Ragot::Component}}
+\doxysubsubsection{\texorpdfstring{get\_has\_task()}{get\_has\_task()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_component_abe3f526a0bff5655b6f1fcfa006e3573} 
+bool Ragot\+::\+Component\+::get\+\_\+has\+\_\+task (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the component has a task. 
+
+\begin{DoxyReturn}{Returns}
+True if the component has a task, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_component_a8730908a728a74bbc31c6e3bc3e730d4}\index{Ragot::Component@{Ragot::Component}!set\_entity@{set\_entity}}
+\index{set\_entity@{set\_entity}!Ragot::Component@{Ragot::Component}}
+\doxysubsubsection{\texorpdfstring{set\_entity()}{set\_entity()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_component_a8730908a728a74bbc31c6e3bc3e730d4} 
+void Ragot\+::\+Component\+::set\+\_\+entity (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$}]{ent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the entity associated with this component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ent} & Shared pointer to the entity to associate. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Component.\+hpp\end{DoxyCompactItemize}

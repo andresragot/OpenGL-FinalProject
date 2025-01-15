@@ -1,0 +1,81 @@
+\doxysection{Ragot\+::System Class Reference}
+\hypertarget{class_ragot_1_1_system}{}\label{class_ragot_1_1_system}\index{Ragot::System@{Ragot::System}}
+
+
+Class for managing the system in Open\+GL.  
+
+
+
+
+{\ttfamily \#include $<$My\+System.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_system_aadc5df86953dc1d38d2e966588460b1f}{System}} (const string \&Window\+\_\+\+Name, const int width, const int height)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_system}{System} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_system_a70b94e031bdcac299b9d267458df43d5}\label{class_ragot_1_1_system_a70b94e031bdcac299b9d267458df43d5} 
+{\bfseries System} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{class_ragot_1_1_system}{System} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_system_a982b014e83183dae481e3deebd7cce40}\label{class_ragot_1_1_system_a982b014e83183dae481e3deebd7cce40} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+System} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ragot_1_1_system}{System} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_system_a7d83260755f9e67af7929d3cac872ee0}{add\+\_\+entities}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ entity, const string \&name)
+\begin{DoxyCompactList}\small\item\em Adds an entity to the system. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_system_ad054bb6d1d5eb522516e717e3148829b}\label{class_ragot_1_1_system_ad054bb6d1d5eb522516e717e3148829b} 
+void {\bfseries run} ()
+\begin{DoxyCompactList}\small\item\em Runs the system. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_system_ad820ee02301f9dee90a9e7e09bb3c88a}\label{class_ragot_1_1_system_ad820ee02301f9dee90a9e7e09bb3c88a} 
+void {\bfseries stop} ()
+\begin{DoxyCompactList}\small\item\em Stops the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing the system in Open\+GL. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_system_aadc5df86953dc1d38d2e966588460b1f}\index{Ragot::System@{Ragot::System}!System@{System}}
+\index{System@{System}!Ragot::System@{Ragot::System}}
+\doxysubsubsection{\texorpdfstring{System()}{System()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_system_aadc5df86953dc1d38d2e966588460b1f} 
+Ragot\+::\+System\+::\+System (\begin{DoxyParamCaption}\item[{const string \&}]{Window\+\_\+\+Name}{, }\item[{const int}]{width}{, }\item[{const int}]{height}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_system}{System} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Window\+\_\+\+Name} & Name of the window. \\
+\hline
+{\em width} & Width of the window. \\
+\hline
+{\em height} & Height of the window. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_system_a7d83260755f9e67af7929d3cac872ee0}\index{Ragot::System@{Ragot::System}!add\_entities@{add\_entities}}
+\index{add\_entities@{add\_entities}!Ragot::System@{Ragot::System}}
+\doxysubsubsection{\texorpdfstring{add\_entities()}{add\_entities()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_system_a7d83260755f9e67af7929d3cac872ee0} 
+void Ragot\+::\+System\+::add\+\_\+entities (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$}]{entity}{, }\item[{const string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Adds an entity to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & Shared pointer to the entity. \\
+\hline
+{\em name} & Name of the entity. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+My\+System.\+hpp\item 
+My\+System.\+cpp\end{DoxyCompactItemize}

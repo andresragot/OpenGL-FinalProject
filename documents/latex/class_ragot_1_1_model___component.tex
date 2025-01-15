@@ -1,0 +1,112 @@
+\doxysection{Ragot\+::Model\+\_\+\+Component Class Reference}
+\hypertarget{class_ragot_1_1_model___component}{}\label{class_ragot_1_1_model___component}\index{Ragot::Model\_Component@{Ragot::Model\_Component}}
+
+
+\doxylink{class_ragot_1_1_component}{Component} for managing models.  
+
+
+
+
+{\ttfamily \#include $<$Component.\+hpp$>$}
+
+Inheritance diagram for Ragot\+::Model\+\_\+\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ragot_1_1_model___component}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_model___component_a80e8dc4ee45fca8c39f9d8c5669495c8}\label{class_ragot_1_1_model___component_a80e8dc4ee45fca8c39f9d8c5669495c8} 
+{\bfseries Model\+\_\+\+Component} ()=delete
+\begin{DoxyCompactList}\small\item\em Deleted default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ragot_1_1_model___component_a6256f759f501eb8dc0f323aec9f9a200}{Model\+\_\+\+Component}} (const string \&model\+\_\+file\+\_\+path, const string \&texture\+\_\+file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_model___component}{Model\+\_\+\+Component} class. \end{DoxyCompactList}\item 
+const GLuint \mbox{\hyperlink{class_ragot_1_1_model___component_aef5cad6a38416e43dc9b16dd4f183d55}{get\+\_\+shader\+\_\+program\+\_\+id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the shader program ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_model___component_a3ca3e55043f388c3805a0a26264b6354}{set\+\_\+transparency}} (bool trans)
+\begin{DoxyCompactList}\small\item\em Sets the transparency of the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_ragot_1_1_component}{Ragot\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Component} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_ragot_1_1_component}{Component} class. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ \mbox{\hyperlink{class_ragot_1_1_component_a440bd5f6ab6391835396f09eeb8c1f10}{get\+\_\+entity}} () const
+\begin{DoxyCompactList}\small\item\em Gets the entity associated with this component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_component_a8730908a728a74bbc31c6e3bc3e730d4}{set\+\_\+entity}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ ent)
+\begin{DoxyCompactList}\small\item\em Sets the entity associated with this component. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ragot_1_1_component_abe3f526a0bff5655b6f1fcfa006e3573}{get\+\_\+has\+\_\+task}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the component has a task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_model___component_a554a6b75a735ea0d4935a7e1e54e8831}\label{class_ragot_1_1_model___component_a554a6b75a735ea0d4935a7e1e54e8831} 
+\mbox{\hyperlink{class_ragot_1_1_critical___task}{Critical\+\_\+\+Task}} {\bfseries render\+\_\+task}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_ragot_1_1_task}{Task} for rendering the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_ragot_1_1_component}{Ragot\+::\+Component}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries has\+\_\+task} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the component has a task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_ragot_1_1_component}{Component} for managing models. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_model___component_a6256f759f501eb8dc0f323aec9f9a200}\index{Ragot::Model\_Component@{Ragot::Model\_Component}!Model\_Component@{Model\_Component}}
+\index{Model\_Component@{Model\_Component}!Ragot::Model\_Component@{Ragot::Model\_Component}}
+\doxysubsubsection{\texorpdfstring{Model\_Component()}{Model\_Component()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_model___component_a6256f759f501eb8dc0f323aec9f9a200} 
+Ragot\+::\+Model\+\_\+\+Component\+::\+Model\+\_\+\+Component (\begin{DoxyParamCaption}\item[{const string \&}]{model\+\_\+file\+\_\+path}{, }\item[{const string \&}]{texture\+\_\+file\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_model___component}{Model\+\_\+\+Component} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+file\+\_\+path} & Path to the model file. \\
+\hline
+{\em texture\+\_\+file\+\_\+path} & Path to the texture file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_model___component_aef5cad6a38416e43dc9b16dd4f183d55}\index{Ragot::Model\_Component@{Ragot::Model\_Component}!get\_shader\_program\_id@{get\_shader\_program\_id}}
+\index{get\_shader\_program\_id@{get\_shader\_program\_id}!Ragot::Model\_Component@{Ragot::Model\_Component}}
+\doxysubsubsection{\texorpdfstring{get\_shader\_program\_id()}{get\_shader\_program\_id()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_model___component_aef5cad6a38416e43dc9b16dd4f183d55} 
+const GLuint Ragot\+::\+Model\+\_\+\+Component\+::get\+\_\+shader\+\_\+program\+\_\+id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the shader program ID. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_ragot_1_1_shader}{Shader} program ID. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_model___component_a3ca3e55043f388c3805a0a26264b6354}\index{Ragot::Model\_Component@{Ragot::Model\_Component}!set\_transparency@{set\_transparency}}
+\index{set\_transparency@{set\_transparency}!Ragot::Model\_Component@{Ragot::Model\_Component}}
+\doxysubsubsection{\texorpdfstring{set\_transparency()}{set\_transparency()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_model___component_a3ca3e55043f388c3805a0a26264b6354} 
+void Ragot\+::\+Model\+\_\+\+Component\+::set\+\_\+transparency (\begin{DoxyParamCaption}\item[{bool}]{trans}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the transparency of the model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em trans} & True to set the model as transparent, false otherwise. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Component.\+hpp\item 
+Component.\+cpp\end{DoxyCompactItemize}

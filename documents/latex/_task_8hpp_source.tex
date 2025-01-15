@@ -1,0 +1,129 @@
+\doxysection{Task.\+hpp}
+\hypertarget{_task_8hpp_source}{}\label{_task_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ This\ file\ is\ part\ of\ OpenGL-\/FinalProject}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Developed\ by\ Andrés\ Ragot\ -\/\ github.com/andresragot}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ MIT\ License}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2024\ Andrés\ Ragot}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ \ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ SOFTWARE.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00028\ \ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{namespace\ }Ragot}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }std::condition\_variable;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }std::mutex;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }std::atomic;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }std::function;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}}}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ condition\_variable\ cv;\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ mutex\ mtx;\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ atomic<bool>\ is\_stop;\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ atomic<bool>\ finish\_execution;\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}}(function<\textcolor{keywordtype}{void}()>\ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}})\ :\ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}}(\mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}})\ \{\}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_ragot_1_1_task_a701a3ad13d3002e60df9ddeb8edad68e}{\string~Task}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_task_a909ee0fe7449d09134d614ea2af27e7d}{execute}}()\ =\ 0;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_task_ab0e20542985b9815f2f0ebe46cf0d767}{stop\_execution}}()}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<mutex>\ lock(mtx);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ finish\_execution\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ cv.notify\_all();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_task_a39d181960d80fe3ba6567c3dda8da6b8}{stop}}()}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<mutex>\ lock(mtx);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ is\_stop\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ cv.notify\_all();}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_task_a80e091f62c9fca8ed0fc72e2cf4c93bf}{resume}}()}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ std::lock\_guard<mutex>\ lock(mtx);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ is\_stop\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ cv.notify\_all();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_task_a82e30642dc15fc0c5341c654853dcac0}{shouldStop}}()}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ is\_stop.load();}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_task_ab3609db36be2d698454f99d1949bfc87}{shouldFinish}}()}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ finish\_execution.load();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_task_ad65b3b48083d81fcf1c70b8aa7f0d166}{wait\_for\_resume}}()}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ std::unique\_lock<mutex>\ lock(mtx);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ cv.wait(lock,\ [\textcolor{keyword}{this}]\ \{\textcolor{keywordflow}{return}\ !\mbox{\hyperlink{class_ragot_1_1_task_a82e30642dc15fc0c5341c654853dcac0}{shouldStop}}()\ ||\ \mbox{\hyperlink{class_ragot_1_1_task_ab3609db36be2d698454f99d1949bfc87}{shouldFinish}}();\ \});}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ function<void()>\ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}};\ }
+\DoxyCodeLine{00131\ \ \ \ \ \};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_light___task_a8d7ffb5d02dcd7fe960704854e00f1a8}{Light\_Task}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}}}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_light___task_a8d7ffb5d02dcd7fe960704854e00f1a8}{Light\_Task}}(function<\textcolor{keywordtype}{void}()>\ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}})\ :\ \mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}}(\mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}})\ \{\}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_light___task_a32dd074fba8a2848296bf9d7f86848a7}{execute}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00149\ \ \ \ \ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_critical___task_a3d1ec47bc66b0d7fcaa1bfa54eb569cf}{Critical\_Task}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}}}
+\DoxyCodeLine{00155\ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_critical___task_a3d1ec47bc66b0d7fcaa1bfa54eb569cf}{Critical\_Task}}(function<\textcolor{keywordtype}{void}()>\ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}})\ :\ \mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}}(\mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}})\ \{\}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_critical___task_a8e18a7878e322eedbdf137057f8e6483}{execute}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00167\ \ \ \ \ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_once___task_a5ec37d25f177bd849a8b06b8bb8d8081}{Once\_Task}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}}}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_once___task_a5ec37d25f177bd849a8b06b8bb8d8081}{Once\_Task}}(function<\textcolor{keywordtype}{void}()>\ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}})\ :\ \mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}}(\mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\_func}})\ \{\}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_once___task_af96b928037edf9661cc7b98015eff28f}{execute}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00185\ \ \ \ \ \};}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+
+\end{DoxyCode}

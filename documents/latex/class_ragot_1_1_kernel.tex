@@ -1,0 +1,52 @@
+\doxysection{Ragot\+::Kernel Class Reference}
+\hypertarget{class_ragot_1_1_kernel}{}\label{class_ragot_1_1_kernel}\index{Ragot::Kernel@{Ragot::Kernel}}
+
+
+Class for managing the kernel that executes tasks.  
+
+
+
+
+{\ttfamily \#include $<$My\+Kernel.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_ragot_1_1_kernel_ab1fced79470b83380d542485736b654f}{add}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_task}{Task}} $>$ new\+\_\+task)
+\begin{DoxyCompactList}\small\item\em Adds a new task to the kernel. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_kernel_a7129327450d2f10306ce6ca2ed4c59e6}\label{class_ragot_1_1_kernel_a7129327450d2f10306ce6ca2ed4c59e6} 
+void {\bfseries run} ()
+\begin{DoxyCompactList}\small\item\em Runs the kernel, executing all tasks. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_kernel_a65d588c51f5b275470042a4a95d57291}\label{class_ragot_1_1_kernel_a65d588c51f5b275470042a4a95d57291} 
+void {\bfseries stop} ()
+\begin{DoxyCompactList}\small\item\em Stops the kernel and all tasks. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_kernel_a7b18700cdf7083a0990de3965bc44bf7}\label{class_ragot_1_1_kernel_a7b18700cdf7083a0990de3965bc44bf7} 
+void {\bfseries execute\+\_\+critical} ()
+\begin{DoxyCompactList}\small\item\em Executes all critical functions at once. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing the kernel that executes tasks. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_kernel_ab1fced79470b83380d542485736b654f}\index{Ragot::Kernel@{Ragot::Kernel}!add@{add}}
+\index{add@{add}!Ragot::Kernel@{Ragot::Kernel}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_kernel_ab1fced79470b83380d542485736b654f} 
+void Ragot\+::\+Kernel\+::add (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_task}{Task}} $>$}]{new\+\_\+task}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new task to the kernel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+task} & Shared pointer to the new task to add. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+My\+Kernel.\+hpp\item 
+My\+Kernel.\+cpp\end{DoxyCompactItemize}

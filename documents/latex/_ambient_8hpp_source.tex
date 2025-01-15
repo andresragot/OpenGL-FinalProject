@@ -1,0 +1,144 @@
+\doxysection{Ambient.\+hpp}
+\hypertarget{_ambient_8hpp_source}{}\label{_ambient_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ This\ file\ is\ part\ of\ OpenGL-\/FinalProject}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Developed\ by\ Andrés\ Ragot\ -\/\ github.com/andresragot}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ MIT\ License}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2024\ Andrés\ Ragot}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ \ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ SOFTWARE.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}Camera.hpp"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}Shader\_Program.hpp"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}Mesh.hpp"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}Color.hpp"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <glad/glad.h>}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{namespace\ }Ragot}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_skybox_a00f829f18160ce138e5508a17987ba6f}{Skybox}}}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_shader___program}{Shader\_Program}}\ shader\_program;\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ GLfloat\ coordinates[];\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ vertex\_shader\_code;\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ fragment\_shader\_code;\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ GLuint\ vbo\_id;\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ GLuint\ vao\_id;\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ GLint\ model\_view\_matrix\_id;\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ GLint\ projection\_matrix\_id;\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ shared\_ptr<Camera>\ camera\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture___cube}{Texture\_Cube}}\ texture\_cube;\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_skybox_a00f829f18160ce138e5508a17987ba6f}{Skybox}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&\ texture\_path);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_skybox_a98d9a163c53c5a7abee68ea30ddf8fac}{\string~Skybox}}();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_skybox_a83fcf602b0063c8c24d84f56ceabab27}{set\_camera}}(shared\_ptr<Camera>\ cam)\ \{\ camera\ =\ cam;\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_skybox_a63c41d43ab03917e8097928c7f94c077}{render}}();}
+\DoxyCodeLine{00083\ \ \ \ \ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_terrain_a7ecfe792267dd2383f162a3513cb7a2c}{Terrain}}}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ COORDINATES\_VBO,\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ TEXTURE\_UVS\_VBO,\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ INDICES\_EBO,\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ VBO\_COUNT\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_shader___program}{Shader\_Program}}\ shader\_program;\ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ vertex\_shader\_code;\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ fragment\_shader\_code;\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ GLsizei\ number\_of\_vertices;\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ GLsizei\ number\_of\_indices;\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ GLuint\ vbo\_ids[VBO\_COUNT];\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ GLuint\ vao\_id;\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ GLint\ model\_view\_matrix\_id;\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ GLint\ projection\_matrix\_id;\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ GLint\ view\_position\_id;\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ GLint\ light\_position\_id;\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ shared\_ptr<\ Camera\ >\ camera\ =\ \textcolor{keyword}{nullptr};\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Texture2D<\ Monochrome8\ >}}\ texture;\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_terrain_a7ecfe792267dd2383f162a3513cb7a2c}{Terrain}}(\textcolor{keywordtype}{float}\ width,\ \textcolor{keywordtype}{float}\ depth,\ \textcolor{keywordtype}{unsigned}\ x\_slices,\ \textcolor{keywordtype}{unsigned}\ z\_slices);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_terrain_a6c8ce05263d79a224f840cd50a3c8091}{\string~Terrain}}();}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_terrain_a222c1d03cb1caab25d1528c24bebb054}{set\_camera}}(shared\_ptr<Camera>\ cam)\ \{\ camera\ =\ cam;\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_terrain_a87aeb284a99705c418bed301e1480594}{render}}();}
+\DoxyCodeLine{00139\ \ \ \ \ \};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_light_aff5a7d76e7892cf2158fe49cca3fa446}{Light}}}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}};\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_light_aff5a7d76e7892cf2158fe49cca3fa446}{Light}}(\textcolor{keyword}{const}\ glm::vec3\ \&\ \mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}})\ :\ \mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}}(\mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}})\ \{\}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_ragot_1_1_light_a59cf78522fce34038eb779057897659c}{\string~Light}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00160\ \ \ \ \ \};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_directional_light_ae2cdef868762d780a498ae50c5b49a31}{DirectionalLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_light_aff5a7d76e7892cf2158fe49cca3fa446}{Light}}}
+\DoxyCodeLine{00167\ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_ragot_1_1_directional_light_a0ddde0c174c765c1799f11f3cb06abd6}{direction}};\ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_directional_light_ae2cdef868762d780a498ae50c5b49a31}{DirectionalLight}}(\textcolor{keyword}{const}\ glm::vec3\ \&\ \mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}},\ \textcolor{keyword}{const}\ glm::vec3\ \mbox{\hyperlink{class_ragot_1_1_directional_light_a0ddde0c174c765c1799f11f3cb06abd6}{direction}})}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_ragot_1_1_light_aff5a7d76e7892cf2158fe49cca3fa446}{Light}}(\mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}}),\ \mbox{\hyperlink{class_ragot_1_1_directional_light_a0ddde0c174c765c1799f11f3cb06abd6}{direction}}(\mbox{\hyperlink{class_ragot_1_1_directional_light_a0ddde0c174c765c1799f11f3cb06abd6}{direction}})\ \{\}}
+\DoxyCodeLine{00178\ \ \ \ \ \};}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_point_light_a38223987d7593681c35abb27da308cdc}{PointLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_light_aff5a7d76e7892cf2158fe49cca3fa446}{Light}}}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_ragot_1_1_point_light_abe33b8188648e13dc509c0953e97eb61}{position}};\ }
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_point_light_a38223987d7593681c35abb27da308cdc}{PointLight}}(\textcolor{keyword}{const}\ glm::vec3\ \&\ \mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}},\ \textcolor{keyword}{const}\ glm::vec3\ \&\ \mbox{\hyperlink{class_ragot_1_1_point_light_abe33b8188648e13dc509c0953e97eb61}{position}})}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_ragot_1_1_light_aff5a7d76e7892cf2158fe49cca3fa446}{Light}}(\mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}}),\ \mbox{\hyperlink{class_ragot_1_1_point_light_abe33b8188648e13dc509c0953e97eb61}{position}}(\mbox{\hyperlink{class_ragot_1_1_point_light_abe33b8188648e13dc509c0953e97eb61}{position}})\ \{\}}
+\DoxyCodeLine{00196\ \ \ \ \ \};}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_area_light_a17825f11d73fb08c06a8d629e67c25e4}{AreaLight}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_light_aff5a7d76e7892cf2158fe49cca3fa446}{Light}}}
+\DoxyCodeLine{00203\ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_ragot_1_1_area_light_ad92460f825f7f0a7ead46b3253ee2bba}{position}};\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ glm::vec3\ \mbox{\hyperlink{class_ragot_1_1_area_light_a853ea0ad03de14ebef15e03cb4df1cb9}{size}};\ }
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_area_light_a17825f11d73fb08c06a8d629e67c25e4}{AreaLight}}(\textcolor{keyword}{const}\ glm::vec3\ \&\ \mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}},\ \textcolor{keyword}{const}\ glm::vec3\ \&\ \mbox{\hyperlink{class_ragot_1_1_area_light_ad92460f825f7f0a7ead46b3253ee2bba}{position}},\ \textcolor{keyword}{const}\ glm::vec3\ \&\ \mbox{\hyperlink{class_ragot_1_1_area_light_a853ea0ad03de14ebef15e03cb4df1cb9}{size}})}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_ragot_1_1_light_aff5a7d76e7892cf2158fe49cca3fa446}{Light}}(\mbox{\hyperlink{class_ragot_1_1_light_a1abefcb414069c8acbd83bd108426862}{color}}),\ \mbox{\hyperlink{class_ragot_1_1_area_light_ad92460f825f7f0a7ead46b3253ee2bba}{position}}(\mbox{\hyperlink{class_ragot_1_1_area_light_ad92460f825f7f0a7ead46b3253ee2bba}{position}}),\ \mbox{\hyperlink{class_ragot_1_1_area_light_a853ea0ad03de14ebef15e03cb4df1cb9}{size}}(\mbox{\hyperlink{class_ragot_1_1_area_light_a853ea0ad03de14ebef15e03cb4df1cb9}{size}})\ \{\}}
+\DoxyCodeLine{00216\ \ \ \ \ \};}
+\DoxyCodeLine{00217\ \}}
+
+\end{DoxyCode}

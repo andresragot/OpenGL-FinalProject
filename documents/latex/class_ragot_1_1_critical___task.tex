@@ -1,0 +1,96 @@
+\doxysection{Ragot\+::Critical\+\_\+\+Task Class Reference}
+\hypertarget{class_ragot_1_1_critical___task}{}\label{class_ragot_1_1_critical___task}\index{Ragot::Critical\_Task@{Ragot::Critical\_Task}}
+
+
+Class to execute critical tasks such as rendering, which the \doxylink{class_ragot_1_1_kernel}{Kernel} can pause other tasks to execute. These tasks run in the main thread.  
+
+
+
+
+{\ttfamily \#include $<$Task.\+hpp$>$}
+
+Inheritance diagram for Ragot\+::Critical\+\_\+\+Task\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ragot_1_1_critical___task}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_critical___task_a3d1ec47bc66b0d7fcaa1bfa54eb569cf}{Critical\+\_\+\+Task}} (function$<$ void()$>$ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\+\_\+func}})
+\begin{DoxyCompactList}\small\item\em Constructor that calls the base class constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_critical___task_a8e18a7878e322eedbdf137057f8e6483}{execute}} () override
+\begin{DoxyCompactList}\small\item\em Specific execution function for critical tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_ragot_1_1_task}{Ragot\+::\+Task}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_task_a57db2a7ca1cf38994200c10039c220fb}{Task}} (function$<$ void()$>$ \mbox{\hyperlink{class_ragot_1_1_task_a4a0aba534bfa1fcc429816f46a77b992}{task\+\_\+func}})
+\begin{DoxyCompactList}\small\item\em Constructor that accepts the function to run for this task. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Task} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void {\bfseries stop\+\_\+execution} ()
+\begin{DoxyCompactList}\small\item\em Stops execution of all tasks, even if executed by one thread. \end{DoxyCompactList}\item 
+void {\bfseries stop} ()
+\begin{DoxyCompactList}\small\item\em Stops execution temporarily for critical sections of code. \end{DoxyCompactList}\item 
+void {\bfseries resume} ()
+\begin{DoxyCompactList}\small\item\em Resumes execution after a stop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_ragot_1_1_task}{Ragot\+::\+Task}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_ragot_1_1_task_a82e30642dc15fc0c5341c654853dcac0}{should\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the task should stop execution. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ragot_1_1_task_ab3609db36be2d698454f99d1949bfc87}{should\+Finish}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the task should finish execution. \end{DoxyCompactList}\item 
+void {\bfseries wait\+\_\+for\+\_\+resume} ()
+\begin{DoxyCompactList}\small\item\em Waits for resume signal to continue execution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_ragot_1_1_task}{Ragot\+::\+Task}}}
+\begin{DoxyCompactItemize}
+\item 
+function$<$ void()$>$ {\bfseries task\+\_\+func}
+\begin{DoxyCompactList}\small\item\em Function to run for this task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to execute critical tasks such as rendering, which the \doxylink{class_ragot_1_1_kernel}{Kernel} can pause other tasks to execute. These tasks run in the main thread. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_critical___task_a3d1ec47bc66b0d7fcaa1bfa54eb569cf}\index{Ragot::Critical\_Task@{Ragot::Critical\_Task}!Critical\_Task@{Critical\_Task}}
+\index{Critical\_Task@{Critical\_Task}!Ragot::Critical\_Task@{Ragot::Critical\_Task}}
+\doxysubsubsection{\texorpdfstring{Critical\_Task()}{Critical\_Task()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_critical___task_a3d1ec47bc66b0d7fcaa1bfa54eb569cf} 
+Ragot\+::\+Critical\+\_\+\+Task\+::\+Critical\+\_\+\+Task (\begin{DoxyParamCaption}\item[{function$<$ void()$>$}]{task\+\_\+func}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor that calls the base class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+\_\+func} & Function to run for this task. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_critical___task_a8e18a7878e322eedbdf137057f8e6483}\index{Ragot::Critical\_Task@{Ragot::Critical\_Task}!execute@{execute}}
+\index{execute@{execute}!Ragot::Critical\_Task@{Ragot::Critical\_Task}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_critical___task_a8e18a7878e322eedbdf137057f8e6483} 
+void Ragot\+::\+Critical\+\_\+\+Task\+::execute (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Specific execution function for critical tasks. 
+
+
+
+Implements \mbox{\hyperlink{class_ragot_1_1_task_a909ee0fe7449d09134d614ea2af27e7d}{Ragot\+::\+Task}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Task.\+hpp\item 
+Task.\+cpp\end{DoxyCompactItemize}

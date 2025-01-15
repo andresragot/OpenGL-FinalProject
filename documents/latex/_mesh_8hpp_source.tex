@@ -1,0 +1,184 @@
+\doxysection{Mesh.\+hpp}
+\hypertarget{_mesh_8hpp_source}{}\label{_mesh_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ This\ file\ is\ part\ of\ OpenGL-\/FinalProject}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ Developed\ by\ Andrés\ Ragot\ -\/\ github.com/andresragot}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ MIT\ License}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2024\ Andrés\ Ragot}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ \ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ SOFTWARE.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00028\ \ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <glad/glad.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <glm.hpp>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}Camera.hpp"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}Shader\_Program.hpp"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}Color.hpp"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}Color\_Buffer.hpp"{}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{namespace\ }Ragot}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }std::vector;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{class\ }Mesh}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75a6d0422bd7e3827281236d2a722f2c0c3}{COORDINATES\_VBO}},\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75a6194dc3b2c665c4dd7ea202fd59c8ff5}{NORMALS\_VBO}},\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75ac328f6e13d2bca64c73adf5f766872b2}{TEXTURE\_UVS\_VBO}},\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75acc07207a6ad20c9523cf39dd7b42b663}{INDICES\_EBO}},\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75af3a90d6a79dcfd6755ed252a18b0de04}{VBO\_COUNT}}\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ vector<glm::vec3>\ \mbox{\hyperlink{class_ragot_1_1_mesh_a5f3c81ae5b2e96d961ece3801d472a0a}{coordinates}};\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ vector<glm::vec3>\ \mbox{\hyperlink{class_ragot_1_1_mesh_a1ae27c596911d008e1cd7979c8c1b1fb}{normals}};\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ vector<glm::vec2>\ \mbox{\hyperlink{class_ragot_1_1_mesh_a9a804edbe957a1b2ec581693d989fbc1}{texture\_coords}};\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ vector<GLuint>\ \mbox{\hyperlink{class_ragot_1_1_mesh_a685f57153927b14fd9dfc61166418b81}{indices}};\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ GLuint\ vbo\_ids[\mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75af3a90d6a79dcfd6755ed252a18b0de04}{VBO\_COUNT}}];\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ GLuint\ vao\_id;\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ GLsizei\ number\_of\_indices;\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle;\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ load\_mesh(\textcolor{keyword}{const}\ std::string\&\ mesh\_file\_path);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_aa19497cfc2297911d332fc1d2ec2f1a5}{Mesh}}(\textcolor{keyword}{const}\ Mesh\&)\ =\ \textcolor{keyword}{delete};\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ Mesh\&\ operator=(\textcolor{keyword}{const}\ Mesh\&)\ =\ \textcolor{keyword}{delete};\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_aa19497cfc2297911d332fc1d2ec2f1a5}{Mesh}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_a541aa83cca32265e40f1e64b129c0335}{Mesh}}(\textcolor{keyword}{const}\ std::string\&\ mesh\_file\_path);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_mesh_aee9c94064eaf9c4a81d86b847fd5c063}{\string~Mesh}}()}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ glDeleteVertexArrays(1,\ \&vao\_id);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ glDeleteBuffers(\mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75af3a90d6a79dcfd6755ed252a18b0de04}{VBO\_COUNT}},\ vbo\_ids);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<glm::vec3>\&\ \mbox{\hyperlink{class_ragot_1_1_mesh_af036738faef6db8af931b160452a4a61}{get\_coordinates}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_ragot_1_1_mesh_a5f3c81ae5b2e96d961ece3801d472a0a}{coordinates}};\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<glm::vec3>\&\ \mbox{\hyperlink{class_ragot_1_1_mesh_aadb2bcd7ec5994c3e0631aaa4916c6a2}{get\_normals}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_ragot_1_1_mesh_a1ae27c596911d008e1cd7979c8c1b1fb}{normals}};\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<glm::vec2>\&\ \mbox{\hyperlink{class_ragot_1_1_mesh_a214998babdb9f34ee28d9cbbbb2e2019}{get\_textures\_uv}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_ragot_1_1_mesh_a9a804edbe957a1b2ec581693d989fbc1}{texture\_coords}};\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<GLuint>\&\ \mbox{\hyperlink{class_ragot_1_1_mesh_a3eedf7a717ae7dffde0ef7985fe85b27}{get\_indices}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_ragot_1_1_mesh_a685f57153927b14fd9dfc61166418b81}{indices}};\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ GLuint\ \mbox{\hyperlink{class_ragot_1_1_mesh_a3cb94c45ef33864c73daaef29646898e}{get\_vao\_id}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ vao\_id;\ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ GLsizei\ \mbox{\hyperlink{class_ragot_1_1_mesh_a867f2a0b3c30f8401dddb0955e37edc4}{get\_number\_of\_indices}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ number\_of\_indices;\ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ COLOR\_FORMAT>}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2}{Texture2D}}}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29}{Color\_Buffer<COLOR\_FORMAT>}}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29}{Color\_Buffer}};\ }
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ GLuint\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a491785c2314e4a2154411a30f43c7b97}{texture\_id}};\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a76fdbdad75a340c6325b981bbfaa822f}{texture\_is\_loaded}};\ }
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_uint8\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a3cf5ad76fd687d0df17c638e9bab7731}{Texture2D}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ texture\_base\_path);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a88b5887f0d17f56a9895d7f4be05ecba}{\string~Texture2D}}();}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a3cf5ad76fd687d0df17c638e9bab7731}{Texture2D}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2}{Texture2D}}\&)\ =\ \textcolor{keyword}{delete};\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2}{Texture2D}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2}{Texture2D}}\&)\ =\ \textcolor{keyword}{delete};\ }
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a3cf5ad76fd687d0df17c638e9bab7731}{Texture2D}}()\ :\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a491785c2314e4a2154411a30f43c7b97}{texture\_id}}(0),\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a76fdbdad75a340c6325b981bbfaa822f}{texture\_is\_loaded}}(false)\ \{\}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a3ae6c06ae221d0b7d2292f6740cdec59}{is\_ok}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00188\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a76fdbdad75a340c6325b981bbfaa822f}{texture\_is\_loaded}};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a8ba913344bd8220ac82e3b558fab2947}{bind}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00197\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a76fdbdad75a340c6325b981bbfaa822f}{texture\_is\_loaded}}\ ?\ glBindTexture(GL\_TEXTURE\_2D,\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a491785c2314e4a2154411a30f43c7b97}{texture\_id}}),\ true\ :\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ GLint\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_ace47525d560131b2ac4506c8537e4b14}{create\_texture\_2d}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ texture\_path);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ unique\_ptr<Color\_Buffer>\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2406ef538dca030a7752e78c9999073e}{load\_image}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ texture\_path);}
+\DoxyCodeLine{00215\ \ \ \ \ \};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_texture___cube_a6043fe1b05e50e74bf8b3c4dc12eb92e}{Texture\_Cube}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2}{Texture2D}}<Rgba8888>}
+\DoxyCodeLine{00221\ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture___cube_a6043fe1b05e50e74bf8b3c4dc12eb92e}{Texture\_Cube}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ texture\_base\_path);}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_texture___cube_ac0873ee80efa325f43a9e93c7de168b9}{bind}}()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00234\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a76fdbdad75a340c6325b981bbfaa822f}{texture\_is\_loaded}}\ ?\ glBindTexture(GL\_TEXTURE\_CUBE\_MAP,\ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a491785c2314e4a2154411a30f43c7b97}{texture\_id}}),\ true\ :\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_ragot_1_1_material_a468095fba4185c695d883082e1e8ef87}{Material}}}
+\DoxyCodeLine{00243\ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_shader___program}{Shader\_Program}}\ shader\_program;\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Texture2D<Rgba8888>}}\ texture;\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ glm::vec3\ color;\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ shininess;\ }
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_material_a468095fba4185c695d883082e1e8ef87}{Material}}()\ =\ \textcolor{keyword}{delete};\ }
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_material_a468095fba4185c695d883082e1e8ef87}{Material}}(\textcolor{keyword}{const}\ vector<string>\&\ source\_code\_vertex,\ \textcolor{keyword}{const}\ vector<string>\&\ source\_code\_fragment,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ texture\_base\_path);}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_ragot_1_1_material_a9bcfef62e3cd283b45af9e899fc04b60}{\string~Material}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_ragot_1_1_material_a00b4be79f4c64da2a6686c12545aaf93}{use\_shader\_program}}()\ \{\ shader\_program.use();\ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ GLint\ \mbox{\hyperlink{class_ragot_1_1_material_a3b3d53237186b1ddd3f0d7f5f84e7b67}{get\_shader\_program\_uniform\_location}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ uniform)\ \{\ \textcolor{keywordflow}{return}\ shader\_program.get\_uniform\_location(uniform);\ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ GLuint\ \mbox{\hyperlink{class_ragot_1_1_material_aefdc7e8f0c454154fadcc16292287792}{get\_shader\_program\_id}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ shader\_program.get\_id();\ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_ragot_1_1_material_a7206ed8f17fa2eee7505fd84258708bb}{bind\_texture}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ texture.bind();\ \}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec3\ \mbox{\hyperlink{class_ragot_1_1_material_a087c293af2243e4581f9faee444168d1}{get\_color}}()\ \{\ \textcolor{keywordflow}{return}\ color;\ \}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_ragot_1_1_material_a9dfa1c4ca3bcb66454e16d237eea8222}{get\_shininess}}()\ \{\ \textcolor{keywordflow}{return}\ shininess;\ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \};}
+\DoxyCodeLine{00302\ \}}
+
+\end{DoxyCode}

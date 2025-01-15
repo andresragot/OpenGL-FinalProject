@@ -1,0 +1,92 @@
+\doxysection{Ragot\+::Shader\+\_\+\+Program Class Reference}
+\hypertarget{class_ragot_1_1_shader___program}{}\label{class_ragot_1_1_shader___program}\index{Ragot::Shader\_Program@{Ragot::Shader\_Program}}
+
+
+Class for managing an Open\+GL shader program.  
+
+
+
+
+{\ttfamily \#include $<$Shader\+\_\+\+Program.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_shader___program_af635b0fd6d66b96b0e7f13ef240fa7d9}{Shader\+\_\+\+Program}} (const vector$<$ string $>$ \&source\+\_\+code\+\_\+vertex, const vector$<$ string $>$ \&source\+\_\+code\+\_\+fragment)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_shader___program}{Shader\+\_\+\+Program} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_shader___program_acd1067ef90415e8032c1e73e160d97ea}\label{class_ragot_1_1_shader___program_acd1067ef90415e8032c1e73e160d97ea} 
+{\bfseries Shader\+\_\+\+Program} ()=delete
+\begin{DoxyCompactList}\small\item\em Deleted default constructor. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_shader___program_af43c0c562fabcc109b6280cf5bbeb4f7}\label{class_ragot_1_1_shader___program_af43c0c562fabcc109b6280cf5bbeb4f7} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Shader\+\_\+\+Program} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ragot_1_1_shader___program}{Shader\+\_\+\+Program} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_shader___program_a773967e995302a644933a18e52b04fb7}\label{class_ragot_1_1_shader___program_a773967e995302a644933a18e52b04fb7} 
+void {\bfseries use} () const
+\begin{DoxyCompactList}\small\item\em Uses the shader program. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{class_ragot_1_1_shader___program_afeceb2afbd09acde917c9e6abfc046ab}{get\+\_\+id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the shader program ID. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{class_ragot_1_1_shader___program_ad51ff79b0a4956ff84b91ee034d22841}{get\+\_\+uniform\+\_\+location}} (string uniform\+\_\+name) const
+\begin{DoxyCompactList}\small\item\em Gets the uniform location in the shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing an Open\+GL shader program. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_shader___program_af635b0fd6d66b96b0e7f13ef240fa7d9}\index{Ragot::Shader\_Program@{Ragot::Shader\_Program}!Shader\_Program@{Shader\_Program}}
+\index{Shader\_Program@{Shader\_Program}!Ragot::Shader\_Program@{Ragot::Shader\_Program}}
+\doxysubsubsection{\texorpdfstring{Shader\_Program()}{Shader\_Program()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_shader___program_af635b0fd6d66b96b0e7f13ef240fa7d9} 
+Ragot\+::\+Shader\+\_\+\+Program\+::\+Shader\+\_\+\+Program (\begin{DoxyParamCaption}\item[{const vector$<$ string $>$ \&}]{source\+\_\+code\+\_\+vertex}{, }\item[{const vector$<$ string $>$ \&}]{source\+\_\+code\+\_\+fragment}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_shader___program}{Shader\+\_\+\+Program} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+\_\+code\+\_\+vertex} & Vector of vertex shader source code. \\
+\hline
+{\em source\+\_\+code\+\_\+fragment} & Vector of fragment shader source code. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_shader___program_afeceb2afbd09acde917c9e6abfc046ab}\index{Ragot::Shader\_Program@{Ragot::Shader\_Program}!get\_id@{get\_id}}
+\index{get\_id@{get\_id}!Ragot::Shader\_Program@{Ragot::Shader\_Program}}
+\doxysubsubsection{\texorpdfstring{get\_id()}{get\_id()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_shader___program_afeceb2afbd09acde917c9e6abfc046ab} 
+GLuint Ragot\+::\+Shader\+\_\+\+Program\+::get\+\_\+id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the shader program ID. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_ragot_1_1_shader}{Shader} program ID. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_shader___program_ad51ff79b0a4956ff84b91ee034d22841}\index{Ragot::Shader\_Program@{Ragot::Shader\_Program}!get\_uniform\_location@{get\_uniform\_location}}
+\index{get\_uniform\_location@{get\_uniform\_location}!Ragot::Shader\_Program@{Ragot::Shader\_Program}}
+\doxysubsubsection{\texorpdfstring{get\_uniform\_location()}{get\_uniform\_location()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_shader___program_ad51ff79b0a4956ff84b91ee034d22841} 
+GLuint Ragot\+::\+Shader\+\_\+\+Program\+::get\+\_\+uniform\+\_\+location (\begin{DoxyParamCaption}\item[{string}]{uniform\+\_\+name}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the uniform location in the shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uniform\+\_\+name} & Name of the uniform. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Uniform location. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Shader\+\_\+\+Program.\+hpp\item 
+Shader\+\_\+\+Program.\+cpp\end{DoxyCompactItemize}

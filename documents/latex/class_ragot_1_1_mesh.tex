@@ -1,0 +1,202 @@
+\doxysection{Ragot\+::Mesh Class Reference}
+\hypertarget{class_ragot_1_1_mesh}{}\label{class_ragot_1_1_mesh}\index{Ragot::Mesh@{Ragot::Mesh}}
+
+
+Class for managing a 3D mesh.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_mesh_aa19497cfc2297911d332fc1d2ec2f1a5}\label{class_ragot_1_1_mesh_aa19497cfc2297911d332fc1d2ec2f1a5} 
+{\bfseries Mesh} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{class_ragot_1_1_mesh}{Mesh} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ragot_1_1_mesh_a541aa83cca32265e40f1e64b129c0335}{Mesh}} (const std\+::string \&mesh\+\_\+file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_mesh}{Mesh} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_mesh_aee9c94064eaf9c4a81d86b847fd5c063}\label{class_ragot_1_1_mesh_aee9c94064eaf9c4a81d86b847fd5c063} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Mesh} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ragot_1_1_mesh}{Mesh} class. \end{DoxyCompactList}\item 
+const vector$<$ glm\+::vec3 $>$ \& \mbox{\hyperlink{class_ragot_1_1_mesh_af036738faef6db8af931b160452a4a61}{get\+\_\+coordinates}} () const
+\begin{DoxyCompactList}\small\item\em Gets the vertex coordinates. \end{DoxyCompactList}\item 
+const vector$<$ glm\+::vec3 $>$ \& \mbox{\hyperlink{class_ragot_1_1_mesh_aadb2bcd7ec5994c3e0631aaa4916c6a2}{get\+\_\+normals}} () const
+\begin{DoxyCompactList}\small\item\em Gets the vertex normals. \end{DoxyCompactList}\item 
+const vector$<$ glm\+::vec2 $>$ \& \mbox{\hyperlink{class_ragot_1_1_mesh_a214998babdb9f34ee28d9cbbbb2e2019}{get\+\_\+textures\+\_\+uv}} () const
+\begin{DoxyCompactList}\small\item\em Gets the texture coordinates. \end{DoxyCompactList}\item 
+const vector$<$ GLuint $>$ \& \mbox{\hyperlink{class_ragot_1_1_mesh_a3eedf7a717ae7dffde0ef7985fe85b27}{get\+\_\+indices}} () const
+\begin{DoxyCompactList}\small\item\em Gets the indices. \end{DoxyCompactList}\item 
+const GLuint \mbox{\hyperlink{class_ragot_1_1_mesh_a3cb94c45ef33864c73daaef29646898e}{get\+\_\+vao\+\_\+id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the Vertex Array Object ID. \end{DoxyCompactList}\item 
+const GLsizei \mbox{\hyperlink{class_ragot_1_1_mesh_a867f2a0b3c30f8401dddb0955e37edc4}{get\+\_\+number\+\_\+of\+\_\+indices}} () const
+\begin{DoxyCompactList}\small\item\em Gets the number of indices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75a6d0422bd7e3827281236d2a722f2c0c3}{COORDINATES\+\_\+\+VBO}}
+, \mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75a6194dc3b2c665c4dd7ea202fd59c8ff5}{NORMALS\+\_\+\+VBO}}
+, \mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75ac328f6e13d2bca64c73adf5f766872b2}{TEXTURE\+\_\+\+UVS\+\_\+\+VBO}}
+, \mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75acc07207a6ad20c9523cf39dd7b42b663}{INDICES\+\_\+\+EBO}}
+, \newline
+\mbox{\hyperlink{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75af3a90d6a79dcfd6755ed252a18b0de04}{VBO\+\_\+\+COUNT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum for VBO indices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_mesh_a5f3c81ae5b2e96d961ece3801d472a0a}\label{class_ragot_1_1_mesh_a5f3c81ae5b2e96d961ece3801d472a0a} 
+vector$<$ glm\+::vec3 $>$ {\bfseries coordinates}
+\begin{DoxyCompactList}\small\item\em Vector of vertex coordinates. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_mesh_a1ae27c596911d008e1cd7979c8c1b1fb}\label{class_ragot_1_1_mesh_a1ae27c596911d008e1cd7979c8c1b1fb} 
+vector$<$ glm\+::vec3 $>$ {\bfseries normals}
+\begin{DoxyCompactList}\small\item\em Vector of vertex normals. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_mesh_a9a804edbe957a1b2ec581693d989fbc1}\label{class_ragot_1_1_mesh_a9a804edbe957a1b2ec581693d989fbc1} 
+vector$<$ glm\+::vec2 $>$ {\bfseries texture\+\_\+coords}
+\begin{DoxyCompactList}\small\item\em Vector of texture coordinates. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_mesh_a685f57153927b14fd9dfc61166418b81}\label{class_ragot_1_1_mesh_a685f57153927b14fd9dfc61166418b81} 
+vector$<$ GLuint $>$ {\bfseries indices}
+\begin{DoxyCompactList}\small\item\em Vector of indices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing a 3D mesh. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75} 
+anonymous enum\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Enum for VBO indices. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COORDINATES\_VBO@{COORDINATES\_VBO}!Ragot::Mesh@{Ragot::Mesh}}\index{Ragot::Mesh@{Ragot::Mesh}!COORDINATES\_VBO@{COORDINATES\_VBO}}}\Hypertarget{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75a6d0422bd7e3827281236d2a722f2c0c3}\label{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75a6d0422bd7e3827281236d2a722f2c0c3} 
+COORDINATES\+\_\+\+VBO&VBO index for coordinates. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NORMALS\_VBO@{NORMALS\_VBO}!Ragot::Mesh@{Ragot::Mesh}}\index{Ragot::Mesh@{Ragot::Mesh}!NORMALS\_VBO@{NORMALS\_VBO}}}\Hypertarget{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75a6194dc3b2c665c4dd7ea202fd59c8ff5}\label{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75a6194dc3b2c665c4dd7ea202fd59c8ff5} 
+NORMALS\+\_\+\+VBO&VBO index for normals. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXTURE\_UVS\_VBO@{TEXTURE\_UVS\_VBO}!Ragot::Mesh@{Ragot::Mesh}}\index{Ragot::Mesh@{Ragot::Mesh}!TEXTURE\_UVS\_VBO@{TEXTURE\_UVS\_VBO}}}\Hypertarget{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75ac328f6e13d2bca64c73adf5f766872b2}\label{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75ac328f6e13d2bca64c73adf5f766872b2} 
+TEXTURE\+\_\+\+UVS\+\_\+\+VBO&VBO index for texture UVs. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INDICES\_EBO@{INDICES\_EBO}!Ragot::Mesh@{Ragot::Mesh}}\index{Ragot::Mesh@{Ragot::Mesh}!INDICES\_EBO@{INDICES\_EBO}}}\Hypertarget{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75acc07207a6ad20c9523cf39dd7b42b663}\label{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75acc07207a6ad20c9523cf39dd7b42b663} 
+INDICES\+\_\+\+EBO&VBO index for indices. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VBO\_COUNT@{VBO\_COUNT}!Ragot::Mesh@{Ragot::Mesh}}\index{Ragot::Mesh@{Ragot::Mesh}!VBO\_COUNT@{VBO\_COUNT}}}\Hypertarget{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75af3a90d6a79dcfd6755ed252a18b0de04}\label{class_ragot_1_1_mesh_abb57da2c8337c0528da1bdb9158eca75af3a90d6a79dcfd6755ed252a18b0de04} 
+VBO\+\_\+\+COUNT&Total number of VBOs. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_mesh_a541aa83cca32265e40f1e64b129c0335}\index{Ragot::Mesh@{Ragot::Mesh}!Mesh@{Mesh}}
+\index{Mesh@{Mesh}!Ragot::Mesh@{Ragot::Mesh}}
+\doxysubsubsection{\texorpdfstring{Mesh()}{Mesh()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_mesh_a541aa83cca32265e40f1e64b129c0335} 
+Ragot\+::\+Mesh\+::\+Mesh (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{mesh\+\_\+file\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_mesh}{Mesh} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh\+\_\+file\+\_\+path} & Path to the mesh file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_mesh_af036738faef6db8af931b160452a4a61}\index{Ragot::Mesh@{Ragot::Mesh}!get\_coordinates@{get\_coordinates}}
+\index{get\_coordinates@{get\_coordinates}!Ragot::Mesh@{Ragot::Mesh}}
+\doxysubsubsection{\texorpdfstring{get\_coordinates()}{get\_coordinates()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_mesh_af036738faef6db8af931b160452a4a61} 
+const vector$<$ glm\+::vec3 $>$ \& Ragot\+::\+Mesh\+::get\+\_\+coordinates (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the vertex coordinates. 
+
+\begin{DoxyReturn}{Returns}
+Vector of vertex coordinates. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_mesh_a3eedf7a717ae7dffde0ef7985fe85b27}\index{Ragot::Mesh@{Ragot::Mesh}!get\_indices@{get\_indices}}
+\index{get\_indices@{get\_indices}!Ragot::Mesh@{Ragot::Mesh}}
+\doxysubsubsection{\texorpdfstring{get\_indices()}{get\_indices()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_mesh_a3eedf7a717ae7dffde0ef7985fe85b27} 
+const vector$<$ GLuint $>$ \& Ragot\+::\+Mesh\+::get\+\_\+indices (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the indices. 
+
+\begin{DoxyReturn}{Returns}
+Vector of indices. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_mesh_aadb2bcd7ec5994c3e0631aaa4916c6a2}\index{Ragot::Mesh@{Ragot::Mesh}!get\_normals@{get\_normals}}
+\index{get\_normals@{get\_normals}!Ragot::Mesh@{Ragot::Mesh}}
+\doxysubsubsection{\texorpdfstring{get\_normals()}{get\_normals()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_mesh_aadb2bcd7ec5994c3e0631aaa4916c6a2} 
+const vector$<$ glm\+::vec3 $>$ \& Ragot\+::\+Mesh\+::get\+\_\+normals (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the vertex normals. 
+
+\begin{DoxyReturn}{Returns}
+Vector of vertex normals. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_mesh_a867f2a0b3c30f8401dddb0955e37edc4}\index{Ragot::Mesh@{Ragot::Mesh}!get\_number\_of\_indices@{get\_number\_of\_indices}}
+\index{get\_number\_of\_indices@{get\_number\_of\_indices}!Ragot::Mesh@{Ragot::Mesh}}
+\doxysubsubsection{\texorpdfstring{get\_number\_of\_indices()}{get\_number\_of\_indices()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_mesh_a867f2a0b3c30f8401dddb0955e37edc4} 
+const GLsizei Ragot\+::\+Mesh\+::get\+\_\+number\+\_\+of\+\_\+indices (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the number of indices. 
+
+\begin{DoxyReturn}{Returns}
+Number of indices. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_mesh_a214998babdb9f34ee28d9cbbbb2e2019}\index{Ragot::Mesh@{Ragot::Mesh}!get\_textures\_uv@{get\_textures\_uv}}
+\index{get\_textures\_uv@{get\_textures\_uv}!Ragot::Mesh@{Ragot::Mesh}}
+\doxysubsubsection{\texorpdfstring{get\_textures\_uv()}{get\_textures\_uv()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_mesh_a214998babdb9f34ee28d9cbbbb2e2019} 
+const vector$<$ glm\+::vec2 $>$ \& Ragot\+::\+Mesh\+::get\+\_\+textures\+\_\+uv (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the texture coordinates. 
+
+\begin{DoxyReturn}{Returns}
+Vector of texture coordinates. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_mesh_a3cb94c45ef33864c73daaef29646898e}\index{Ragot::Mesh@{Ragot::Mesh}!get\_vao\_id@{get\_vao\_id}}
+\index{get\_vao\_id@{get\_vao\_id}!Ragot::Mesh@{Ragot::Mesh}}
+\doxysubsubsection{\texorpdfstring{get\_vao\_id()}{get\_vao\_id()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_mesh_a3cb94c45ef33864c73daaef29646898e} 
+const GLuint Ragot\+::\+Mesh\+::get\+\_\+vao\+\_\+id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the Vertex Array Object ID. 
+
+\begin{DoxyReturn}{Returns}
+VAO ID. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Mesh.\+hpp\item 
+Mesh.\+cpp\end{DoxyCompactItemize}

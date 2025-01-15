@@ -1,0 +1,35 @@
+var annotated_dup =
+[
+    [ "Ragot", null, [
+      [ "AreaLight", "class_ragot_1_1_area_light.html", "class_ragot_1_1_area_light" ],
+      [ "Camera", "class_ragot_1_1_camera.html", "class_ragot_1_1_camera" ],
+      [ "Color_Buffer", "class_ragot_1_1_color___buffer.html", "class_ragot_1_1_color___buffer" ],
+      [ "Component", "class_ragot_1_1_component.html", "class_ragot_1_1_component" ],
+      [ "Critical_Task", "class_ragot_1_1_critical___task.html", "class_ragot_1_1_critical___task" ],
+      [ "DirectionalLight", "class_ragot_1_1_directional_light.html", "class_ragot_1_1_directional_light" ],
+      [ "Entity", "class_ragot_1_1_entity.html", "class_ragot_1_1_entity" ],
+      [ "Fragment_Shader", "class_ragot_1_1_fragment___shader.html", "class_ragot_1_1_fragment___shader" ],
+      [ "Frame_Buffer", "class_ragot_1_1_frame___buffer.html", "class_ragot_1_1_frame___buffer" ],
+      [ "Kernel", "class_ragot_1_1_kernel.html", "class_ragot_1_1_kernel" ],
+      [ "Light", "class_ragot_1_1_light.html", "class_ragot_1_1_light" ],
+      [ "Light_Task", "class_ragot_1_1_light___task.html", "class_ragot_1_1_light___task" ],
+      [ "Material", "class_ragot_1_1_material.html", "class_ragot_1_1_material" ],
+      [ "Mesh", "class_ragot_1_1_mesh.html", "class_ragot_1_1_mesh" ],
+      [ "Model_Component", "class_ragot_1_1_model___component.html", "class_ragot_1_1_model___component" ],
+      [ "Once_Task", "class_ragot_1_1_once___task.html", "class_ragot_1_1_once___task" ],
+      [ "PointLight", "class_ragot_1_1_point_light.html", "class_ragot_1_1_point_light" ],
+      [ "Rgba8888", "union_ragot_1_1_rgba8888.html", "union_ragot_1_1_rgba8888" ],
+      [ "Scene", "class_ragot_1_1_scene.html", "class_ragot_1_1_scene" ],
+      [ "Shader", "class_ragot_1_1_shader.html", "class_ragot_1_1_shader" ],
+      [ "Shader_Program", "class_ragot_1_1_shader___program.html", "class_ragot_1_1_shader___program" ],
+      [ "Skybox", "class_ragot_1_1_skybox.html", "class_ragot_1_1_skybox" ],
+      [ "System", "class_ragot_1_1_system.html", "class_ragot_1_1_system" ],
+      [ "Task", "class_ragot_1_1_task.html", "class_ragot_1_1_task" ],
+      [ "Terrain", "class_ragot_1_1_terrain.html", "class_ragot_1_1_terrain" ],
+      [ "Texture2D", "class_ragot_1_1_texture2_d.html", "class_ragot_1_1_texture2_d" ],
+      [ "Texture_Cube", "class_ragot_1_1_texture___cube.html", "class_ragot_1_1_texture___cube" ],
+      [ "Transform_Component", "class_ragot_1_1_transform___component.html", "class_ragot_1_1_transform___component" ],
+      [ "Vertex_Shader", "class_ragot_1_1_vertex___shader.html", "class_ragot_1_1_vertex___shader" ],
+      [ "Window", "class_ragot_1_1_window.html", "class_ragot_1_1_window" ]
+    ] ]
+];

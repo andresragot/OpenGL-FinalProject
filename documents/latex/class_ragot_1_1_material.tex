@@ -1,0 +1,139 @@
+\doxysection{Ragot\+::Material Class Reference}
+\hypertarget{class_ragot_1_1_material}{}\label{class_ragot_1_1_material}\index{Ragot::Material@{Ragot::Material}}
+
+
+Class for managing a material.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_ragot_1_1_material_a468095fba4185c695d883082e1e8ef87}\label{class_ragot_1_1_material_a468095fba4185c695d883082e1e8ef87} 
+{\bfseries Material} ()=delete
+\begin{DoxyCompactList}\small\item\em Deleted default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ragot_1_1_material_a546e870110485cfa6056cc4978e72bc8}{Material}} (const vector$<$ string $>$ \&source\+\_\+code\+\_\+vertex, const vector$<$ string $>$ \&source\+\_\+code\+\_\+fragment, const string \&texture\+\_\+base\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_material}{Material} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_material_a9bcfef62e3cd283b45af9e899fc04b60}\label{class_ragot_1_1_material_a9bcfef62e3cd283b45af9e899fc04b60} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Material} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the \doxylink{class_ragot_1_1_material}{Material} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_material_a00b4be79f4c64da2a6686c12545aaf93}\label{class_ragot_1_1_material_a00b4be79f4c64da2a6686c12545aaf93} 
+void {\bfseries use\+\_\+shader\+\_\+program} ()
+\begin{DoxyCompactList}\small\item\em Uses the shader program. \end{DoxyCompactList}\item 
+GLint \mbox{\hyperlink{class_ragot_1_1_material_a3b3d53237186b1ddd3f0d7f5f84e7b67}{get\+\_\+shader\+\_\+program\+\_\+uniform\+\_\+location}} (const string \&uniform)
+\begin{DoxyCompactList}\small\item\em Gets the uniform location in the shader program. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{class_ragot_1_1_material_aefdc7e8f0c454154fadcc16292287792}{get\+\_\+shader\+\_\+program\+\_\+id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the shader program ID. \end{DoxyCompactList}\item 
+const bool \mbox{\hyperlink{class_ragot_1_1_material_a7206ed8f17fa2eee7505fd84258708bb}{bind\+\_\+texture}} () const
+\begin{DoxyCompactList}\small\item\em Binds the texture. \end{DoxyCompactList}\item 
+const glm\+::vec3 \mbox{\hyperlink{class_ragot_1_1_material_a087c293af2243e4581f9faee444168d1}{get\+\_\+color}} ()
+\begin{DoxyCompactList}\small\item\em Gets the color of the material. \end{DoxyCompactList}\item 
+const float \mbox{\hyperlink{class_ragot_1_1_material_a9dfa1c4ca3bcb66454e16d237eea8222}{get\+\_\+shininess}} ()
+\begin{DoxyCompactList}\small\item\em Gets the shininess of the material. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing a material. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_material_a546e870110485cfa6056cc4978e72bc8}\index{Ragot::Material@{Ragot::Material}!Material@{Material}}
+\index{Material@{Material}!Ragot::Material@{Ragot::Material}}
+\doxysubsubsection{\texorpdfstring{Material()}{Material()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_material_a546e870110485cfa6056cc4978e72bc8} 
+Ragot\+::\+Material\+::\+Material (\begin{DoxyParamCaption}\item[{const vector$<$ string $>$ \&}]{source\+\_\+code\+\_\+vertex}{, }\item[{const vector$<$ string $>$ \&}]{source\+\_\+code\+\_\+fragment}{, }\item[{const string \&}]{texture\+\_\+base\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_material}{Material} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+\_\+code\+\_\+vertex} & Vector of vertex shader source code. \\
+\hline
+{\em source\+\_\+code\+\_\+fragment} & Vector of fragment shader source code. \\
+\hline
+{\em texture\+\_\+base\+\_\+path} & Path to the base texture file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_material_a7206ed8f17fa2eee7505fd84258708bb}\index{Ragot::Material@{Ragot::Material}!bind\_texture@{bind\_texture}}
+\index{bind\_texture@{bind\_texture}!Ragot::Material@{Ragot::Material}}
+\doxysubsubsection{\texorpdfstring{bind\_texture()}{bind\_texture()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_material_a7206ed8f17fa2eee7505fd84258708bb} 
+const bool Ragot\+::\+Material\+::bind\+\_\+texture (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binds the texture. 
+
+\begin{DoxyReturn}{Returns}
+True if the texture is successfully bound, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_material_a087c293af2243e4581f9faee444168d1}\index{Ragot::Material@{Ragot::Material}!get\_color@{get\_color}}
+\index{get\_color@{get\_color}!Ragot::Material@{Ragot::Material}}
+\doxysubsubsection{\texorpdfstring{get\_color()}{get\_color()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_material_a087c293af2243e4581f9faee444168d1} 
+const glm\+::vec3 Ragot\+::\+Material\+::get\+\_\+color (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the color of the material. 
+
+\begin{DoxyReturn}{Returns}
+Color of the material. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_material_aefdc7e8f0c454154fadcc16292287792}\index{Ragot::Material@{Ragot::Material}!get\_shader\_program\_id@{get\_shader\_program\_id}}
+\index{get\_shader\_program\_id@{get\_shader\_program\_id}!Ragot::Material@{Ragot::Material}}
+\doxysubsubsection{\texorpdfstring{get\_shader\_program\_id()}{get\_shader\_program\_id()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_material_aefdc7e8f0c454154fadcc16292287792} 
+GLuint Ragot\+::\+Material\+::get\+\_\+shader\+\_\+program\+\_\+id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the shader program ID. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_ragot_1_1_shader}{Shader} program ID. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_material_a3b3d53237186b1ddd3f0d7f5f84e7b67}\index{Ragot::Material@{Ragot::Material}!get\_shader\_program\_uniform\_location@{get\_shader\_program\_uniform\_location}}
+\index{get\_shader\_program\_uniform\_location@{get\_shader\_program\_uniform\_location}!Ragot::Material@{Ragot::Material}}
+\doxysubsubsection{\texorpdfstring{get\_shader\_program\_uniform\_location()}{get\_shader\_program\_uniform\_location()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_material_a3b3d53237186b1ddd3f0d7f5f84e7b67} 
+GLint Ragot\+::\+Material\+::get\+\_\+shader\+\_\+program\+\_\+uniform\+\_\+location (\begin{DoxyParamCaption}\item[{const string \&}]{uniform}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the uniform location in the shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uniform} & Name of the uniform. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Uniform location. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_material_a9dfa1c4ca3bcb66454e16d237eea8222}\index{Ragot::Material@{Ragot::Material}!get\_shininess@{get\_shininess}}
+\index{get\_shininess@{get\_shininess}!Ragot::Material@{Ragot::Material}}
+\doxysubsubsection{\texorpdfstring{get\_shininess()}{get\_shininess()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_material_a9dfa1c4ca3bcb66454e16d237eea8222} 
+const float Ragot\+::\+Material\+::get\+\_\+shininess (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the shininess of the material. 
+
+\begin{DoxyReturn}{Returns}
+Shininess of the material. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Mesh.\+hpp\item 
+Mesh.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,202 @@
+\doxysection{Ragot\+::Scene Class Reference}
+\hypertarget{class_ragot_1_1_scene}{}\label{class_ragot_1_1_scene}\index{Ragot::Scene@{Ragot::Scene}}
+
+
+Class for managing a scene in Open\+GL.  
+
+
+
+
+{\ttfamily \#include $<$My\+System.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_ragot_1_1_scene_a5d7a81a940644fedc7b0fa9369969c4a}{resize}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Resizes the scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_scene_a6bd6c03bc70ece5256084d99990559ef}{on\+\_\+drag}} (int pointer\+\_\+x, int pointer\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Handles pointer drag events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_scene_a453c1fd16bd12a2ffb98f99c6e7d8e26}{on\+\_\+click}} (int pointer\+\_\+x, int pointer\+\_\+y, bool down)
+\begin{DoxyCompactList}\small\item\em Handles pointer click events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_scene_a6491edd368e7824cba942d85cb6c3187}{on\+\_\+translation}} (glm\+::vec3 translation)
+\begin{DoxyCompactList}\small\item\em Handles translation events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_scene_a198f0285d870b31f5e15840564a1d16d}{on\+\_\+shift\+\_\+pressed}} (bool down)
+\begin{DoxyCompactList}\small\item\em Handles shift key press events. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_scene_ad2d79b25fb64e3a0398a7161e079abf9}\label{class_ragot_1_1_scene_ad2d79b25fb64e3a0398a7161e079abf9} 
+void {\bfseries update} ()
+\begin{DoxyCompactList}\small\item\em Updates the scene. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_scene_a3c23c3421810abf25a789a903f40eac8}\label{class_ragot_1_1_scene_a3c23c3421810abf25a789a903f40eac8} 
+void {\bfseries render} ()
+\begin{DoxyCompactList}\small\item\em Renders the scene. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_scene_aeb0bea6b0ce29f8c9fbd5cefa129ad84}\label{class_ragot_1_1_scene_aeb0bea6b0ce29f8c9fbd5cefa129ad84} 
+void {\bfseries postproccess} ()
+\begin{DoxyCompactList}\small\item\em Post-\/processes the scene. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_scene_a5ea6ad6ab81208e8d4d3e81d7e8657e9}\label{class_ragot_1_1_scene_a5ea6ad6ab81208e8d4d3e81d7e8657e9} 
+{\bfseries Scene} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_scene}{Scene} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_scene_a9123a226edd97f68785ccfd4d8ae89b3}{add\+\_\+entities}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ entity, const string \&name)
+\begin{DoxyCompactList}\small\item\em Adds an entity to the scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_scene_a5ec8aaf77d46fa199272cf59ba2055b8}{remove\+\_\+entities}} (const string \&name)
+\begin{DoxyCompactList}\small\item\em Removes an entity from the scene. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ \mbox{\hyperlink{class_ragot_1_1_scene_a26cd1a8b9990ffe1eca712db5b862372}{get\+\_\+entity}} (const string \&name) const
+\begin{DoxyCompactList}\small\item\em Gets an entity from the scene. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_camera}{Camera}} $>$ \mbox{\hyperlink{class_ragot_1_1_scene_a75bc76a05c4293a6ff57b708b0ca79f8}{get\+\_\+camera}} () const
+\begin{DoxyCompactList}\small\item\em Gets the camera of the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing a scene in Open\+GL. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_scene_a9123a226edd97f68785ccfd4d8ae89b3}\index{Ragot::Scene@{Ragot::Scene}!add\_entities@{add\_entities}}
+\index{add\_entities@{add\_entities}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{add\_entities()}{add\_entities()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a9123a226edd97f68785ccfd4d8ae89b3} 
+void Ragot\+::\+Scene\+::add\+\_\+entities (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$}]{entity}{, }\item[{const string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Adds an entity to the scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & Shared pointer to the entity. \\
+\hline
+{\em name} & Name of the entity. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_scene_a75bc76a05c4293a6ff57b708b0ca79f8}\index{Ragot::Scene@{Ragot::Scene}!get\_camera@{get\_camera}}
+\index{get\_camera@{get\_camera}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{get\_camera()}{get\_camera()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a75bc76a05c4293a6ff57b708b0ca79f8} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_camera}{Camera}} $>$ Ragot\+::\+Scene\+::get\+\_\+camera (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the camera of the scene. 
+
+\begin{DoxyReturn}{Returns}
+Shared pointer to the camera. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_scene_a26cd1a8b9990ffe1eca712db5b862372}\index{Ragot::Scene@{Ragot::Scene}!get\_entity@{get\_entity}}
+\index{get\_entity@{get\_entity}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{get\_entity()}{get\_entity()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a26cd1a8b9990ffe1eca712db5b862372} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_entity}{Entity}} $>$ Ragot\+::\+Scene\+::get\+\_\+entity (\begin{DoxyParamCaption}\item[{const string \&}]{name}{}\end{DoxyParamCaption}) const}
+
+
+
+Gets an entity from the scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the entity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Shared pointer to the entity. 
+\end{DoxyReturn}
+\Hypertarget{class_ragot_1_1_scene_a453c1fd16bd12a2ffb98f99c6e7d8e26}\index{Ragot::Scene@{Ragot::Scene}!on\_click@{on\_click}}
+\index{on\_click@{on\_click}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{on\_click()}{on\_click()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a453c1fd16bd12a2ffb98f99c6e7d8e26} 
+void Ragot\+::\+Scene\+::on\+\_\+click (\begin{DoxyParamCaption}\item[{int}]{pointer\+\_\+x}{, }\item[{int}]{pointer\+\_\+y}{, }\item[{bool}]{down}{}\end{DoxyParamCaption})}
+
+
+
+Handles pointer click events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pointer\+\_\+x} & X-\/coordinate of the pointer. \\
+\hline
+{\em pointer\+\_\+y} & Y-\/coordinate of the pointer. \\
+\hline
+{\em down} & Indicates if the pointer is pressed down. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_scene_a6bd6c03bc70ece5256084d99990559ef}\index{Ragot::Scene@{Ragot::Scene}!on\_drag@{on\_drag}}
+\index{on\_drag@{on\_drag}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{on\_drag()}{on\_drag()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a6bd6c03bc70ece5256084d99990559ef} 
+void Ragot\+::\+Scene\+::on\+\_\+drag (\begin{DoxyParamCaption}\item[{int}]{pointer\+\_\+x}{, }\item[{int}]{pointer\+\_\+y}{}\end{DoxyParamCaption})}
+
+
+
+Handles pointer drag events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pointer\+\_\+x} & X-\/coordinate of the pointer. \\
+\hline
+{\em pointer\+\_\+y} & Y-\/coordinate of the pointer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_scene_a198f0285d870b31f5e15840564a1d16d}\index{Ragot::Scene@{Ragot::Scene}!on\_shift\_pressed@{on\_shift\_pressed}}
+\index{on\_shift\_pressed@{on\_shift\_pressed}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{on\_shift\_pressed()}{on\_shift\_pressed()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a198f0285d870b31f5e15840564a1d16d} 
+void Ragot\+::\+Scene\+::on\+\_\+shift\+\_\+pressed (\begin{DoxyParamCaption}\item[{bool}]{down}{}\end{DoxyParamCaption})}
+
+
+
+Handles shift key press events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em down} & Indicates if the shift key is pressed down. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_scene_a6491edd368e7824cba942d85cb6c3187}\index{Ragot::Scene@{Ragot::Scene}!on\_translation@{on\_translation}}
+\index{on\_translation@{on\_translation}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{on\_translation()}{on\_translation()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a6491edd368e7824cba942d85cb6c3187} 
+void Ragot\+::\+Scene\+::on\+\_\+translation (\begin{DoxyParamCaption}\item[{glm\+::vec3}]{translation}{}\end{DoxyParamCaption})}
+
+
+
+Handles translation events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em translation} & Translation vector. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_scene_a5ec8aaf77d46fa199272cf59ba2055b8}\index{Ragot::Scene@{Ragot::Scene}!remove\_entities@{remove\_entities}}
+\index{remove\_entities@{remove\_entities}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{remove\_entities()}{remove\_entities()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a5ec8aaf77d46fa199272cf59ba2055b8} 
+void Ragot\+::\+Scene\+::remove\+\_\+entities (\begin{DoxyParamCaption}\item[{const string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Removes an entity from the scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the entity. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_ragot_1_1_scene_a5d7a81a940644fedc7b0fa9369969c4a}\index{Ragot::Scene@{Ragot::Scene}!resize@{resize}}
+\index{resize@{resize}!Ragot::Scene@{Ragot::Scene}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_scene_a5d7a81a940644fedc7b0fa9369969c4a} 
+void Ragot\+::\+Scene\+::resize (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})}
+
+
+
+Resizes the scene. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & New width of the scene. \\
+\hline
+{\em height} & New height of the scene. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+My\+System.\+hpp\item 
+My\+System.\+cpp\end{DoxyCompactItemize}

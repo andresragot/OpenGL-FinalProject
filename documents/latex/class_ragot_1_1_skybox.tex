@@ -1,0 +1,69 @@
+\doxysection{Ragot\+::Skybox Class Reference}
+\hypertarget{class_ragot_1_1_skybox}{}\label{class_ragot_1_1_skybox}\index{Ragot::Skybox@{Ragot::Skybox}}
+
+
+Class for rendering a skybox in the scene.  
+
+
+
+
+{\ttfamily \#include $<$Ambient.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_skybox_a00f829f18160ce138e5508a17987ba6f}{Skybox}} (const string \&texture\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_skybox}{Skybox} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_skybox_a98d9a163c53c5a7abee68ea30ddf8fac}\label{class_ragot_1_1_skybox_a98d9a163c53c5a7abee68ea30ddf8fac} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Skybox} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ragot_1_1_skybox}{Skybox} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_ragot_1_1_skybox_a83fcf602b0063c8c24d84f56ceabab27}{set\+\_\+camera}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_camera}{Camera}} $>$ cam)
+\begin{DoxyCompactList}\small\item\em Sets the camera for the skybox. \end{DoxyCompactList}\item 
+\Hypertarget{class_ragot_1_1_skybox_a63c41d43ab03917e8097928c7f94c077}\label{class_ragot_1_1_skybox_a63c41d43ab03917e8097928c7f94c077} 
+void {\bfseries render} ()
+\begin{DoxyCompactList}\small\item\em Renders the skybox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for rendering a skybox in the scene. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_skybox_a00f829f18160ce138e5508a17987ba6f}\index{Ragot::Skybox@{Ragot::Skybox}!Skybox@{Skybox}}
+\index{Skybox@{Skybox}!Ragot::Skybox@{Ragot::Skybox}}
+\doxysubsubsection{\texorpdfstring{Skybox()}{Skybox()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_skybox_a00f829f18160ce138e5508a17987ba6f} 
+Ragot\+::\+Skybox\+::\+Skybox (\begin{DoxyParamCaption}\item[{const string \&}]{texture\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_skybox}{Skybox} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+\_\+path} & Path to the texture for the skybox. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_skybox_a83fcf602b0063c8c24d84f56ceabab27}\index{Ragot::Skybox@{Ragot::Skybox}!set\_camera@{set\_camera}}
+\index{set\_camera@{set\_camera}!Ragot::Skybox@{Ragot::Skybox}}
+\doxysubsubsection{\texorpdfstring{set\_camera()}{set\_camera()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_skybox_a83fcf602b0063c8c24d84f56ceabab27} 
+void Ragot\+::\+Skybox\+::set\+\_\+camera (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_camera}{Camera}} $>$}]{cam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the camera for the skybox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cam} & Shared pointer to the camera. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Ambient.\+hpp\item 
+Ambient.\+cpp\end{DoxyCompactItemize}

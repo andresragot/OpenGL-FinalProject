@@ -1,0 +1,102 @@
+\doxysection{Ragot\+::Texture\+\_\+\+Cube Class Reference}
+\hypertarget{class_ragot_1_1_texture___cube}{}\label{class_ragot_1_1_texture___cube}\index{Ragot::Texture\_Cube@{Ragot::Texture\_Cube}}
+
+
+Class for managing a cube texture.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+hpp$>$}
+
+Inheritance diagram for Ragot\+::Texture\+\_\+\+Cube\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ragot_1_1_texture___cube}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_texture___cube_a6043fe1b05e50e74bf8b3c4dc12eb92e}{Texture\+\_\+\+Cube}} (const string \&texture\+\_\+base\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_texture___cube}{Texture\+\_\+\+Cube} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ragot_1_1_texture___cube_ac0873ee80efa325f43a9e93c7de168b9}{bind}} () const override
+\begin{DoxyCompactList}\small\item\em Binds the cube texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2\+D$<$ Rgba8888 $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_ragot_1_1_texture2_d_a40c70d461e50cf8e9a0b9bd2d328b8f2}{Texture2D}} (const string \&texture\+\_\+base\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_ragot_1_1_texture2_d}{Texture2D} class. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Texture2D} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \doxylink{class_ragot_1_1_texture2_d}{Texture2D} class. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_ragot_1_1_texture2_d_a3ae6c06ae221d0b7d2292f6740cdec59}{is\+\_\+ok}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the texture is loaded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Types inherited from \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2\+D$<$ Rgba8888 $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29}{Color\+\_\+\+Buffer}}$<$ \mbox{\hyperlink{union_ragot_1_1_rgba8888}{Rgba8888}} $>$ {\bfseries Color\+\_\+\+Buffer}
+\begin{DoxyCompactList}\small\item\em Type alias for color buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2\+D$<$ Rgba8888 $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Texture2D} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \doxylink{class_ragot_1_1_texture2_d}{Texture2D} class. \end{DoxyCompactList}\item 
+GLint \mbox{\hyperlink{class_ragot_1_1_texture2_d_ace47525d560131b2ac4506c8537e4b14}{create\+\_\+texture\+\_\+2d}} (const string \&texture\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Creates a 2D texture from a file. \end{DoxyCompactList}\item 
+unique\+\_\+ptr$<$ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2cae78a52e0b8a0c7657c4910917af29}{Color\+\_\+\+Buffer}} $>$ \mbox{\hyperlink{class_ragot_1_1_texture2_d_a2406ef538dca030a7752e78c9999073e}{load\+\_\+image}} (const string \&texture\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Loads an image from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_ragot_1_1_texture2_d}{Ragot\+::\+Texture2\+D$<$ Rgba8888 $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+GLuint {\bfseries texture\+\_\+id}
+\begin{DoxyCompactList}\small\item\em Texture ID. \end{DoxyCompactList}\item 
+bool {\bfseries texture\+\_\+is\+\_\+loaded}
+\begin{DoxyCompactList}\small\item\em Indicates if the texture is loaded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for managing a cube texture. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_ragot_1_1_texture___cube_a6043fe1b05e50e74bf8b3c4dc12eb92e}\index{Ragot::Texture\_Cube@{Ragot::Texture\_Cube}!Texture\_Cube@{Texture\_Cube}}
+\index{Texture\_Cube@{Texture\_Cube}!Ragot::Texture\_Cube@{Ragot::Texture\_Cube}}
+\doxysubsubsection{\texorpdfstring{Texture\_Cube()}{Texture\_Cube()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_texture___cube_a6043fe1b05e50e74bf8b3c4dc12eb92e} 
+Ragot\+::\+Texture\+\_\+\+Cube\+::\+Texture\+\_\+\+Cube (\begin{DoxyParamCaption}\item[{const string \&}]{texture\+\_\+base\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Constructor for the \doxylink{class_ragot_1_1_texture___cube}{Texture\+\_\+\+Cube} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+\_\+base\+\_\+path} & Path to the base texture file. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_ragot_1_1_texture___cube_ac0873ee80efa325f43a9e93c7de168b9}\index{Ragot::Texture\_Cube@{Ragot::Texture\_Cube}!bind@{bind}}
+\index{bind@{bind}!Ragot::Texture\_Cube@{Ragot::Texture\_Cube}}
+\doxysubsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily \label{class_ragot_1_1_texture___cube_ac0873ee80efa325f43a9e93c7de168b9} 
+bool Ragot\+::\+Texture\+\_\+\+Cube\+::bind (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Binds the cube texture. 
+
+\begin{DoxyReturn}{Returns}
+True if the texture is successfully bound, false otherwise. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_ragot_1_1_texture2_d_a8ba913344bd8220ac82e3b558fab2947}{Ragot\+::\+Texture2\+D$<$ Rgba8888 $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Mesh.\+hpp\item 
+Mesh.\+cpp\end{DoxyCompactItemize}
