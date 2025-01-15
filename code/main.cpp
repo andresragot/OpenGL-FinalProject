@@ -41,19 +41,20 @@ int main(int argc, char* argv[])
     
     auto mesh_entity = make_shared < Entity > ();
 
-    auto mesh_component = make_shared < Model_Component > ("Intergalactic_Spaceship-(Wavefront).obj", "fotos/Intergalactic Spaceship_color_4.jpg");
+    auto mesh_component = make_shared < Model_Component > ("../../assets/Intergalactic_Spaceship-(Wavefront).obj", "../../assets/fotos/Intergalactic Spaceship_color_4.jpg");
     mesh_entity->add_component(mesh_component, "Mesh");
+    mesh_entity->transform.set_rotation({0.f, 0.f, 90.f});
     mesh_entity->transform.set_position({0.f, 0.f, -10.f});
     my_system.add_entities(mesh_entity, "Mesh");
     
-    auto container_entity = make_shared < Entity > ();
-    auto container_mesh_component = make_shared < Model_Component > ("Container.obj", "fotos/Container_DiffuseMap.jpg");
+    /*auto container_entity = make_shared < Entity > ();
+    auto container_mesh_component = make_shared < Model_Component > ("../../assets/Container.obj", "../../assets/fotos/Container_DiffuseMap.jpg");
     container_mesh_component->set_transparency(true);
     container_entity->add_component(container_mesh_component, "Mesh");
     my_system.add_entities(container_entity, "Container");
     
     container_entity->transform.set_position({0.f, -0.f, 0.f});
-    container_entity->transform.set_scale({0.01f, 0.01f, 0.01f});
+    container_entity->transform.set_scale({0.01f, 0.01f, 0.01f});*/
 
     my_system.run();
     

@@ -240,7 +240,7 @@ namespace Ragot
     Terrain::Terrain (float width, float depth, unsigned x_slices, unsigned z_slices)
     :
         shader_program({ vertex_shader_code }, { fragment_shader_code }),
-        texture("fotos/NvF5e.jpg")
+        texture("../../assets/fotos/NvF5e.jpg")
     {
     
         assert(texture.is_ok());

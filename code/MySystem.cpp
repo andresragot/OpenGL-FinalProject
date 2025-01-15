@@ -285,7 +285,7 @@ namespace Ragot
     Scene::Scene()
     :
         framebuffer(1024, 640),
-        skybox("fotos/space-cube-map-"),
+        skybox("../../assets/fotos/space-cube-map-"),
         terrain(10, 10, 10, 20)
     {
          skybox.set_camera(camera);
@@ -387,12 +387,15 @@ namespace Ragot
         
         camera->move(camera_translation);
                 
-        glm::mat4 camera_rotation(1);
+        glm::mat4 camera_rotation(1.f);
         
         camera_rotation = glm::rotate (camera_rotation, angle_around_y, glm::vec3(0.f, 1.f, 0.f));
         camera_rotation = glm::rotate (camera_rotation, angle_around_x, glm::vec3(1.f, 0.f, 0.f));
         
-        camera->set_target (0, 0, -1);
+        vec3 direction = glm::normalize(glm::vec3(camera_rotation * glm::vec4(0.f, 0.f, -1.f, 0.f)));
+        vec3 new_target = vec3 (camera->get_location()) + direction;
+        
+        camera->set_target (new_target.x, new_target.y, new_target.z);
         camera->rotate     (camera_rotation);
 
     }
